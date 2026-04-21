@@ -144,6 +144,13 @@ export function Navbar() {
             Home
           </Link>
 
+          <Link
+            href="/about"
+            className={`text-sm font-medium transition-colors hover:text-primary ${isActive("/about") ? "text-primary" : "text-muted-foreground"}`}
+          >
+            About Us
+          </Link>
+
           <DropdownMenu items={autoServiceItems}>
             <span className={isActive("/auto-services") || location.includes("/services/") ? "text-primary" : ""}>
               Auto Services
@@ -204,6 +211,11 @@ export function Navbar() {
             {/* Home */}
             <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-3 rounded-md text-base font-medium hover:bg-muted transition-colors" data-testid="link-mobile-nav-home">
               Home
+            </Link>
+
+            {/* About Us */}
+            <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-3 rounded-md text-base font-medium hover:bg-muted transition-colors" data-testid="link-mobile-nav-about">
+              About Us
             </Link>
 
             {/* Auto Services */}
