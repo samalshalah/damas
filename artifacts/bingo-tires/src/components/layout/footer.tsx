@@ -11,8 +11,11 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-6">
             <div>
-              <h3 className="text-2xl font-bold font-display text-white tracking-tight mb-1">Bingo Tire</h3>
-              <p className="text-sm text-zinc-400 font-medium uppercase tracking-wider">& Auto Service</p>
+              <img
+                src="/images/pingologo.png"
+                alt="Bingo Tire & Auto Service"
+                className="h-14 w-auto object-contain brightness-0 invert"
+              />
             </div>
             <p className="text-zinc-400 leading-relaxed">
               Since 2004, we've offered a full range of Tire and Auto Repair services for car owners in NOVA. Trusted, professional, and reliable.

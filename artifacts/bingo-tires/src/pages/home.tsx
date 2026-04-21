@@ -13,11 +13,11 @@ export default function Home() {
       <section className="relative bg-zinc-950 text-white overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="/images/hero-auto.png" 
+            src="/images/1431_sm.jpg" 
             alt="Auto repair garage" 
-            className="w-full h-full object-cover opacity-30 mix-blend-overlay"
+            className="w-full h-full object-cover opacity-40"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/85 to-zinc-950/60" />
         </div>
         
         <div className="container mx-auto px-4 py-24 md:py-32 lg:py-40 relative z-10">
@@ -131,7 +131,7 @@ export default function Home() {
               className="lg:w-1/2"
             >
               <div className="aspect-square rounded-3xl bg-zinc-100 dark:bg-zinc-900 overflow-hidden relative border">
-                <img src="/images/hero-auto.png" alt="Mechanic working" className="w-full h-full object-cover" />
+                <img src="/images/2218_sm.jpg" alt="Mechanic working on vehicle" className="w-full h-full object-cover" />
               </div>
             </motion.div>
             <motion.div 

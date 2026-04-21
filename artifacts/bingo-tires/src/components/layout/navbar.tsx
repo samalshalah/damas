@@ -19,9 +19,12 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 dark:bg-zinc-950/95 dark:supports-[backdrop-filter]:bg-zinc-950/80">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        <Link href="/" className="flex flex-col gap-0.5 group">
-          <span className="text-2xl font-bold font-display text-primary tracking-tight" data-testid="link-home-logo">Bingo Tire</span>
-          <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider group-hover:text-foreground transition-colors">& Auto Service</span>
+        <Link href="/" className="flex items-center group" data-testid="link-home-logo">
+          <img 
+            src="/images/pingologo.png" 
+            alt="Bingo Tire & Auto Service" 
+            className="h-14 w-auto object-contain"
+          />
         </Link>
 
         {/* Desktop Nav */}

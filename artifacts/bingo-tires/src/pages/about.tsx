@@ -34,7 +34,7 @@ export default function About() {
             animate={{ opacity: 1, scale: 1 }}
             className="aspect-[4/3] rounded-3xl overflow-hidden shadow-xl"
           >
-            <img src="/images/hero-auto.png" alt="Garage interior" className="w-full h-full object-cover" />
+            <img src="/images/img_630x421_carwork.jpg" alt="Garage interior" className="w-full h-full object-cover" />
           </motion.div>
         </div>
 
@@ -71,6 +71,34 @@ export default function About() {
                   <p className="text-muted-foreground">{feature.desc}</p>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Team */}
+        <div className="mb-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold font-display tracking-tight mb-4">Our Team</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Experienced, certified technicians who take pride in every vehicle that comes through our doors.</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            {[1, 2, 3, 4, 5, 6].map((n) => (
+              <motion.div
+                key={n}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: (n - 1) * 0.08 }}
+                className="text-center"
+              >
+                <div className="aspect-square rounded-2xl overflow-hidden mb-3 bg-zinc-100">
+                  <img
+                    src={`/images/team_0${n}.png`}
+                    alt={`Team member ${n}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
