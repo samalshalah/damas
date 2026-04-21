@@ -124,6 +124,7 @@ export const locations = [
     state: "VA",
     zip: "22153",
     phone: "(703) 440-0880",
+    mapImage: "/images/springfield.jpg",
     mapUrl: "https://maps.google.com/?q=7661+Fullerton+Rd,+Springfield,+VA+22153"
   },
   {
@@ -134,7 +135,41 @@ export const locations = [
     state: "VA",
     zip: "20120",
     phone: "(703) 543-6900",
+    mapImage: null,
     mapUrl: "https://maps.google.com/?q=13600+Lee+Hwy,+Centreville,+VA+20120"
+  },
+  {
+    id: "woodbridge",
+    name: "Woodbridge",
+    address: "1330 Old Bridge Rd",
+    city: "Woodbridge",
+    state: "VA",
+    zip: "22192",
+    phone: "(703) 494-8888",
+    mapImage: "/images/woodbridge.jpg",
+    mapUrl: "https://maps.google.com/?q=1330+Old+Bridge+Rd,+Woodbridge,+VA+22192"
+  },
+  {
+    id: "alexandria",
+    name: "Alexandria",
+    address: "2920 Jefferson Davis Hwy",
+    city: "Alexandria",
+    state: "VA",
+    zip: "22305",
+    phone: "(703) 548-0333",
+    mapImage: "/images/alexandria.jpg",
+    mapUrl: "https://maps.google.com/?q=2920+Jefferson+Davis+Hwy,+Alexandria,+VA+22305"
+  },
+  {
+    id: "winchester",
+    name: "Winchester",
+    address: "709 N Loudoun St",
+    city: "Winchester",
+    state: "VA",
+    zip: "22601",
+    phone: "(540) 667-7777",
+    mapImage: "/images/winchester.jpg",
+    mapUrl: "https://maps.google.com/?q=709+N+Loudoun+St,+Winchester,+VA+22601"
   }
 ];
 

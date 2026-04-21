@@ -171,48 +171,49 @@ export default function Home() {
       <section className="py-20 md:py-28 bg-zinc-950 text-white">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold font-display tracking-tight mb-4">Two Convenient Locations</h2>
-            <p className="text-zinc-400 text-lg">Serving the Northern Virginia area with top-tier automotive care.</p>
+            <h2 className="text-3xl md:text-4xl font-bold font-display tracking-tight mb-4">Five Convenient Locations</h2>
+            <p className="text-zinc-400 text-lg">Serving Northern Virginia from Springfield to Winchester.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {locations.map((loc, i) => (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                key={loc.id} 
-                className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800"
+                transition={{ delay: i * 0.08 }}
+                key={loc.id}
+                className="bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800 flex flex-col"
               >
-                <h3 className="text-2xl font-bold font-display mb-6">{loc.name}</h3>
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0 text-primary">
-                      <MapPin className="w-5 h-5" />
+                {loc.mapImage ? (
+                  <div className="h-36 overflow-hidden">
+                    <img src={loc.mapImage} alt={`${loc.name} location map`} className="w-full h-full object-cover" />
+                  </div>
+                ) : (
+                  <div className="h-36 bg-zinc-800 flex items-center justify-center">
+                    <MapPin className="w-10 h-10 text-zinc-600" />
+                  </div>
+                )}
+                <div className="p-6 flex flex-col flex-1">
+                  <h3 className="text-xl font-bold font-display mb-4">{loc.name}</h3>
+                  <div className="space-y-3 mb-6 flex-1">
+                    <div className="flex items-start gap-3 text-sm">
+                      <MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                      <span className="text-zinc-400">{loc.address}, {loc.city}, {loc.state} {loc.zip}</span>
                     </div>
-                    <div>
-                      <p className="font-medium text-zinc-300">Address</p>
-                      <p className="text-zinc-400">{loc.address}, {loc.city}, {loc.state} {loc.zip}</p>
+                    <div className="flex items-center gap-3 text-sm">
+                      <Phone className="w-4 h-4 text-primary shrink-0" />
+                      <a href={`tel:${loc.phone.replace(/\D/g,'')}`} className="text-zinc-400 hover:text-white transition-colors">{loc.phone}</a>
                     </div>
                   </div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0 text-primary">
-                      <Phone className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-zinc-300">Phone</p>
-                      <p className="text-zinc-400">{loc.phone}</p>
-                    </div>
+                  <div className="flex gap-3">
+                    <Button asChild size="sm" className="flex-1 rounded-full" variant="secondary">
+                      <a href={`tel:${loc.phone.replace(/\D/g,'')}`}>Call</a>
+                    </Button>
+                    <Button asChild size="sm" className="flex-1 rounded-full bg-primary hover:bg-primary/90 text-white">
+                      <a href={loc.mapUrl} target="_blank" rel="noreferrer">Directions</a>
+                    </Button>
                   </div>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Button asChild className="w-full sm:w-auto rounded-full" variant="secondary">
-                    <a href={`tel:${loc.phone.replace(/\D/g,'')}`}>Call Shop</a>
-                  </Button>
-                  <Button asChild className="w-full sm:w-auto rounded-full bg-primary hover:bg-primary/90 text-white">
-                    <a href={loc.mapUrl} target="_blank" rel="noreferrer">Get Directions</a>
-                  </Button>
                 </div>
               </motion.div>
             ))}
