@@ -37,21 +37,24 @@ export function PageHero({
     <section className="bg-white border-b overflow-hidden">
       <div className="relative min-h-[480px] flex items-center">
         {/* Right image with gradient fade */}
-        <div className="absolute right-0 top-0 bottom-0 w-[58%]">
+        <div className="absolute right-0 top-0 bottom-0 w-full md:w-[58%]">
           <img
             src={image}
             alt={imageAlt}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/60 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white/30 to-transparent" />
+          {/* Mobile: dark overlay so text stays readable */}
+          <div className="absolute inset-0 bg-black/55 md:hidden" />
+          {/* Desktop: gradient fade from white on left, subtle top/bottom */}
+          <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-white via-white/25 to-transparent" />
+          <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
         </div>
 
         {/* Left text */}
         <div className="relative z-10 w-full container mx-auto px-4">
           <div className="w-full md:w-[50%] py-16">
             {breadcrumbs && (
-              <div className="mb-5 text-sm text-zinc-400">{breadcrumbs}</div>
+              <div className="mb-5 text-sm text-zinc-300 md:text-zinc-400">{breadcrumbs}</div>
             )}
 
             {category && (
@@ -60,11 +63,11 @@ export function PageHero({
               </div>
             )}
 
-            <h1 className="text-4xl md:text-5xl font-black text-zinc-900 leading-tight tracking-tight mb-4">
+            <h1 className="text-4xl md:text-5xl font-black text-white md:text-zinc-900 leading-tight tracking-tight mb-4">
               {title}
             </h1>
 
-            <p className="text-zinc-600 text-lg leading-relaxed mb-8 max-w-lg">
+            <p className="text-zinc-200 md:text-zinc-600 text-lg leading-relaxed mb-8 max-w-lg">
               {description}
             </p>
 
@@ -72,8 +75,8 @@ export function PageHero({
               <div className="flex gap-8 mb-8">
                 {stats.map(s => (
                   <div key={s.label}>
-                    <div className="text-2xl font-black text-zinc-900">{s.val}</div>
-                    <div className="text-xs text-zinc-500 font-medium mt-0.5">{s.label}</div>
+                    <div className="text-2xl font-black text-white md:text-zinc-900">{s.val}</div>
+                    <div className="text-xs text-zinc-300 md:text-zinc-500 font-medium mt-0.5">{s.label}</div>
                   </div>
                 ))}
               </div>
@@ -91,7 +94,7 @@ export function PageHero({
                   </Button>
                 )}
                 {secondaryCta && (
-                  <Button asChild size="lg" variant="outline" className="rounded-full h-12 px-7 text-sm border-zinc-300">
+                  <Button asChild size="lg" variant="outline" className="rounded-full h-12 px-7 text-sm border-white text-white bg-transparent hover:bg-white/10 md:border-zinc-300 md:text-zinc-800 md:bg-white md:hover:bg-zinc-50">
                     {secondaryCta.tel ? (
                       <a href={`tel:${secondaryCta.tel}`}>{secondaryCta.label}</a>
                     ) : (
@@ -103,9 +106,9 @@ export function PageHero({
             )}
 
             {note && (
-              <div className="flex items-center gap-2 mt-8 pt-6 border-t border-zinc-100">
-                <Clock className="w-4 h-4 text-zinc-400 shrink-0" />
-                <span className="text-xs text-zinc-500">{note}</span>
+              <div className="flex items-center gap-2 mt-8 pt-6 border-t border-white/20 md:border-zinc-100">
+                <Clock className="w-4 h-4 text-zinc-300 md:text-zinc-400 shrink-0" />
+                <span className="text-xs text-zinc-300 md:text-zinc-500">{note}</span>
               </div>
             )}
           </div>
