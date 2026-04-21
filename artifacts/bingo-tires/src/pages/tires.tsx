@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { CheckCircle2, ShieldCheck } from "lucide-react";
 import { services } from "@/lib/data";
+import { BrandStrip } from "@/components/brand-strip";
 
 const tireBrands = [
   { name: "Michelin", logo: "/images/michelin_sm.jpg" },
@@ -41,6 +42,8 @@ export default function Tires() {
           </Button>
         </div>
       </section>
+
+      <BrandStrip />
 
       {/* Options */}
       <section className="py-20">
@@ -84,24 +87,6 @@ export default function Tires() {
                 <Link href="/contact">Ask About Used Tires</Link>
               </Button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Brand Logos */}
-      <section className="py-16 bg-white dark:bg-zinc-900 border-y">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold font-display text-center tracking-tight mb-10">Brands We Carry</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 max-w-4xl mx-auto items-center">
-            {tireBrands.map((brand) => (
-              <div key={brand.name} className="flex items-center justify-center p-4 bg-zinc-50 dark:bg-zinc-800 rounded-xl border">
-                <img
-                  src={brand.logo}
-                  alt={brand.name}
-                  className="h-10 w-auto object-contain grayscale hover:grayscale-0 transition-all"
-                />
-              </div>
-            ))}
           </div>
         </div>
       </section>

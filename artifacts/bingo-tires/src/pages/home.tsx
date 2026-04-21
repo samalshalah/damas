@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, MapPin, Phone, Star } from "lucide-react";
 import { services, locations } from "@/lib/data";
 import { motion } from "framer-motion";
+import { BrandStrip } from "@/components/brand-strip";
 
 export default function Home() {
   const featuredServices = services.slice(0, 6);
@@ -76,6 +77,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <BrandStrip />
 
       {/* Featured Services */}
       <section className="py-20 md:py-28 bg-zinc-50 dark:bg-zinc-900/50">
