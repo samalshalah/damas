@@ -15,9 +15,9 @@ export default function Specials() {
         image="/images/2218_sm.jpg"
         imageAlt="Auto service specials"
         stats={[
-          { val: "6+", label: "Active Deals" },
-          { val: "$29.99", label: "Oil Change Special" },
-          { val: "Free", label: "Battery Test" },
+          { val: "7", label: "Active Deals" },
+          { val: "$69.99", label: "Oil Change" },
+          { val: "Free", label: "Alignment Check" },
         ]}
         primaryCta={{ label: "Book & Save", href: "/contact" }}
         secondaryCta={{ label: "Find a Location", href: "/locations" }}

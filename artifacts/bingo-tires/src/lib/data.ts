@@ -978,10 +978,11 @@ export const locations: Location[] = [
 ];
 
 export const specials = [
-  { id: "oil-change", title: "Oil Change Special", price: "Starting at $29.99", originalPrice: "$49.99", description: "Conventional oil change including filter and multi-point inspection." },
-  { id: "online-booking", title: "$5 Off Any Service", price: "$5 Off", description: "Save $5 on any service when you book your appointment online." },
-  { id: "free-rotation", title: "Free Tire Rotation", price: "Free", description: "Get a free tire rotation with any paid brake service." },
-  { id: "state-inspection", title: "VA State Inspection", price: "$16.00", description: "Official Virginia state safety inspection fee." },
-  { id: "tire-rotation-deal", title: "Tire Rotation", price: "$19.99", originalPrice: "$35.00", description: "Professional tire rotation to extend the life of your tires." },
-  { id: "battery-test", title: "Battery Test", price: "Free", description: "Complete diagnostic test of your battery and charging system." }
+  { id: "oil-change", title: "Oil Change", price: "$69.99", description: "Full-service oil change with filter replacement and a multi-point inspection. All oil types available — conventional, synthetic blend, and full synthetic." },
+  { id: "rotation-oil-change", title: "Tire Rotation & Oil Change", price: "$110", description: "Get your oil changed and tires rotated in one visit. Includes filter replacement and multi-point inspection. A great way to maintain your vehicle and extend tire life." },
+  { id: "brake-pad", title: "Brake Pad Replacement", price: "$79.99", description: "Per axle. Includes new brake pads and a full brake system inspection. We use quality pads that meet or exceed OEM specs. Call to confirm fitment for your vehicle." },
+  { id: "brake-rotor", title: "Brake Rotor Replacement", price: "$139.99", description: "Per axle. Includes new rotors and brake pads installed and inspected by our certified technicians. Pricing may vary by vehicle — call your location for a quote." },
+  { id: "alignment-package", title: "Tire Alignment + Mounting & Balance (4 Tires)", price: "$199.99", description: "Complete package: computer wheel alignment plus mounting and balancing of four tires. Ideal when purchasing new tires. Proper alignment protects your investment and improves handling." },
+  { id: "alignment-check", title: "Wheel Alignment Check", price: "Free", description: "Not sure if your alignment is off? Stop by for a complimentary wheel alignment check. We'll let you know if your vehicle is out of spec — no obligation." },
+  { id: "state-inspection", title: "VA State Inspection", price: "$16.00", description: "Official Virginia state safety inspection at our Centreville (13600 Lee Hwy) and Springfield (7661 Fullerton Rd) locations. Walk-ins welcome — call ahead during busy periods." },
 ];
