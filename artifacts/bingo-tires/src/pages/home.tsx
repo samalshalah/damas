@@ -14,9 +14,9 @@ export default function Home() {
       <section className="relative bg-zinc-950 text-white overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="/images/1431_sm.jpg" 
-            alt="Auto repair garage" 
-            className="w-full h-full object-cover opacity-40"
+            src="/images/bingo-storefront.jpg" 
+            alt="Bingo Tire & Auto Service storefront" 
+            className="w-full h-full object-cover opacity-60"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/85 to-zinc-950/60" />
         </div>
