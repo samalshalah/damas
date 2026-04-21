@@ -54,7 +54,7 @@ export default function ServiceDetail() {
           { val: "All", label: "Makes & Models" },
         ]}
         primaryCta={{ label: "Book This Service", href: `/contact?service=${service.slug}` }}
-        secondaryCta={{ label: "(703) 440-0880", href: "/contact", tel: "+17034400880" }}
+        secondaryCta={{ label: "Find a Location", href: "/locations" }}
         note="Mon–Fri 8am–6pm · Sat 8am–4pm · Walk-ins welcome"
         breadcrumbs={
           <nav className="flex items-center gap-2 text-sm text-zinc-400">
@@ -168,10 +168,10 @@ export default function ServiceDetail() {
                 <Button asChild size="lg" variant="secondary" className="w-full rounded-full h-12 font-semibold mb-3" data-testid="button-sidebar-book">
                   <Link href={`/contact?service=${service.slug}`}>Book Online</Link>
                 </Button>
-                <a href="tel:+17034400880" className="flex items-center justify-center gap-2 text-sm text-white/80 hover:text-white transition-colors font-medium">
-                  <Phone className="w-4 h-4" />
-                  (703) 440-0880
-                </a>
+                <Link href="/locations" className="flex items-center justify-center gap-2 text-sm text-white/80 hover:text-white transition-colors font-medium">
+                  <MapPin className="w-4 h-4" />
+                  Find Your Nearest Location
+                </Link>
                 <div className="mt-5 pt-5 border-t border-white/20 text-xs text-white/70 text-center">
                   5 locations across Northern Virginia
                 </div>

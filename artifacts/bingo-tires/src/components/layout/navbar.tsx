@@ -7,6 +7,60 @@ import { services, locations } from "@/lib/data";
 const autoServices = services.filter(s => s.category === "Auto Services");
 const tireServices = services.filter(s => s.category === "Tire and Wheel");
 
+const phoneLocations = [
+  { city: "Springfield",  phone: "(703) 440-0880", tel: "7034400880" },
+  { city: "Woodbridge",   phone: "(703) 494-8888", tel: "7034948888" },
+  { city: "Alexandria",   phone: "(703) 548-0333", tel: "7035480333" },
+  { city: "Centreville",  phone: "(703) 543-6900", tel: "7035436900" },
+  { city: "Winchester",   phone: "(540) 667-7777", tel: "5406677777" },
+];
+
+function PhoneDropdown() {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
+  return (
+    <div className="relative" ref={ref}>
+      <Button
+        onClick={() => setOpen(o => !o)}
+        className="hidden lg:flex font-semibold text-sm h-10 px-5 shadow-sm rounded-full shrink-0"
+        data-testid="button-nav-call"
+      >
+        <Phone className="w-4 h-4 mr-2" />
+        Call Us
+        <ChevronDown className={`w-3.5 h-3.5 ml-1.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+      </Button>
+      {open && (
+        <div className="absolute right-0 top-full mt-2 w-64 bg-white rounded-xl shadow-xl border border-border/60 py-2 z-50">
+          <p className="px-4 py-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Call Your Nearest Location</p>
+          {phoneLocations.map(loc => (
+            <a
+              key={loc.city}
+              href={`tel:${loc.tel}`}
+              onClick={() => setOpen(false)}
+              className="flex items-center justify-between px-4 py-2.5 hover:bg-zinc-50 transition-colors group"
+            >
+              <span className="flex items-center gap-2 text-sm font-medium text-zinc-800 group-hover:text-primary">
+                <MapPin className="w-3.5 h-3.5 text-primary shrink-0" />
+                {loc.city}
+              </span>
+              <span className="text-sm text-zinc-500 group-hover:text-primary font-medium">{loc.phone}</span>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function DropdownMenu({ children, items }: { children: React.ReactNode; items: { href: string; label: string; sublabel?: string }[] }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -131,12 +185,7 @@ export function Navbar() {
         </nav>
 
         {/* Call Button */}
-        <Button asChild className="hidden lg:flex font-semibold text-sm h-10 px-5 shadow-sm rounded-full shrink-0" data-testid="button-nav-call">
-          <a href="tel:7034400880">
-            <Phone className="w-4 h-4 mr-2" />
-            (703) 440-0880
-          </a>
-        </Button>
+        <PhoneDropdown />
 
         {/* Mobile Menu Toggle */}
         <button
@@ -228,13 +277,22 @@ export function Navbar() {
               Contact Us
             </Link>
           </nav>
-          <div className="px-4 pt-4 border-t mt-4">
-            <Button asChild className="w-full font-semibold rounded-full" size="lg">
-              <a href="tel:7034400880">
-                <Phone className="w-4 h-4 mr-2" />
-                Call Now: (703) 440-0880
+          <div className="pt-4 border-t mt-4">
+            <p className="px-4 pb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Call Your Nearest Location</p>
+            {phoneLocations.map(loc => (
+              <a
+                key={loc.city}
+                href={`tel:${loc.tel}`}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center justify-between px-4 py-2.5 rounded-md hover:bg-muted transition-colors"
+              >
+                <span className="flex items-center gap-2 text-sm font-medium text-zinc-800">
+                  <MapPin className="w-3.5 h-3.5 text-primary shrink-0" />
+                  {loc.city}
+                </span>
+                <span className="text-sm text-primary font-semibold">{loc.phone}</span>
               </a>
-            </Button>
+            ))}
           </div>
         </div>
       )}

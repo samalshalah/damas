@@ -20,7 +20,7 @@ export default function Specials() {
           { val: "Free", label: "Battery Test" },
         ]}
         primaryCta={{ label: "Book & Save", href: "/contact" }}
-        secondaryCta={{ label: "(703) 440-0880", href: "/contact", tel: "+17034400880" }}
+        secondaryCta={{ label: "Find a Location", href: "/locations" }}
         note="Call to confirm current pricing · Offers subject to change"
       />
       <div className="py-16 md:py-24">

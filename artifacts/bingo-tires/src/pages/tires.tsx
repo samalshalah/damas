@@ -35,7 +35,7 @@ export default function Tires() {
           { val: "Free", label: "Computer Balancing" },
         ]}
         primaryCta={{ label: "Request a Quote", href: "/contact" }}
-        secondaryCta={{ label: "(703) 440-0880", href: "/contact", tel: "+17034400880" }}
+        secondaryCta={{ label: "Find a Location", href: "/locations" }}
         note="Inventory changes daily · Call to check availability"
       />
 

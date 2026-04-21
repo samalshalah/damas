@@ -22,7 +22,7 @@ export default function AutoServices() {
           { val: "20+", label: "Years Experience" },
         ]}
         primaryCta={{ label: "Book an Appointment", href: "/contact" }}
-        secondaryCta={{ label: "(703) 440-0880", href: "/contact", tel: "+17034400880" }}
+        secondaryCta={{ label: "Find a Location", href: "/locations" }}
         note="Mon–Fri 8am–6pm · Sat 8am–4pm · Walk-ins welcome"
       />
 
