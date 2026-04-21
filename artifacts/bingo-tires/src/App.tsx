@@ -10,7 +10,11 @@ import Home from "@/pages/home";
 import About from "@/pages/about";
 import Services from "@/pages/services";
 import ServiceDetail from "@/pages/service-detail";
+import AutoServices from "@/pages/auto-services";
+import TireServices from "@/pages/tire-services";
 import Tires from "@/pages/tires";
+import Locations from "@/pages/locations";
+import LocationDetail from "@/pages/location-detail";
 import Specials from "@/pages/specials";
 import Contact from "@/pages/contact";
 
@@ -26,7 +30,11 @@ function Router() {
           <Route path="/about" component={About} />
           <Route path="/services" component={Services} />
           <Route path="/services/:slug" component={ServiceDetail} />
+          <Route path="/auto-services" component={AutoServices} />
+          <Route path="/tire-services" component={TireServices} />
           <Route path="/tires" component={Tires} />
+          <Route path="/locations" component={Locations} />
+          <Route path="/locations/:id" component={LocationDetail} />
           <Route path="/specials" component={Specials} />
           <Route path="/contact" component={Contact} />
           <Route component={NotFound} />

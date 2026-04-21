@@ -12,9 +12,9 @@ export function Footer() {
           <div className="space-y-6">
             <div>
               <img
-                src="/images/pingologo.png"
+                src="/images/bingo-logo-new.png"
                 alt="Bingo Tire & Auto Service"
-                className="h-14 w-auto object-contain brightness-0 invert"
+                className="h-12 w-auto object-contain"
               />
             </div>
             <p className="text-zinc-400 leading-relaxed">
@@ -59,9 +59,10 @@ export function Footer() {
             <ul className="space-y-3">
               {[
                 { href: "/", label: "Home" },
-                { href: "/about", label: "About Us" },
-                { href: "/services", label: "All Services" },
-                { href: "/tires", label: "Tires" },
+                { href: "/auto-services", label: "Auto Services" },
+                { href: "/tire-services", label: "Tire Services" },
+                { href: "/tires", label: "New & Used Tires" },
+                { href: "/locations", label: "Locations" },
                 { href: "/specials", label: "Specials" },
                 { href: "/contact", label: "Contact Us" },
               ].map((link) => (
