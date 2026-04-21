@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, MapPin, Phone, Star } from "lucide-react";
+import { ArrowRight, CheckCircle2, MapPin, Phone, Star, Clock } from "lucide-react";
 import { services, locations } from "@/lib/data";
 import { motion } from "framer-motion";
 import { BrandStrip } from "@/components/brand-strip";
@@ -184,53 +184,82 @@ export default function Home() {
       {/* Locations */}
       <section className="py-20 md:py-28 bg-zinc-950 text-white">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-14">
             <h2 className="text-3xl md:text-4xl font-bold font-display tracking-tight mb-4">Five Convenient Locations</h2>
             <p className="text-zinc-400 text-lg">Serving Northern Virginia from Springfield to Winchester.</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {locations.map((loc, i) => (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                key={loc.id}
-                className="bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800 flex flex-col"
-              >
-                {loc.mapImage ? (
-                  <div className="h-36 overflow-hidden">
-                    <img src={loc.mapImage} alt={`${loc.name} location map`} className="w-full h-full object-cover" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
+            {locations.map((loc, i) => {
+              const encodedAddress = encodeURIComponent(`${loc.address}, ${loc.city}, ${loc.state} ${loc.zip}`);
+              const mapEmbedUrl = `https://maps.google.com/maps?q=${encodedAddress}&output=embed&z=15`;
+              const monEntry = loc.hours.find(h => h.day === "Monday");
+              const satEntry = loc.hours.find(h => h.day === "Saturday");
+              const sunEntry = loc.hours.find(h => h.day === "Sunday");
+              return (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                  key={loc.id}
+                  className="bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800 flex flex-col hover:border-zinc-600 transition-colors"
+                >
+                  {/* Google Map */}
+                  <div className="h-40 overflow-hidden bg-zinc-800">
+                    <iframe
+                      title={`Map of Bingo Tire ${loc.city}`}
+                      src={mapEmbedUrl}
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      className="w-full h-full"
+                    />
                   </div>
-                ) : (
-                  <div className="h-36 bg-zinc-800 flex items-center justify-center">
-                    <MapPin className="w-10 h-10 text-zinc-600" />
-                  </div>
-                )}
-                <div className="p-6 flex flex-col flex-1">
-                  <h3 className="text-xl font-bold font-display mb-4">{loc.name}</h3>
-                  <div className="space-y-3 mb-6 flex-1">
-                    <div className="flex items-start gap-3 text-sm">
-                      <MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                      <span className="text-zinc-400">{loc.address}, {loc.city}, {loc.state} {loc.zip}</span>
+
+                  {/* Content */}
+                  <div className="p-5 flex flex-col flex-1">
+                    <h3 className="text-lg font-bold font-display mb-3">{loc.name}</h3>
+
+                    <div className="space-y-2 mb-4 flex-1">
+                      <div className="flex items-start gap-2 text-xs">
+                        <MapPin className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                        <span className="text-zinc-400 leading-snug">{loc.address}, {loc.city}, {loc.state} {loc.zip}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-xs">
+                        <Phone className="w-3.5 h-3.5 text-primary shrink-0" />
+                        <a href={`tel:${loc.phone.replace(/\D/g,'')}`} className="text-zinc-400 hover:text-white transition-colors">{loc.phone}</a>
+                      </div>
+                      <div className="flex items-start gap-2 text-xs pt-1">
+                        <Clock className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                        <div className="text-zinc-500 space-y-0.5">
+                          {monEntry && <div><span className="text-zinc-400">Mon–Fri</span> {monEntry.hours}</div>}
+                          {satEntry && <div><span className="text-zinc-400">Sat</span> {satEntry.hours}</div>}
+                          {sunEntry && <div><span className={sunEntry.hours === "Closed" ? "text-primary" : "text-zinc-400"}>Sun</span>{" "}<span className={sunEntry.hours === "Closed" ? "text-primary" : ""}>{sunEntry.hours}</span></div>}
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-3 text-sm">
-                      <Phone className="w-4 h-4 text-primary shrink-0" />
-                      <a href={`tel:${loc.phone.replace(/\D/g,'')}`} className="text-zinc-400 hover:text-white transition-colors">{loc.phone}</a>
+
+                    <div className="flex gap-2 mt-auto">
+                      <Button asChild size="sm" className="flex-1 rounded-full h-8 text-xs" variant="secondary">
+                        <a href={`tel:${loc.phone.replace(/\D/g,'')}`}>Call</a>
+                      </Button>
+                      <Button asChild size="sm" className="flex-1 rounded-full h-8 text-xs bg-primary hover:bg-primary/90 text-white">
+                        <Link href={`/locations/${loc.id}`}>Details</Link>
+                      </Button>
                     </div>
                   </div>
-                  <div className="flex gap-3">
-                    <Button asChild size="sm" className="flex-1 rounded-full" variant="secondary">
-                      <a href={`tel:${loc.phone.replace(/\D/g,'')}`}>Call</a>
-                    </Button>
-                    <Button asChild size="sm" className="flex-1 rounded-full bg-primary hover:bg-primary/90 text-white">
-                      <a href={loc.mapUrl} target="_blank" rel="noreferrer">Directions</a>
-                    </Button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Button asChild variant="outline" size="lg" className="rounded-full border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white">
+              <Link href="/locations">View All Locations</Link>
+            </Button>
           </div>
         </div>
       </section>
