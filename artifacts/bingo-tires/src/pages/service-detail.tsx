@@ -1,7 +1,7 @@
 import { useRoute, Link } from "wouter";
 import { services } from "@/lib/data";
 import { Button } from "@/components/ui/button";
-import { AlertTriangle, Calendar, CheckCircle2, ChevronRight, Phone, ChevronDown, ChevronUp, MapPin } from "lucide-react";
+import { AlertTriangle, Calendar, CheckCircle2, ChevronRight, Phone, ChevronDown, ChevronUp, MapPin, Info } from "lucide-react";
 import NotFound from "@/pages/not-found";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -73,9 +73,15 @@ export default function ServiceDetail() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-display tracking-tight mb-6 max-w-2xl">
               {service.name}
             </h1>
-            <p className="text-xl text-zinc-300 max-w-2xl leading-relaxed mb-10">
+            <p className="text-xl text-zinc-300 max-w-2xl leading-relaxed mb-6">
               {service.seoDescription}
             </p>
+            {service.availableAt && (
+              <div className="inline-flex items-center gap-2.5 bg-amber-500/15 border border-amber-400/30 text-amber-300 rounded-full px-5 py-2.5 text-sm font-medium mb-8">
+                <Info className="w-4 h-4 shrink-0" />
+                Available at: {service.availableAt.join(" & ")} locations only
+              </div>
+            )}
             <div className="flex flex-col sm:flex-row gap-4">
               <Button asChild size="lg" className="rounded-full h-14 px-8 text-base font-semibold" data-testid="button-book-service">
                 <Link href={`/contact?service=${service.slug}`}>
@@ -196,16 +202,32 @@ export default function ServiceDetail() {
 
               {/* Locations */}
               <div className="bg-white dark:bg-zinc-900 rounded-2xl border shadow-sm p-6">
-                <h3 className="font-bold font-display mb-4 flex items-center gap-2">
+                <h3 className="font-bold font-display mb-1 flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-primary" />
-                  Available At All Locations
+                  {service.availableAt ? "Available Locations" : "Available At All Locations"}
                 </h3>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>Springfield · (703) 440-0880</li>
-                  <li>Woodbridge · (703) 494-8888</li>
-                  <li>Alexandria · (703) 548-0333</li>
-                  <li>Centreville · (703) 543-6900</li>
-                  <li>Winchester · (540) 667-7777</li>
+                {service.availableAt && (
+                  <p className="text-xs text-amber-600 dark:text-amber-400 mb-3 font-medium">
+                    This service is only offered at select locations.
+                  </p>
+                )}
+                {!service.availableAt && <div className="mb-3" />}
+                <ul className="space-y-2 text-sm">
+                  {[
+                    { name: "Springfield", phone: "(703) 440-0880" },
+                    { name: "Woodbridge", phone: "(703) 494-8888" },
+                    { name: "Alexandria", phone: "(703) 548-0333" },
+                    { name: "Centreville", phone: "(703) 543-6900" },
+                    { name: "Winchester", phone: "(540) 667-7777" },
+                  ].map(loc => {
+                    const available = !service.availableAt || service.availableAt.includes(loc.name);
+                    return (
+                      <li key={loc.name} className={`flex items-center justify-between gap-2 ${available ? "text-foreground" : "text-muted-foreground/40 line-through"}`}>
+                        <span>{loc.name}</span>
+                        {available && <span className="text-muted-foreground text-xs">{loc.phone}</span>}
+                      </li>
+                    );
+                  })}
                 </ul>
                 <Button asChild variant="outline" size="sm" className="w-full mt-4 rounded-full">
                   <Link href="/locations">Find a Location</Link>

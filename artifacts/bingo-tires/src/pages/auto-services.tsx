@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { services } from "@/lib/data";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
@@ -61,6 +61,12 @@ export default function AutoServices() {
                     <div className="flex-1 min-w-0">
                       <h2 className="text-lg font-bold font-display mb-1.5 group-hover:text-primary transition-colors">{service.name}</h2>
                       <p className="text-muted-foreground text-sm leading-relaxed mb-3">{service.shortDescription}</p>
+                      {service.availableAt && (
+                        <div className="flex items-center gap-1.5 text-xs text-amber-600 dark:text-amber-400 font-medium mb-3">
+                          <MapPin className="w-3.5 h-3.5 shrink-0" />
+                          {service.availableAt.join(" & ")} only
+                        </div>
+                      )}
                       <div className="flex items-center text-primary font-medium text-sm">
                         Learn more <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                       </div>

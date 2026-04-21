@@ -17,6 +17,7 @@ export interface Service {
   warnings: string[];
   included: string[];
   faqs: ServiceFAQ[];
+  availableAt?: string[];
 }
 
 export const services: Service[] = [
@@ -297,9 +298,10 @@ export const services: Service[] = [
       },
       {
         question: "Do I need an appointment for a state inspection?",
-        answer: "We accept walk-ins for state inspections at all locations. Bringing your vehicle in early in the day helps ensure faster service, especially during busy periods near registration renewal deadlines."
+        answer: "We accept walk-ins for state inspections at our Centreville and Springfield locations. Bringing your vehicle in early in the day helps ensure faster service, especially during busy periods near registration renewal deadlines."
       }
-    ]
+    ],
+    availableAt: ["Centreville", "Springfield"]
   },
   {
     slug: "steering-suspension",
