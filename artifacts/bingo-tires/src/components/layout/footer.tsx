@@ -1,6 +1,6 @@
 import { Link } from "wouter";
-import { locations, services } from "@/lib/data";
-import { Phone, MapPin, Clock, ExternalLink } from "lucide-react";
+import { services } from "@/lib/data";
+import { Clock } from "lucide-react";
 
 export function Footer() {
   const autoServices = services.filter(s => s.category === "Auto Services");
@@ -117,59 +117,6 @@ export function Footer() {
             </div>
           </div>
 
-        </div>
-      </div>
-
-      {/* Locations horizontal strip */}
-      <div className="border-t border-zinc-800">
-        <div className="container mx-auto px-4 py-10">
-          <h4 className="text-base font-bold font-display text-white mb-8 flex items-center gap-2">
-            <MapPin className="w-4 h-4 text-primary" />
-            Our 5 Locations
-          </h4>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-            {locations.map((loc) => {
-              const monEntry = loc.hours.find(h => h.day === "Monday");
-              const satEntry = loc.hours.find(h => h.day === "Saturday");
-              const sunEntry = loc.hours.find(h => h.day === "Sunday");
-              return (
-                <div key={loc.id} className="space-y-2.5">
-                  <h5 className="text-sm font-bold text-white">{loc.name}</h5>
-                  <a
-                    href={loc.mapUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-start gap-1.5 text-xs text-zinc-400 hover:text-primary transition-colors group"
-                  >
-                    <MapPin className="w-3.5 h-3.5 mt-0.5 shrink-0" />
-                    <span>{loc.address}, {loc.city}, {loc.state} {loc.zip}</span>
-                    <ExternalLink className="w-3 h-3 mt-0.5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </a>
-                  <a
-                    href={`tel:${loc.phone.replace(/\D/g, "")}`}
-                    className="flex items-center gap-1.5 text-xs text-zinc-400 hover:text-primary transition-colors"
-                  >
-                    <Phone className="w-3.5 h-3.5 shrink-0" />
-                    {loc.phone}
-                  </a>
-                  <div className="flex items-start gap-1.5 text-xs text-zinc-500">
-                    <Clock className="w-3.5 h-3.5 mt-0.5 shrink-0 text-zinc-600" />
-                    <div className="space-y-0.5">
-                      {monEntry && (
-                        <div><span className="text-zinc-500">Mon–Fri</span> <span className="text-zinc-300">{monEntry.hours}</span></div>
-                      )}
-                      {satEntry && (
-                        <div><span className="text-zinc-500">Sat</span> <span className={satEntry.hours === "Closed" ? "text-primary" : "text-zinc-300"}>{satEntry.hours}</span></div>
-                      )}
-                      {sunEntry && (
-                        <div><span className="text-zinc-500">Sun</span> <span className={sunEntry.hours === "Closed" ? "text-primary" : "text-zinc-300"}>{sunEntry.hours}</span></div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
         </div>
       </div>
 
