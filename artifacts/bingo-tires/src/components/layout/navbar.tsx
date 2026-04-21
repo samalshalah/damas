@@ -59,7 +59,6 @@ export function Navbar() {
 
   const tireServiceItems = [
     { href: "/tire-services", label: "All Tire Services" },
-    { href: "/tires", label: "New & Used Tires" },
     ...tireServices.map(s => ({ href: `/services/${s.slug}`, label: s.name })),
   ];
 
@@ -187,7 +186,6 @@ export function Navbar() {
               {mobileExpanded === "tire" && (
                 <div className="ml-4 flex flex-col gap-1 mt-1">
                   <Link href="/tire-services" onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-2 rounded-md text-sm font-semibold text-primary hover:bg-primary/5">All Tire Services</Link>
-                  <Link href="/tires" onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-2 rounded-md text-sm hover:bg-muted">New &amp; Used Tires</Link>
                   {tireServices.map(s => (
                     <Link key={s.slug} href={`/services/${s.slug}`} onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-2 rounded-md text-sm hover:bg-muted">{s.name}</Link>
                   ))}
