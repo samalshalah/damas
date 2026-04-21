@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "rmks6lET75knyDfrrhZKr"
+uri = "file://artifacts/bingo-tires/public/images/hero-auto.png"
+type = "image"
+title = "Auto repair shop garage"

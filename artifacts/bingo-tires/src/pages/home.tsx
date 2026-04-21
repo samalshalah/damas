@@ -1,0 +1,238 @@
+import { Link } from "wouter";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, CheckCircle2, MapPin, Phone, Star } from "lucide-react";
+import { services, locations } from "@/lib/data";
+import { motion } from "framer-motion";
+
+export default function Home() {
+  const featuredServices = services.slice(0, 6);
+
+  return (
+    <div className="flex flex-col min-h-screen">
+      {/* Hero Section */}
+      <section className="relative bg-zinc-950 text-white overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src="/images/hero-auto.png" 
+            alt="Auto repair garage" 
+            className="w-full h-full object-cover opacity-30 mix-blend-overlay"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/80 to-transparent" />
+        </div>
+        
+        <div className="container mx-auto px-4 py-24 md:py-32 lg:py-40 relative z-10">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 text-primary-foreground border border-primary/30 mb-6 text-sm font-medium">
+              <Star className="w-4 h-4 fill-primary text-primary" />
+              Trusted in Northern Virginia since 2004
+            </div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-display leading-tight tracking-tight mb-6">
+              Expert Auto Repair & <span className="text-primary">Premium Tires</span>
+            </h1>
+            <p className="text-lg md:text-xl text-zinc-300 mb-10 leading-relaxed max-w-xl">
+              Since 2004, we've offered a full range of tire and auto repair services for car owners in NOVA. Reliable, professional, and neighborhood-friendly.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button asChild size="lg" className="h-14 px-8 text-base rounded-full shadow-lg" data-testid="button-hero-book">
+                <Link href="/contact">Book Appointment</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="h-14 px-8 text-base rounded-full bg-transparent border-zinc-600 text-white hover:bg-zinc-800" data-testid="button-hero-services">
+                <Link href="/services">View All Services</Link>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Feature Highlights */}
+      <section className="py-12 bg-white dark:bg-zinc-950 border-b">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              "Experts Since 2004", 
+              "Friendly, Honest Staff", 
+              "All Makes and Models", 
+              "Fast Turnaround Time"
+            ].map((feature, i) => (
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                key={i} 
+                className="flex items-center gap-3"
+              >
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                  <CheckCircle2 className="w-6 h-6 text-primary" />
+                </div>
+                <span className="font-semibold text-lg">{feature}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Services */}
+      <section className="py-20 md:py-28 bg-zinc-50 dark:bg-zinc-900/50">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold font-display tracking-tight mb-4">Our Featured Services</h2>
+            <p className="text-muted-foreground text-lg">Whether you drive a passenger car, medium-sized truck, or SUV, our mechanics ensure your vehicle performs at its best.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredServices.map((service, i) => (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                key={service.slug}
+              >
+                <Link 
+                  href={`/services/${service.slug}`}
+                  className="block group bg-white dark:bg-zinc-950 p-8 rounded-2xl shadow-sm border border-border/50 hover:shadow-md hover:border-primary/30 transition-all h-full"
+                  data-testid={`card-home-service-${service.slug}`}
+                >
+                  <div className="w-14 h-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <service.icon className="w-7 h-7" />
+                  </div>
+                  <h3 className="text-xl font-bold font-display mb-3 group-hover:text-primary transition-colors">{service.name}</h3>
+                  <p className="text-muted-foreground mb-6">{service.shortDescription}</p>
+                  <div className="flex items-center text-primary font-medium text-sm mt-auto">
+                    Learn more <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+          
+          <div className="mt-12 text-center">
+            <Button asChild variant="outline" size="lg" className="rounded-full">
+              <Link href="/services">View All 14 Services</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="py-20 md:py-28 bg-white dark:bg-zinc-950">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col lg:flex-row gap-16 items-center">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="lg:w-1/2"
+            >
+              <div className="aspect-square rounded-3xl bg-zinc-100 dark:bg-zinc-900 overflow-hidden relative border">
+                <img src="/images/hero-auto.png" alt="Mechanic working" className="w-full h-full object-cover" />
+              </div>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="lg:w-1/2 space-y-6"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold font-display tracking-tight">Your Trusted Neighborhood Shop</h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                We offer a full range of garage services to vehicle owners in Northern Virginia. Our professionals know how to handle a wide range of car services. Whether you drive a passenger car, medium sized truck, or SUV, our mechanics strive to ensure that your vehicle will be performing at its best before leaving our shop.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                A well-established, trustworthy neighborhood shop that has been around 20+ years. Solid, professional, reliable — not a big chain. Customers know the owner by name.
+              </p>
+              <ul className="space-y-4 pt-4">
+                {[
+                  "ASE Certified Technicians",
+                  "State-of-the-art Diagnostic Equipment",
+                  "Honest Pricing & Transparent Estimates",
+                  "Comfortable Waiting Area with Wi-Fi"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3">
+                    <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+                      <CheckCircle2 className="w-4 h-4 text-primary" />
+                    </div>
+                    <span className="font-medium">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Locations */}
+      <section className="py-20 md:py-28 bg-zinc-950 text-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold font-display tracking-tight mb-4">Two Convenient Locations</h2>
+            <p className="text-zinc-400 text-lg">Serving the Northern Virginia area with top-tier automotive care.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {locations.map((loc, i) => (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                key={loc.id} 
+                className="bg-zinc-900 rounded-2xl p-8 border border-zinc-800"
+              >
+                <h3 className="text-2xl font-bold font-display mb-6">{loc.name}</h3>
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0 text-primary">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-zinc-300">Address</p>
+                      <p className="text-zinc-400">{loc.address}, {loc.city}, {loc.state} {loc.zip}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0 text-primary">
+                      <Phone className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-zinc-300">Phone</p>
+                      <p className="text-zinc-400">{loc.phone}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Button asChild className="w-full sm:w-auto rounded-full" variant="secondary">
+                    <a href={`tel:${loc.phone.replace(/\D/g,'')}`}>Call Shop</a>
+                  </Button>
+                  <Button asChild className="w-full sm:w-auto rounded-full bg-primary hover:bg-primary/90 text-white">
+                    <a href={loc.mapUrl} target="_blank" rel="noreferrer">Get Directions</a>
+                  </Button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Banner */}
+      <section className="py-20 bg-primary text-primary-foreground relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        <div className="container mx-auto px-4 relative z-10 text-center">
+          <h2 className="text-3xl md:text-5xl font-bold font-display tracking-tight mb-6">Make an Appointment Online</h2>
+          <p className="text-lg text-primary-foreground/90 max-w-2xl mx-auto mb-10">
+            Skip the phone call. Schedule your next service or repair online and we'll confirm it shortly.
+          </p>
+          <Button asChild size="lg" variant="secondary" className="h-14 px-10 text-lg rounded-full font-bold shadow-xl hover:scale-105 transition-transform" data-testid="button-cta-book">
+            <Link href="/contact">Book Now</Link>
+          </Button>
+        </div>
+      </section>
+    </div>
+  );
+}
