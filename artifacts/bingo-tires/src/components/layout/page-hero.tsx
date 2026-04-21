@@ -48,7 +48,7 @@ export function PageHero({
         </div>
 
         {/* Left text */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12">
+        <div className="relative z-10 w-full container mx-auto px-4">
           <div className="w-full md:w-[50%] py-16">
             {breadcrumbs && (
               <div className="mb-5 text-sm text-zinc-400">{breadcrumbs}</div>
