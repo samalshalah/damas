@@ -21,7 +21,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/90 via-zinc-950/60 to-zinc-950/20" />
         </div>
         
-        <div className="container mx-auto px-4 py-24 md:py-32 lg:py-40 relative z-10">
+        <div className="container mx-auto px-4 py-32 md:py-44 lg:py-52 relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
