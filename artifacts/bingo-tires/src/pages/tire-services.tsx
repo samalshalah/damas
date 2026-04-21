@@ -3,35 +3,28 @@ import { services } from "@/lib/data";
 import { ArrowRight, CircleDot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { PageHero } from "@/components/layout/page-hero";
 
 export default function TireServices() {
   const tireServices = services.filter(s => s.category === "Tire and Wheel");
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
-      {/* Hero */}
-      <section className="relative bg-zinc-900 text-white py-24 overflow-hidden">
-        <div className="absolute inset-0">
-          <img src="/images/961_sm.jpg" alt="Tire services" className="w-full h-full object-cover opacity-35" />
-          <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/80 to-transparent" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10 max-w-3xl">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-display tracking-tight mb-6">
-            Tire Services
-          </h1>
-          <p className="text-xl text-zinc-300 mb-8">
-            Complete tire care — rotation, balancing, flat repair, TPMS, and more. We also carry a full inventory of new and used tires.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button asChild size="lg" className="rounded-full h-14 px-8 text-base">
-              <Link href="/contact">Book a Service</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-full h-14 px-8 text-base bg-transparent border-zinc-600 text-white hover:bg-zinc-800">
-              <Link href="/tires">Shop New &amp; Used Tires</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        category="Tire &amp; Wheel"
+        title={<>Tire Services<br />&amp; Repair</>}
+        description="Complete tire care — rotation, balancing, flat repair, TPMS, and more. We also carry a full inventory of new and used tires."
+        image="/images/961_sm.jpg"
+        imageAlt="Tire services"
+        stats={[
+          { val: "4", label: "Tire Services" },
+          { val: "10+", label: "Tire Brands" },
+          { val: "5", label: "Locations" },
+        ]}
+        primaryCta={{ label: "Book a Service", href: "/contact" }}
+        secondaryCta={{ label: "Shop New & Used Tires", href: "/tires" }}
+        note="Mon–Fri 8am–6pm · Sat 8am–4pm · Walk-ins welcome"
+      />
 
       {/* Services Grid */}
       <section className="py-16">

@@ -3,6 +3,7 @@ import { locations } from "@/lib/data";
 import { MapPin, Phone, Clock, ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { PageHero } from "@/components/layout/page-hero";
 
 function StarRating({ rating }: { rating: number }) {
   return (
@@ -25,19 +26,21 @@ function getTodayHours(hours: { day: string; hours: string }[]) {
 export default function Locations() {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
-      {/* Hero */}
-      <section className="relative bg-zinc-900 text-white py-20 overflow-hidden">
-        <div className="absolute inset-0">
-          <img src="/images/img_630x421_carwork.jpg" alt="Shop" className="w-full h-full object-cover opacity-30" />
-          <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/80 to-zinc-900" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10 text-center max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-bold font-display tracking-tight mb-4">Our Locations</h1>
-          <p className="text-xl text-zinc-300">
-            Five convenient locations across Northern Virginia. Find the shop nearest you.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        category="Locations"
+        title={<>5 Locations in<br />Northern Virginia</>}
+        description="Springfield, Woodbridge, Alexandria, Centreville, and Winchester. Find the Bingo Tire shop nearest you."
+        image="/images/img_630x421_carwork.jpg"
+        imageAlt="Bingo Tire location"
+        stats={[
+          { val: "5", label: "Locations" },
+          { val: "NOVA", label: "Since 2004" },
+          { val: "4.3★", label: "Avg. Google Rating" },
+        ]}
+        primaryCta={{ label: "Book an Appointment", href: "/contact" }}
+        secondaryCta={{ label: "View All Hours", href: "/locations" }}
+        note="Mon–Fri 8am–6pm · Sat 8am–4pm (hours vary by location)"
+      />
 
       {/* Locations Grid */}
       <section className="py-16">

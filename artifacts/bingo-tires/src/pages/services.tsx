@@ -2,19 +2,31 @@ import { services } from "@/lib/data";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { PageHero } from "@/components/layout/page-hero";
 
 export default function Services() {
   const autoServices = services.filter(s => s.category === "Auto Services");
   const tireServices = services.filter(s => s.category === "Tire and Wheel");
 
   return (
-    <div className="py-16 md:py-24 bg-zinc-50 dark:bg-zinc-950 min-h-screen">
+    <div className="bg-zinc-50 dark:bg-zinc-950 min-h-screen">
+      <PageHero
+        category="Services"
+        title={<>All Repair &amp;<br />Tire Services</>}
+        description="Expert repair and maintenance for all makes and models. 14 services across 5 Northern Virginia locations."
+        image="/images/2218_sm.jpg"
+        imageAlt="Auto repair services"
+        stats={[
+          { val: "14", label: "Services Offered" },
+          { val: "5", label: "Locations" },
+          { val: "20+", label: "Years Experience" },
+        ]}
+        primaryCta={{ label: "Book an Appointment", href: "/contact" }}
+        secondaryCta={{ label: "(703) 440-0880", href: "/contact", tel: "+17034400880" }}
+        note="Mon–Fri 8am–6pm · Sat 8am–4pm · Walk-ins welcome"
+      />
+      <div className="py-16 md:py-24">
       <div className="container mx-auto px-4">
-        
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold font-display tracking-tight mb-6">Our Services</h1>
-          <p className="text-xl text-muted-foreground">Expert repair and maintenance for all makes and models.</p>
-        </div>
 
         <div className="mb-20">
           <h2 className="text-3xl font-bold font-display mb-10 flex items-center gap-4">
@@ -80,6 +92,7 @@ export default function Services() {
           </div>
         </div>
 
+      </div>
       </div>
     </div>
   );

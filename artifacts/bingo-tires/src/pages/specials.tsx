@@ -3,16 +3,28 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Tag, Calendar } from "lucide-react";
+import { PageHero } from "@/components/layout/page-hero";
 
 export default function Specials() {
   return (
-    <div className="py-16 md:py-24 bg-zinc-50 dark:bg-zinc-950 min-h-screen">
+    <div className="bg-zinc-50 dark:bg-zinc-950 min-h-screen">
+      <PageHero
+        category="Current Deals"
+        title={<>Bingo<br />Specials</>}
+        description="Exceptional deals for our valued customers. Mention these offers when you call or book online. Pricing may vary — call to confirm."
+        image="/images/2218_sm.jpg"
+        imageAlt="Auto service specials"
+        stats={[
+          { val: "6+", label: "Active Deals" },
+          { val: "$29.99", label: "Oil Change Special" },
+          { val: "Free", label: "Battery Test" },
+        ]}
+        primaryCta={{ label: "Book & Save", href: "/contact" }}
+        secondaryCta={{ label: "(703) 440-0880", href: "/contact", tel: "+17034400880" }}
+        note="Call to confirm current pricing · Offers subject to change"
+      />
+      <div className="py-16 md:py-24">
       <div className="container mx-auto px-4">
-        
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold font-display tracking-tight mb-6">Bingo Specials</h1>
-          <p className="text-xl text-muted-foreground">Exceptional deals for our valued customers. Mention these offers when you call or book online.</p>
-        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {specials.map((special, i) => (
@@ -50,6 +62,7 @@ export default function Specials() {
           ))}
         </div>
 
+      </div>
       </div>
     </div>
   );

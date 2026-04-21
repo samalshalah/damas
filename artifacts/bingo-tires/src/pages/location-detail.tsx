@@ -3,6 +3,7 @@ import { locations, services } from "@/lib/data";
 import { MapPin, Phone, Clock, ArrowRight, CheckCircle2, ChevronRight, Star, Quote, BadgeCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { PageHero } from "@/components/layout/page-hero";
 
 function StarRating({ rating }: { rating: number }) {
   return (
@@ -40,67 +41,28 @@ export default function LocationDetail() {
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
-      {/* Hero */}
-      <section className="relative bg-zinc-900 text-white py-24 overflow-hidden">
-        <div className="absolute inset-0">
-          <img src="/images/1431_sm.jpg" alt="Auto shop" className="w-full h-full object-cover opacity-30" />
-          <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/80 to-transparent" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10 max-w-5xl">
-          <nav className="flex items-center gap-2 text-sm text-zinc-400 mb-6">
-            <Link href="/locations" className="hover:text-white transition-colors">Locations</Link>
-            <ChevronRight className="w-4 h-4" />
-            <span className="text-white">{loc.name}</span>
+      <PageHero
+        category="Bingo Tire &amp; Auto Service"
+        title={<>{loc.city},<br />{loc.state}</>}
+        description={`${loc.address}, ${loc.city}, ${loc.state} ${loc.zip} · ${loc.phone}`}
+        image="/images/1431_sm.jpg"
+        imageAlt={`Bingo Tire ${loc.city}`}
+        stats={[
+          { val: `${loc.rating}★`, label: `${loc.reviewCount} Reviews` },
+          { val: "20+", label: "Years Serving NOVA" },
+          { val: "14", label: "Services Offered" },
+        ]}
+        primaryCta={{ label: "Book Appointment", href: `/contact?location=${loc.id}` }}
+        secondaryCta={{ label: loc.phone, href: `/contact`, tel: loc.phone.replace(/\D/g, '') }}
+        note={todayHours ? (todayHours.hours === "Closed" ? "Closed today" : `Open today ${todayHours.hours}`) : "Mon–Fri 8am–6pm · Sat 8am–4pm"}
+        breadcrumbs={
+          <nav className="flex items-center gap-2 text-sm text-zinc-400">
+            <Link href="/locations" className="hover:text-zinc-700 transition-colors">Locations</Link>
+            <ChevronRight className="w-3.5 h-3.5" />
+            <span className="text-zinc-700 font-medium">{loc.city}, {loc.state}</span>
           </nav>
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <p className="text-primary font-semibold uppercase tracking-wider text-sm mb-3">Bingo Tire &amp; Auto Service</p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-display tracking-tight mb-4">
-              {loc.city}, {loc.state}
-            </h1>
-
-            {/* Rating */}
-            <div className="flex items-center gap-3 mb-6">
-              <div className="flex items-center gap-2 bg-zinc-800/60 backdrop-blur rounded-full px-4 py-2">
-                <StarRating rating={loc.rating} />
-                <span className="font-bold text-white">{loc.rating}</span>
-                <span className="text-zinc-400 text-sm">({loc.reviewCount} reviews)</span>
-              </div>
-              {todayHours && (
-                <div className="flex items-center gap-2 bg-zinc-800/60 backdrop-blur rounded-full px-4 py-2 text-sm">
-                  <span className={todayHours.hours === "Closed" ? "text-red-400" : "text-green-400"}>
-                    {todayHours.hours === "Closed" ? "Closed today" : "Open today"}
-                  </span>
-                  {todayHours.hours !== "Closed" && (
-                    <span className="text-zinc-400">{todayHours.hours}</span>
-                  )}
-                </div>
-              )}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 text-zinc-300 mb-10">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-primary" />
-                <span>{loc.address}, {loc.city}, {loc.state} {loc.zip}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-primary" />
-                <a href={`tel:${loc.phone.replace(/\D/g,'')}`} className="hover:text-white transition-colors">{loc.phone}</a>
-              </div>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="rounded-full h-14 px-8 text-base font-semibold" data-testid="button-loc-book">
-                <Link href={`/contact?location=${loc.id}`}>Book Appointment</Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full h-14 px-8 text-base bg-transparent border-zinc-600 text-white hover:bg-zinc-800">
-                <a href={loc.mapUrl} target="_blank" rel="noreferrer">Get Directions</a>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full h-14 px-8 text-base bg-transparent border-zinc-600 text-white hover:bg-zinc-800">
-                <a href={`tel:${loc.phone.replace(/\D/g,'')}`}>Call Now</a>
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+        }
+      />
 
       {/* Info Bar */}
       <section className="bg-primary text-white py-5">

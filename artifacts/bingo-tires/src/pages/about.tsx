@@ -1,16 +1,27 @@
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
+import { PageHero } from "@/components/layout/page-hero";
 
 export default function About() {
   return (
-    <div className="py-16 md:py-24 bg-zinc-50 dark:bg-zinc-950">
+    <div className="bg-zinc-50 dark:bg-zinc-950">
+      <PageHero
+        category="About Us"
+        title={<>Bingo Tire &amp;<br />Auto Service</>}
+        description="Serving the Northern Virginia community with honesty and expertise since 2004. A trusted neighborhood shop — not a big chain."
+        image="/images/img_630x421_carwork.jpg"
+        imageAlt="Bingo Tire & Auto Service shop"
+        stats={[
+          { val: "2004", label: "Founded" },
+          { val: "5", label: "Locations" },
+          { val: "20+", label: "Years Serving NOVA" },
+        ]}
+        primaryCta={{ label: "Book an Appointment", href: "/contact" }}
+        secondaryCta={{ label: "Find a Location", href: "/locations" }}
+        note="Mon–Fri 8am–6pm · Sat 8am–4pm · Walk-ins welcome"
+      />
+      <div className="py-16 md:py-24">
       <div className="container mx-auto px-4">
-        
-        {/* Page Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold font-display tracking-tight mb-6">About Bingo Tire & Auto Service</h1>
-          <p className="text-xl text-muted-foreground">Serving the Northern Virginia community with honesty and expertise since 2004.</p>
-        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
           <motion.div 
@@ -103,6 +114,7 @@ export default function About() {
           </div>
         </div>
 
+      </div>
       </div>
     </div>
   );

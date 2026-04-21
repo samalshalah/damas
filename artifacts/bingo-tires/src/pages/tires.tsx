@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { CheckCircle2, ShieldCheck } from "lucide-react";
 import { services } from "@/lib/data";
 import { BrandStrip } from "@/components/brand-strip";
+import { PageHero } from "@/components/layout/page-hero";
 
 const tireBrands = [
   { name: "Michelin", logo: "/images/michelin_sm.jpg" },
@@ -22,26 +23,21 @@ export default function Tires() {
 
   return (
     <div className="bg-zinc-50 dark:bg-zinc-950 min-h-screen">
-      {/* Hero */}
-      <section className="relative bg-zinc-900 text-white py-24 overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="/images/961_sm.jpg"
-            alt="Tire inventory"
-            className="w-full h-full object-cover opacity-40"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/70 to-zinc-900/40" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10 text-center max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-bold font-display tracking-tight mb-6">New &amp; Used Tires</h1>
-          <p className="text-xl text-zinc-300 mb-8">
-            Extensive inventory of top brands and budget-friendly options to keep you safe on the road.
-          </p>
-          <Button asChild size="lg" className="rounded-full h-14 px-8 text-base">
-            <Link href="/contact">Request a Quote</Link>
-          </Button>
-        </div>
-      </section>
+      <PageHero
+        category="Tires"
+        title={<>New &amp; Used<br />Tires</>}
+        description="Extensive inventory of top brands and budget-friendly used options to keep you safe on the road. Michelin, Goodyear, Bridgestone, and more."
+        image="/images/961_sm.jpg"
+        imageAlt="Tire inventory"
+        stats={[
+          { val: "10+", label: "Brands In Stock" },
+          { val: "New", label: "& Used Available" },
+          { val: "Free", label: "Computer Balancing" },
+        ]}
+        primaryCta={{ label: "Request a Quote", href: "/contact" }}
+        secondaryCta={{ label: "(703) 440-0880", href: "/contact", tel: "+17034400880" }}
+        note="Inventory changes daily · Call to check availability"
+      />
 
       <BrandStrip />
 

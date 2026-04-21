@@ -3,30 +3,28 @@ import { services } from "@/lib/data";
 import { ArrowRight, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { PageHero } from "@/components/layout/page-hero";
 
 export default function AutoServices() {
   const autoServices = services.filter(s => s.category === "Auto Services");
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
-      {/* Hero */}
-      <section className="relative bg-zinc-900 text-white py-24 overflow-hidden">
-        <div className="absolute inset-0">
-          <img src="/images/2218_sm.jpg" alt="Auto repair" className="w-full h-full object-cover opacity-35" />
-          <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/80 to-transparent" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10 max-w-3xl">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-display tracking-tight mb-6">
-            Auto Repair Services
-          </h1>
-          <p className="text-xl text-zinc-300 mb-8">
-            From engine diagnostics to brake repair, our certified technicians handle every aspect of your vehicle's maintenance and repair.
-          </p>
-          <Button asChild size="lg" className="rounded-full h-14 px-8 text-base">
-            <Link href="/contact">Book an Appointment</Link>
-          </Button>
-        </div>
-      </section>
+      <PageHero
+        category="Auto Services"
+        title={<>Auto Repair<br />&amp; Maintenance</>}
+        description="From engine diagnostics to brake repair, our certified technicians handle every aspect of your vehicle's maintenance and repair."
+        image="/images/2218_sm.jpg"
+        imageAlt="Auto repair"
+        stats={[
+          { val: "10", label: "Auto Services" },
+          { val: "5", label: "Locations" },
+          { val: "20+", label: "Years Experience" },
+        ]}
+        primaryCta={{ label: "Book an Appointment", href: "/contact" }}
+        secondaryCta={{ label: "(703) 440-0880", href: "/contact", tel: "+17034400880" }}
+        note="Mon–Fri 8am–6pm · Sat 8am–4pm · Walk-ins welcome"
+      />
 
       {/* Services Grid */}
       <section className="py-16">
