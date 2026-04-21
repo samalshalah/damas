@@ -1,7 +1,7 @@
 import { useRoute, Link } from "wouter";
 import { services } from "@/lib/data";
 import { Button } from "@/components/ui/button";
-import { AlertTriangle, Calendar, CheckCircle2, ChevronRight, Phone, ChevronDown, ChevronUp, MapPin, Info } from "lucide-react";
+import { AlertTriangle, Calendar, CheckCircle2, ChevronRight, ChevronDown, ChevronUp, MapPin, Info, Building2 } from "lucide-react";
 import NotFound from "@/pages/not-found";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -12,12 +12,15 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   return (
     <div className="border-b last:border-b-0">
       <button
-        className="w-full flex items-center justify-between gap-4 py-5 text-left font-semibold hover:text-primary transition-colors"
+        className="w-full flex items-center justify-between gap-4 py-5 text-left hover:text-primary transition-colors"
         onClick={() => setOpen(o => !o)}
         aria-expanded={open}
       >
-        <span>{question}</span>
-        {open ? <ChevronUp className="w-5 h-5 shrink-0 text-primary" /> : <ChevronDown className="w-5 h-5 shrink-0 text-muted-foreground" />}
+        <h3 className="font-semibold text-sm sm:text-base leading-snug">{question}</h3>
+        {open
+          ? <ChevronUp className="w-5 h-5 shrink-0 text-primary" />
+          : <ChevronDown className="w-5 h-5 shrink-0 text-muted-foreground" />
+        }
       </button>
       {open && (
         <div className="pb-5 text-muted-foreground leading-relaxed text-sm pr-8">
@@ -44,7 +47,7 @@ export default function ServiceDetail() {
 
       <PageHero
         category={service.category}
-        title={service.name}
+        title={service.seoTitle || service.name}
         description={service.seoDescription}
         image={service.image}
         imageAlt={service.name}
@@ -68,6 +71,7 @@ export default function ServiceDetail() {
           </nav>
         }
       />
+
       {service.availableAt && (
         <div className="bg-amber-50 border-b border-amber-100">
           <div className="container mx-auto px-4 py-3 flex items-center gap-2.5 text-sm text-amber-700 font-medium">
@@ -87,15 +91,17 @@ export default function ServiceDetail() {
 
               {/* About this service */}
               <div>
-                <h2 className="text-2xl font-bold font-display tracking-tight mb-4">About This Service</h2>
-                <p className="text-muted-foreground text-lg leading-relaxed">
+                <h2 className="text-2xl font-bold font-display tracking-tight mb-4">
+                  About {service.name} at Bingo Tire &amp; Auto Service
+                </h2>
+                <p className="text-muted-foreground text-lg leading-relaxed mb-5">
                   {service.fullDescription}
                 </p>
-                <p className="text-muted-foreground leading-relaxed mt-4">
-                  Whether you drive a passenger car, medium-sized truck, or SUV, our mechanics at Bingo Tire &amp; Auto Service
-                  strive to ensure your vehicle performs at its best before leaving our shop. We've been serving Northern Virginia
-                  since 2004 and stand behind every service we perform.
-                </p>
+                {service.bodyParagraphs && service.bodyParagraphs.map((para, i) => (
+                  <p key={i} className="text-muted-foreground leading-relaxed mb-4">
+                    {para}
+                  </p>
+                ))}
               </div>
 
               {/* Warning Signs */}
@@ -116,7 +122,9 @@ export default function ServiceDetail() {
                       transition={{ delay: i * 0.06 }}
                       className="flex items-start gap-3 text-sm"
                     >
-                      <span className="w-5 h-5 rounded-full bg-primary text-white text-xs flex items-center justify-center shrink-0 mt-0.5 font-bold">{i + 1}</span>
+                      <span className="w-5 h-5 rounded-full bg-primary text-white text-xs flex items-center justify-center shrink-0 mt-0.5 font-bold">
+                        {i + 1}
+                      </span>
                       <span className="text-foreground">{w}</span>
                     </motion.li>
                   ))}
@@ -125,7 +133,9 @@ export default function ServiceDetail() {
 
               {/* What's Included */}
               <div>
-                <h2 className="text-2xl font-bold font-display tracking-tight mb-6">What's Included</h2>
+                <h2 className="text-2xl font-bold font-display tracking-tight mb-6">
+                  What's Included in Our {service.name} Service
+                </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {service.included.map((item, i) => (
                     <motion.div
@@ -143,10 +153,72 @@ export default function ServiceDetail() {
                 </div>
               </div>
 
+              {/* Serving Northern Virginia */}
+              {service.cityContent && (
+                <div className="bg-zinc-100 dark:bg-zinc-900 rounded-2xl p-8 border border-zinc-200 dark:border-zinc-800">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <Building2 className="w-5 h-5 text-primary" />
+                    </div>
+                    <h2 className="text-xl font-bold font-display">
+                      Serving Springfield, Woodbridge, Alexandria, Centreville &amp; Winchester
+                    </h2>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed mb-5">{service.cityContent}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {["Springfield", "Woodbridge", "Alexandria", "Centreville", "Winchester"].map(city => {
+                      const available = !service.availableAt || service.availableAt.includes(city);
+                      return (
+                        <span
+                          key={city}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium ${
+                            available
+                              ? "bg-primary/10 text-primary"
+                              : "bg-zinc-200 text-zinc-400 line-through"
+                          }`}
+                        >
+                          <MapPin className="w-3 h-3" />
+                          {city}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Why Choose Bingo Tire */}
+              {service.whyUs && (
+                <div>
+                  <h2 className="text-2xl font-bold font-display tracking-tight mb-4">
+                    Why Choose Bingo Tire &amp; Auto Service for {service.name}?
+                  </h2>
+                  <p className="text-muted-foreground leading-relaxed">{service.whyUs}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+                    {[
+                      { icon: Calendar, label: "Since 2004", desc: "20+ years serving Northern Virginia" },
+                      { icon: CheckCircle2, label: "Honest Estimates", desc: "No pressure, no unnecessary repairs" },
+                      { icon: MapPin, label: "5 Locations", desc: "Walk-ins welcome at every shop" },
+                    ].map((item, i) => (
+                      <div key={i} className="flex flex-col items-center text-center bg-white dark:bg-zinc-900 rounded-xl p-5 border shadow-sm">
+                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+                          <item.icon className="w-5 h-5 text-primary" />
+                        </div>
+                        <div className="font-semibold text-sm mb-1">{item.label}</div>
+                        <div className="text-xs text-muted-foreground">{item.desc}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* FAQ */}
               <div>
-                <h2 className="text-2xl font-bold font-display tracking-tight mb-2">Frequently Asked Questions</h2>
-                <p className="text-muted-foreground mb-6">Common questions about {service.name.toLowerCase()} from our Northern Virginia customers.</p>
+                <h2 className="text-2xl font-bold font-display tracking-tight mb-2">
+                  Frequently Asked Questions About {service.name}
+                </h2>
+                <p className="text-muted-foreground mb-6">
+                  Common questions about {service.name.toLowerCase()} from our Northern Virginia customers.
+                </p>
                 <div className="bg-white dark:bg-zinc-900 rounded-2xl border shadow-sm divide-y px-6">
                   {service.faqs.map((faq, i) => (
                     <FAQItem key={i} question={faq.question} answer={faq.answer} />
