@@ -99,16 +99,27 @@ export default function Home() {
               >
                 <Link 
                   href={`/services/${service.slug}`}
-                  className="block group bg-white dark:bg-zinc-950 p-8 rounded-2xl shadow-sm border border-border/50 hover:shadow-md hover:border-primary/30 transition-all h-full"
+                  className="block group bg-white dark:bg-zinc-950 rounded-2xl shadow-sm border border-border/50 hover:shadow-md hover:border-primary/30 transition-all h-full overflow-hidden"
                   data-testid={`card-home-service-${service.slug}`}
                 >
-                  <div className="w-14 h-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <service.icon className="w-7 h-7" />
+                  <div className="h-48 overflow-hidden bg-zinc-200 dark:bg-zinc-800">
+                    <img
+                      src={service.image}
+                      alt={service.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
-                  <h3 className="text-xl font-bold font-display mb-3 group-hover:text-primary transition-colors">{service.name}</h3>
-                  <p className="text-muted-foreground mb-6">{service.shortDescription}</p>
-                  <div className="flex items-center text-primary font-medium text-sm mt-auto">
-                    Learn more <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                  <div className="p-6">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                        <service.icon className="w-6 h-6" />
+                      </div>
+                      <h3 className="text-lg font-bold font-display group-hover:text-primary transition-colors leading-tight">{service.name}</h3>
+                    </div>
+                    <p className="text-muted-foreground text-sm mb-5">{service.shortDescription}</p>
+                    <div className="flex items-center text-primary font-medium text-sm">
+                      Learn more <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </div>
                 </Link>
               </motion.div>

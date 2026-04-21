@@ -285,12 +285,23 @@ export default function Tires() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {tireServices.map((service) => (
               <Link key={service.slug} href={`/services/${service.slug}`}>
-                <div className="bg-zinc-50 dark:bg-zinc-800 p-6 rounded-2xl border shadow-sm text-center hover:border-primary/40 hover:shadow-md transition-all group cursor-pointer">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
-                    <service.icon className="w-6 h-6" />
+                <div className="bg-white dark:bg-zinc-800 rounded-2xl border shadow-sm hover:border-primary/40 hover:shadow-md transition-all group cursor-pointer overflow-hidden">
+                  <div className="h-40 overflow-hidden bg-zinc-200 dark:bg-zinc-700">
+                    <img
+                      src={service.image}
+                      alt={service.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
-                  <h3 className="font-bold font-display mb-2">{service.name}</h3>
-                  <p className="text-sm text-muted-foreground">{service.shortDescription}</p>
+                  <div className="p-5">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+                        <service.icon className="w-5 h-5" />
+                      </div>
+                      <h3 className="font-bold font-display group-hover:text-primary transition-colors leading-tight">{service.name}</h3>
+                    </div>
+                    <p className="text-sm text-muted-foreground">{service.shortDescription}</p>
+                  </div>
                 </div>
               </Link>
             ))}
