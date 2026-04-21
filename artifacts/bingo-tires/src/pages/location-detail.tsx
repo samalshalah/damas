@@ -80,7 +80,7 @@ export default function LocationDetail() {
 
       {/* Map + Details */}
       <section className="py-16">
-        <div className="container mx-auto px-4 max-w-5xl">
+        <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Map Image */}
             <div className="rounded-3xl overflow-hidden border shadow-sm bg-zinc-200 dark:bg-zinc-800 aspect-[4/3]">
@@ -171,7 +171,7 @@ export default function LocationDetail() {
       {/* Reviews */}
       {loc.reviews.length > 0 && (
         <section className="py-16 bg-white dark:bg-zinc-900 border-t">
-          <div className="container mx-auto px-4 max-w-5xl">
+          <div className="container mx-auto px-4">
             <div className="flex items-end justify-between mb-10">
               <div>
                 <h2 className="text-3xl font-bold font-display tracking-tight mb-2">What Customers Say</h2>
@@ -209,7 +209,7 @@ export default function LocationDetail() {
       {/* Highlights */}
       {loc.highlights.length > 0 && (
         <section className="py-10 bg-zinc-50 dark:bg-zinc-950 border-t">
-          <div className="container mx-auto px-4 max-w-5xl">
+          <div className="container mx-auto px-4">
             <div className="flex flex-wrap gap-4 justify-center">
               {loc.highlights.map(h => (
                 <div key={h} className="flex items-center gap-2 bg-white dark:bg-zinc-900 border rounded-full px-5 py-2.5 text-sm font-medium shadow-sm">
@@ -224,7 +224,7 @@ export default function LocationDetail() {
 
       {/* Services at this location */}
       <section className="py-16 bg-white dark:bg-zinc-900 border-t">
-        <div className="container mx-auto px-4 max-w-5xl">
+        <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold font-display tracking-tight mb-4">Services at {loc.city}</h2>
           <p className="text-muted-foreground text-lg mb-12">All of our locations offer the full range of auto repair and tire services.</p>
 
@@ -270,7 +270,7 @@ export default function LocationDetail() {
 
       {/* Other Locations */}
       <section className="py-16 bg-zinc-950 text-white">
-        <div className="container mx-auto px-4 max-w-5xl">
+        <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold font-display mb-8">Other Locations</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {locations.filter(l => l.id !== loc.id).map(other => (

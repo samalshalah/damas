@@ -70,7 +70,7 @@ export default function ServiceDetail() {
       />
       {service.availableAt && (
         <div className="bg-amber-50 border-b border-amber-100">
-          <div className="container mx-auto px-4 max-w-5xl py-3 flex items-center gap-2.5 text-sm text-amber-700 font-medium">
+          <div className="container mx-auto px-4 py-3 flex items-center gap-2.5 text-sm text-amber-700 font-medium">
             <Info className="w-4 h-4 shrink-0" />
             This service is available at {service.availableAt.join(" & ")} locations only.
           </div>
@@ -79,7 +79,7 @@ export default function ServiceDetail() {
 
       {/* Main Content */}
       <section className="py-16">
-        <div className="container mx-auto px-4 max-w-5xl">
+        <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
             {/* Left column: main content */}
@@ -236,7 +236,7 @@ export default function ServiceDetail() {
 
       {/* Bottom CTA */}
       <section className="py-16 bg-zinc-900 text-white">
-        <div className="container mx-auto px-4 text-center max-w-3xl">
+        <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold font-display tracking-tight mb-4">
             Trusted {service.name} in Northern Virginia
           </h2>

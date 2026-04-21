@@ -44,7 +44,7 @@ export default function Tires() {
       {/* Options */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="bg-white dark:bg-zinc-900 p-8 rounded-3xl border shadow-sm">
               <h2 className="text-3xl font-bold font-display mb-4 text-primary">New Tires</h2>
               <p className="text-muted-foreground mb-6 text-lg">We carry all major brands for cars, trucks, and SUVs. Finding the right tire for your driving needs and budget is our specialty.</p>
@@ -90,7 +90,7 @@ export default function Tires() {
       {/* Why Buy From Us */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="rounded-3xl overflow-hidden aspect-video md:aspect-square">
               <img
                 src="/images/img_630x421_carwork.jpg"

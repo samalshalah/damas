@@ -29,7 +29,7 @@ export default function TireServices() {
       {/* Services Grid */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {tireServices.map((service, i) => (
               <motion.div
                 key={service.slug}
@@ -101,7 +101,7 @@ export default function TireServices() {
 
       {/* Why Choose */}
       <section className="py-16 bg-white dark:bg-zinc-900 border-t">
-        <div className="container mx-auto px-4 max-w-4xl text-center">
+        <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold font-display tracking-tight mb-4">Expert Tire Care at Every Location</h2>
           <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
             Every Bingo Tire location is equipped with state-of-the-art computerized balancing and alignment equipment. We handle all makes and models.

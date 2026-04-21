@@ -58,7 +58,7 @@ export default function Contact() {
 
   return (
     <div className="py-16 md:py-24 bg-zinc-50 dark:bg-zinc-950 min-h-screen">
-      <div className="container mx-auto px-4 max-w-6xl">
+      <div className="container mx-auto px-4">
         
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold font-display tracking-tight mb-4">Contact & Appointments</h1>
