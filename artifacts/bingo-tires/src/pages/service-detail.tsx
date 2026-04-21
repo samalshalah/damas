@@ -1,57 +1,260 @@
 import { useRoute, Link } from "wouter";
 import { services } from "@/lib/data";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar } from "lucide-react";
+import { AlertTriangle, Calendar, CheckCircle2, ChevronRight, Phone, ChevronDown, ChevronUp, MapPin } from "lucide-react";
 import NotFound from "@/pages/not-found";
+import { motion } from "framer-motion";
+import { useState } from "react";
+
+function FAQItem({ question, answer }: { question: string; answer: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border-b last:border-b-0">
+      <button
+        className="w-full flex items-center justify-between gap-4 py-5 text-left font-semibold hover:text-primary transition-colors"
+        onClick={() => setOpen(o => !o)}
+        aria-expanded={open}
+      >
+        <span>{question}</span>
+        {open ? <ChevronUp className="w-5 h-5 shrink-0 text-primary" /> : <ChevronDown className="w-5 h-5 shrink-0 text-muted-foreground" />}
+      </button>
+      {open && (
+        <div className="pb-5 text-muted-foreground leading-relaxed text-sm pr-8">
+          {answer}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function ServiceDetail() {
   const [, params] = useRoute("/services/:slug");
   const slug = params?.slug;
-  
   const service = services.find(s => s.slug === slug);
 
-  if (!service) {
-    return <NotFound />;
-  }
+  if (!service) return <NotFound />;
+
+  const autoServices = services.filter(s => s.category === "Auto Services" && s.slug !== service.slug).slice(0, 4);
+  const tireServices = services.filter(s => s.category === "Tire and Wheel" && s.slug !== service.slug).slice(0, 4);
+  const related = service.category === "Auto Services" ? autoServices : tireServices;
 
   return (
-    <div className="py-16 md:py-24 bg-zinc-50 dark:bg-zinc-950 min-h-screen">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <Link href="/services" className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary mb-8 transition-colors">
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to all services
-        </Link>
-        
-        <div className="bg-white dark:bg-zinc-900 rounded-3xl p-8 md:p-12 shadow-sm border">
-          <div className="flex flex-col md:flex-row gap-8 items-start">
-            <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
-              <service.icon className="w-10 h-10 text-primary" />
-            </div>
-            <div className="space-y-6 flex-1">
-              <div>
-                <div className="text-sm font-medium text-primary uppercase tracking-wider mb-2">{service.category}</div>
-                <h1 className="text-3xl md:text-4xl font-bold font-display">{service.name}</h1>
+    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
+
+      {/* Hero */}
+      <section className="relative bg-zinc-900 text-white overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src={service.image}
+            alt={service.name}
+            className="w-full h-full object-cover opacity-35"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/75 to-transparent" />
+        </div>
+        <div className="container mx-auto px-4 max-w-5xl relative z-10 py-24">
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-2 text-sm text-zinc-400 mb-6">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <ChevronRight className="w-4 h-4" />
+            <Link href={service.category === "Auto Services" ? "/auto-services" : "/tire-services"} className="hover:text-white transition-colors">
+              {service.category}
+            </Link>
+            <ChevronRight className="w-4 h-4" />
+            <span className="text-white">{service.name}</span>
+          </nav>
+
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 rounded-xl bg-primary/20 border border-primary/30 flex items-center justify-center">
+                <service.icon className="w-6 h-6 text-primary" />
               </div>
-              
-              <div className="prose prose-zinc dark:prose-invert max-w-none">
-                <p className="text-lg leading-relaxed text-muted-foreground">{service.fullDescription}</p>
-                <p className="text-lg leading-relaxed text-muted-foreground mt-4">
-                  Whether you drive a passenger car, medium sized truck, or SUV, our mechanics strive to ensure that your vehicle will be performing at its best before leaving our shop.
+              <span className="text-primary font-semibold uppercase tracking-wider text-sm">{service.category}</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-display tracking-tight mb-6 max-w-2xl">
+              {service.name}
+            </h1>
+            <p className="text-xl text-zinc-300 max-w-2xl leading-relaxed mb-10">
+              {service.seoDescription}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button asChild size="lg" className="rounded-full h-14 px-8 text-base font-semibold" data-testid="button-book-service">
+                <Link href={`/contact?service=${service.slug}`}>
+                  <Calendar className="w-5 h-5 mr-2" />
+                  Book This Service
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="rounded-full h-14 px-8 text-base bg-transparent border-zinc-600 text-white hover:bg-zinc-800">
+                <a href="tel:+17034400880">
+                  <Phone className="w-5 h-5 mr-2" />
+                  (703) 440-0880
+                </a>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <section className="py-16">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+            {/* Left column: main content */}
+            <div className="lg:col-span-2 space-y-12">
+
+              {/* About this service */}
+              <div>
+                <h2 className="text-2xl font-bold font-display tracking-tight mb-4">About This Service</h2>
+                <p className="text-muted-foreground text-lg leading-relaxed">
+                  {service.fullDescription}
+                </p>
+                <p className="text-muted-foreground leading-relaxed mt-4">
+                  Whether you drive a passenger car, medium-sized truck, or SUV, our mechanics at Bingo Tire &amp; Auto Service
+                  strive to ensure your vehicle performs at its best before leaving our shop. We've been serving Northern Virginia
+                  since 2004 and stand behind every service we perform.
                 </p>
               </div>
-              
-              <div className="pt-8 border-t mt-8 flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="rounded-full h-14 px-8 text-base shadow-md" data-testid="button-book-service">
-                  <Link href={`/contact?service=${service.slug}`}>
-                    <Calendar className="w-5 h-5 mr-2" />
-                    Book This Service
-                  </Link>
+
+              {/* Warning Signs */}
+              <div className="bg-red-50 dark:bg-red-950/20 rounded-2xl p-8 border border-red-100 dark:border-red-900/30">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <AlertTriangle className="w-5 h-5 text-primary" />
+                  </div>
+                  <h2 className="text-xl font-bold font-display">Signs You May Need This Service</h2>
+                </div>
+                <ul className="space-y-3">
+                  {service.warnings.map((w, i) => (
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.06 }}
+                      className="flex items-start gap-3 text-sm"
+                    >
+                      <span className="w-5 h-5 rounded-full bg-primary text-white text-xs flex items-center justify-center shrink-0 mt-0.5 font-bold">{i + 1}</span>
+                      <span className="text-foreground">{w}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* What's Included */}
+              <div>
+                <h2 className="text-2xl font-bold font-display tracking-tight mb-6">What's Included</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {service.included.map((item, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 8 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.06 }}
+                      className="flex items-start gap-3 bg-white dark:bg-zinc-900 rounded-xl p-4 border shadow-sm"
+                    >
+                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <span className="text-sm font-medium">{item}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* FAQ */}
+              <div>
+                <h2 className="text-2xl font-bold font-display tracking-tight mb-2">Frequently Asked Questions</h2>
+                <p className="text-muted-foreground mb-6">Common questions about {service.name.toLowerCase()} from our Northern Virginia customers.</p>
+                <div className="bg-white dark:bg-zinc-900 rounded-2xl border shadow-sm divide-y px-6">
+                  {service.faqs.map((faq, i) => (
+                    <FAQItem key={i} question={faq.question} answer={faq.answer} />
+                  ))}
+                </div>
+              </div>
+
+            </div>
+
+            {/* Right column: sidebar */}
+            <div className="space-y-6">
+
+              {/* Book CTA card */}
+              <div className="bg-primary text-white rounded-2xl p-6 sticky top-24">
+                <h3 className="text-xl font-bold font-display mb-2">Ready to Book?</h3>
+                <p className="text-white/80 text-sm mb-5 leading-relaxed">
+                  Schedule your {service.name} appointment online or call us — no pressure, free estimates.
+                </p>
+                <Button asChild size="lg" variant="secondary" className="w-full rounded-full h-12 font-semibold mb-3" data-testid="button-sidebar-book">
+                  <Link href={`/contact?service=${service.slug}`}>Book Online</Link>
+                </Button>
+                <a href="tel:+17034400880" className="flex items-center justify-center gap-2 text-sm text-white/80 hover:text-white transition-colors font-medium">
+                  <Phone className="w-4 h-4" />
+                  (703) 440-0880
+                </a>
+                <div className="mt-5 pt-5 border-t border-white/20 text-xs text-white/70 text-center">
+                  5 locations across Northern Virginia
+                </div>
+              </div>
+
+              {/* Locations */}
+              <div className="bg-white dark:bg-zinc-900 rounded-2xl border shadow-sm p-6">
+                <h3 className="font-bold font-display mb-4 flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-primary" />
+                  Available At All Locations
+                </h3>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>Springfield · (703) 440-0880</li>
+                  <li>Woodbridge · (703) 494-8888</li>
+                  <li>Alexandria · (703) 548-0333</li>
+                  <li>Centreville · (703) 543-6900</li>
+                  <li>Winchester · (540) 667-7777</li>
+                </ul>
+                <Button asChild variant="outline" size="sm" className="w-full mt-4 rounded-full">
+                  <Link href="/locations">Find a Location</Link>
                 </Button>
               </div>
+
+              {/* Related Services */}
+              {related.length > 0 && (
+                <div className="bg-white dark:bg-zinc-900 rounded-2xl border shadow-sm p-6">
+                  <h3 className="font-bold font-display mb-4">Related Services</h3>
+                  <ul className="space-y-2">
+                    {related.map(s => (
+                      <li key={s.slug}>
+                        <Link href={`/services/${s.slug}`} className="flex items-center gap-2 text-sm hover:text-primary transition-colors group">
+                          <s.icon className="w-4 h-4 text-primary shrink-0" />
+                          <span>{s.name}</span>
+                          <ChevronRight className="w-3.5 h-3.5 ml-auto text-muted-foreground group-hover:text-primary transition-colors" />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Bottom CTA */}
+      <section className="py-16 bg-zinc-900 text-white">
+        <div className="container mx-auto px-4 text-center max-w-3xl">
+          <h2 className="text-3xl font-bold font-display tracking-tight mb-4">
+            Trusted {service.name} in Northern Virginia
+          </h2>
+          <p className="text-zinc-400 text-lg mb-8">
+            Bingo Tire &amp; Auto Service has been serving Northern Virginia since 2004. Walk-ins welcome at all 5 locations.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild size="lg" className="rounded-full h-14 px-10 text-base font-semibold">
+              <Link href={`/contact?service=${service.slug}`}>Book Online — It's Free</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="rounded-full h-14 px-10 text-base bg-transparent border-zinc-600 text-white hover:bg-zinc-800">
+              <Link href="/locations">Find My Location</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }

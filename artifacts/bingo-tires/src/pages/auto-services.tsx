@@ -42,17 +42,28 @@ export default function AutoServices() {
               >
                 <Link
                   href={`/services/${service.slug}`}
-                  className="group flex gap-5 bg-white dark:bg-zinc-900 rounded-2xl p-6 border shadow-sm hover:shadow-md hover:border-primary/30 transition-all"
+                  className="group block bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden border shadow-sm hover:shadow-md hover:border-primary/30 transition-all"
                   data-testid={`card-auto-service-${service.slug}`}
                 >
-                  <div className="w-14 h-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                    <service.icon className="w-7 h-7" />
+                  {/* Image */}
+                  <div className="h-44 overflow-hidden bg-zinc-200 dark:bg-zinc-800">
+                    <img
+                      src={service.image}
+                      alt={service.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h2 className="text-xl font-bold font-display mb-2 group-hover:text-primary transition-colors">{service.name}</h2>
-                    <p className="text-muted-foreground text-sm leading-relaxed mb-3">{service.shortDescription}</p>
-                    <div className="flex items-center text-primary font-medium text-sm">
-                      Learn more <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                  {/* Content */}
+                  <div className="p-6 flex gap-4">
+                    <div className="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                      <service.icon className="w-6 h-6" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h2 className="text-lg font-bold font-display mb-1.5 group-hover:text-primary transition-colors">{service.name}</h2>
+                      <p className="text-muted-foreground text-sm leading-relaxed mb-3">{service.shortDescription}</p>
+                      <div className="flex items-center text-primary font-medium text-sm">
+                        Learn more <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                      </div>
                     </div>
                   </div>
                 </Link>
