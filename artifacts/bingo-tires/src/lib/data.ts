@@ -101,7 +101,7 @@ export const services = [
     slug: "tire-rotation",
     name: "Tire Rotation",
     category: "Tire and Wheel",
-    icon: PowerOff, // using as a rotation icon proxy
+    icon: PowerOff,
     shortDescription: "Regular rotation to ensure even tire wear.",
     fullDescription: "Regular rotation to ensure even wear and extend tire life. Maximize your tire investment by letting us rotate them according to the manufacturer's recommended schedule and pattern."
   },
@@ -115,7 +115,37 @@ export const services = [
   }
 ];
 
-export const locations = [
+export interface LocationHours {
+  day: string;
+  hours: string;
+}
+
+export interface LocationReview {
+  author: string;
+  rating: number;
+  text: string;
+  source: string;
+}
+
+export interface Location {
+  id: string;
+  name: string;
+  address: string;
+  city: string;
+  state: string;
+  zip: string;
+  phone: string;
+  rating: number;
+  reviewCount: string;
+  mapImage: string | null;
+  mapUrl: string;
+  hours: LocationHours[];
+  attributes: string[];
+  reviews: LocationReview[];
+  highlights: string[];
+}
+
+export const locations: Location[] = [
   {
     id: "springfield",
     name: "Springfield",
@@ -124,19 +154,41 @@ export const locations = [
     state: "VA",
     zip: "22153",
     phone: "(703) 440-0880",
+    rating: 4.3,
+    reviewCount: "54+",
     mapImage: "/images/springfield.jpg",
-    mapUrl: "https://maps.google.com/?q=7661+Fullerton+Rd,+Springfield,+VA+22153"
-  },
-  {
-    id: "centreville",
-    name: "Centreville",
-    address: "13600 Lee Hwy",
-    city: "Centreville",
-    state: "VA",
-    zip: "20120",
-    phone: "(703) 543-6900",
-    mapImage: null,
-    mapUrl: "https://maps.google.com/?q=13600+Lee+Hwy,+Centreville,+VA+20120"
+    mapUrl: "https://maps.google.com/?q=7661+Fullerton+Rd,+Springfield,+VA+22153",
+    hours: [
+      { day: "Monday", hours: "9:00 AM – 6:00 PM" },
+      { day: "Tuesday", hours: "9:00 AM – 6:00 PM" },
+      { day: "Wednesday", hours: "9:00 AM – 6:00 PM" },
+      { day: "Thursday", hours: "9:00 AM – 6:00 PM" },
+      { day: "Friday", hours: "9:00 AM – 6:00 PM" },
+      { day: "Saturday", hours: "9:00 AM – 4:00 PM" },
+      { day: "Sunday", hours: "9:00 AM – 4:00 PM" }
+    ],
+    attributes: ["Free Wi-Fi", "Accepts Credit Cards", "BBB A+ Rated"],
+    reviews: [
+      {
+        author: "Kofi M.",
+        rating: 5,
+        text: "Great service. Very pleasant and professional staff. Manager took care of me. Will definitely be back.",
+        source: "Yelp"
+      },
+      {
+        author: "MechanicAdvisor",
+        rating: 5,
+        text: "I went to 2 places and they both told me I needed new tires, 2 new rims, brake pads and rotors. The guy at Bingo Tires told me I just needed 2 tires and to rotate my tires. Honest shop.",
+        source: "MechanicAdvisor"
+      },
+      {
+        author: "Mattheus T.",
+        rating: 5,
+        text: "I had a tire that was damaged and needed to be replaced. They removed my old tire and mounted my new tire quickly and professionally.",
+        source: "Yelp"
+      }
+    ],
+    highlights: ["In business since 2004", "Quick no-appointment service", "Honest assessments"]
   },
   {
     id: "woodbridge",
@@ -146,19 +198,123 @@ export const locations = [
     state: "VA",
     zip: "22192",
     phone: "(703) 494-8888",
+    rating: 4.5,
+    reviewCount: "37+",
     mapImage: "/images/woodbridge.jpg",
-    mapUrl: "https://maps.google.com/?q=1330+Old+Bridge+Rd,+Woodbridge,+VA+22192"
+    mapUrl: "https://maps.google.com/?q=1330+Old+Bridge+Rd,+Woodbridge,+VA+22192",
+    hours: [
+      { day: "Monday", hours: "8:00 AM – 10:00 PM" },
+      { day: "Tuesday", hours: "8:00 AM – 10:00 PM" },
+      { day: "Wednesday", hours: "8:00 AM – 10:00 PM" },
+      { day: "Thursday", hours: "8:00 AM – 10:00 PM" },
+      { day: "Friday", hours: "8:00 AM – 10:00 PM" },
+      { day: "Saturday", hours: "8:00 AM – 10:00 PM" },
+      { day: "Sunday", hours: "9:00 AM – 7:00 PM" }
+    ],
+    attributes: ["Open Late Until 10 PM", "Military Discount", "Free Wi-Fi", "Accepts Credit Cards", "Curbside Pickup"],
+    reviews: [
+      {
+        author: "Verified Customer",
+        rating: 5,
+        text: "I came in with a punctured tire that was leaking air. I was there for about 20 minutes and left with a fixed tire for very cheap. Will be returning for all my tire needs.",
+        source: "Yelp"
+      },
+      {
+        author: "Spanish-speaking Customer",
+        rating: 5,
+        text: "Excelente Servicio. The staff was very friendly and it was the only place open after 8 PM. Highly recommend!",
+        source: "Yelp"
+      },
+      {
+        author: "Verified Customer",
+        rating: 5,
+        text: "Mudasir and the team are fantastic. Fast, knowledgeable, and great pricing. They handled our tires perfectly.",
+        source: "Yelp"
+      }
+    ],
+    highlights: ["Open until 10 PM Mon–Sat", "700+ inspected used tires in stock", "Military discount available"]
   },
   {
     id: "alexandria",
     name: "Alexandria",
-    address: "2920 Jefferson Davis Hwy",
+    address: "2920 Richmond Hwy",
     city: "Alexandria",
     state: "VA",
     zip: "22305",
     phone: "(703) 548-0333",
+    rating: 4.5,
+    reviewCount: "130+",
     mapImage: "/images/alexandria.jpg",
-    mapUrl: "https://maps.google.com/?q=2920+Jefferson+Davis+Hwy,+Alexandria,+VA+22305"
+    mapUrl: "https://maps.google.com/?q=2920+Richmond+Hwy,+Alexandria,+VA+22305",
+    hours: [
+      { day: "Monday", hours: "8:00 AM – 12:00 AM" },
+      { day: "Tuesday", hours: "8:00 AM – 12:00 AM" },
+      { day: "Wednesday", hours: "8:00 AM – 12:00 AM" },
+      { day: "Thursday", hours: "8:00 AM – 12:00 AM" },
+      { day: "Friday", hours: "8:00 AM – 12:00 AM" },
+      { day: "Saturday", hours: "8:00 AM – 12:00 AM" },
+      { day: "Sunday", hours: "8:00 AM – 12:00 AM" }
+    ],
+    attributes: ["Open Until Midnight 7 Days", "3,000+ Used Tires In Stock", "Accepts Credit Cards"],
+    reviews: [
+      {
+        author: "Business Owner",
+        rating: 5,
+        text: "I can't say enough good things about Alphonso Carrington and the amazing team at Bingo Tires. They've been a tremendous help to me and my small business.",
+        source: "Google"
+      },
+      {
+        author: "Verified Customer",
+        rating: 5,
+        text: "Great shop! Excellent prices. Hard to find a good tire place that doesn't try to milk you for money. These guys are friendly, quick and do good work.",
+        source: "Google"
+      },
+      {
+        author: "Verified Customer",
+        rating: 5,
+        text: "The very best car care place in the area. I bring my car here for tire changes, oil changes, and all maintenance.",
+        source: "Google"
+      }
+    ],
+    highlights: ["Open until midnight every day", "3,000+ used tires in stock", "130+ Google reviews"]
+  },
+  {
+    id: "centreville",
+    name: "Centreville",
+    address: "13600 Lee Hwy",
+    city: "Centreville",
+    state: "VA",
+    zip: "20120",
+    phone: "(703) 543-6900",
+    rating: 3.9,
+    reviewCount: "15+",
+    mapImage: null,
+    mapUrl: "https://maps.google.com/?q=13600+Lee+Hwy,+Centreville,+VA+20120",
+    hours: [
+      { day: "Monday", hours: "8:00 AM – 6:00 PM" },
+      { day: "Tuesday", hours: "9:00 AM – 6:00 PM" },
+      { day: "Wednesday", hours: "8:00 AM – 6:00 PM" },
+      { day: "Thursday", hours: "8:00 AM – 6:00 PM" },
+      { day: "Friday", hours: "8:00 AM – 6:00 PM" },
+      { day: "Saturday", hours: "9:00 AM – 4:00 PM" },
+      { day: "Sunday", hours: "Closed" }
+    ],
+    attributes: ["Women-Owned", "Asian-Owned", "LGBTQ+ Friendly", "30-Day Warranty on Used Tires", "Accepts Credit Cards"],
+    reviews: [
+      {
+        author: "Verified Customer",
+        rating: 5,
+        text: "Best car care place around the area. Always take my car here for tire changes, oil changes, and general maintenance.",
+        source: "Yelp"
+      },
+      {
+        author: "Verified Customer",
+        rating: 4,
+        text: "Good full-service shop. They handle tires, brakes, oil changes, and more. Staff is knowledgeable and professional.",
+        source: "Yelp"
+      }
+    ],
+    highlights: ["Women-owned & Asian-owned", "30-day warranty on used tires", "Full-service auto repair"]
   },
   {
     id: "winchester",
@@ -168,8 +324,29 @@ export const locations = [
     state: "VA",
     zip: "22601",
     phone: "(540) 667-7777",
+    rating: 4.2,
+    reviewCount: "20+",
     mapImage: "/images/winchester.jpg",
-    mapUrl: "https://maps.google.com/?q=709+N+Loudoun+St,+Winchester,+VA+22601"
+    mapUrl: "https://maps.google.com/?q=709+N+Loudoun+St,+Winchester,+VA+22601",
+    hours: [
+      { day: "Monday", hours: "8:00 AM – 6:00 PM" },
+      { day: "Tuesday", hours: "8:00 AM – 6:00 PM" },
+      { day: "Wednesday", hours: "8:00 AM – 6:00 PM" },
+      { day: "Thursday", hours: "8:00 AM – 6:00 PM" },
+      { day: "Friday", hours: "8:00 AM – 6:00 PM" },
+      { day: "Saturday", hours: "8:00 AM – 4:00 PM" },
+      { day: "Sunday", hours: "Closed" }
+    ],
+    attributes: ["Accepts Credit Cards", "Serving the Shenandoah Valley"],
+    reviews: [
+      {
+        author: "Verified Customer",
+        rating: 5,
+        text: "Reliable and honest shop. They've been serving Winchester for years and I trust them completely with my vehicle.",
+        source: "Google"
+      }
+    ],
+    highlights: ["Serving Winchester since 2004", "New & used tires", "Full auto repair"]
   }
 ];
 

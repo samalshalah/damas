@@ -1,8 +1,26 @@
 import { Link } from "wouter";
 import { locations } from "@/lib/data";
-import { MapPin, Phone, Clock, ArrowRight } from "lucide-react";
+import { MapPin, Phone, Clock, ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+
+function StarRating({ rating }: { rating: number }) {
+  return (
+    <div className="flex items-center gap-0.5">
+      {[1, 2, 3, 4, 5].map(i => (
+        <Star
+          key={i}
+          className={`w-3.5 h-3.5 ${i <= Math.round(rating) ? "fill-yellow-400 text-yellow-400" : "text-zinc-300"}`}
+        />
+      ))}
+    </div>
+  );
+}
+
+function getTodayHours(hours: { day: string; hours: string }[]) {
+  const today = new Date().toLocaleDateString("en-US", { weekday: "long" });
+  return hours.find(h => h.day === today);
+}
 
 export default function Locations() {
   return (
@@ -25,49 +43,84 @@ export default function Locations() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {locations.map((loc, i) => (
-              <motion.div
-                key={loc.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-              >
-                <Link href={`/locations/${loc.id}`} className="group block bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden border shadow-sm hover:shadow-md hover:border-primary/30 transition-all">
-                  <div className="h-48 overflow-hidden bg-zinc-200 dark:bg-zinc-800">
-                    {loc.mapImage ? (
-                      <img src={loc.mapImage} alt={`${loc.name} map`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <MapPin className="w-12 h-12 text-zinc-400" />
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-6">
-                    <h2 className="text-2xl font-bold font-display mb-1 group-hover:text-primary transition-colors">
-                      Bingo Tire — {loc.name}
-                    </h2>
-                    <div className="space-y-3 mt-4">
-                      <div className="flex items-start gap-3 text-sm text-muted-foreground">
-                        <MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                        <span>{loc.address}, {loc.city}, {loc.state} {loc.zip}</span>
-                      </div>
-                      <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                        <Phone className="w-4 h-4 text-primary shrink-0" />
-                        <span>{loc.phone}</span>
-                      </div>
-                      <div className="flex items-start gap-3 text-sm text-muted-foreground">
-                        <Clock className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                        <span>Mon–Fri 8–6 &middot; Sat 8–4 &middot; Sun Closed</span>
+            {locations.map((loc, i) => {
+              const todayHours = getTodayHours(loc.hours);
+              const isOpen = todayHours && todayHours.hours !== "Closed";
+              return (
+                <motion.div
+                  key={loc.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                >
+                  <Link href={`/locations/${loc.id}`} className="group block bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden border shadow-sm hover:shadow-md hover:border-primary/30 transition-all h-full">
+                    <div className="h-48 overflow-hidden bg-zinc-200 dark:bg-zinc-800 relative">
+                      {loc.mapImage ? (
+                        <img src={loc.mapImage} alt={`${loc.name} map`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <MapPin className="w-12 h-12 text-zinc-400" />
+                        </div>
+                      )}
+                      {/* Open/Closed badge */}
+                      <div className={`absolute top-3 right-3 text-xs font-semibold px-2.5 py-1 rounded-full ${isOpen ? "bg-green-500 text-white" : "bg-zinc-700 text-zinc-200"}`}>
+                        {isOpen ? "Open Now" : "Closed Now"}
                       </div>
                     </div>
-                    <div className="flex items-center text-primary font-medium text-sm mt-5">
-                      View location <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    <div className="p-6">
+                      <div className="flex items-start justify-between gap-2 mb-2">
+                        <h2 className="text-xl font-bold font-display group-hover:text-primary transition-colors">
+                          Bingo Tire — {loc.name}
+                        </h2>
+                      </div>
+
+                      {/* Star rating */}
+                      <div className="flex items-center gap-2 mb-4">
+                        <StarRating rating={loc.rating} />
+                        <span className="text-sm font-semibold">{loc.rating}</span>
+                        <span className="text-xs text-muted-foreground">({loc.reviewCount})</span>
+                      </div>
+
+                      <div className="space-y-2.5">
+                        <div className="flex items-start gap-3 text-sm text-muted-foreground">
+                          <MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                          <span>{loc.address}, {loc.city}, {loc.state} {loc.zip}</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                          <Phone className="w-4 h-4 text-primary shrink-0" />
+                          <span>{loc.phone}</span>
+                        </div>
+                        <div className="flex items-start gap-3 text-sm text-muted-foreground">
+                          <Clock className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                          <span>
+                            {todayHours ? (
+                              <>Today: <span className={todayHours.hours === "Closed" ? "text-red-500 font-medium" : "text-foreground font-medium"}>{todayHours.hours}</span></>
+                            ) : "See hours"}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Attributes (show first 2) */}
+                      {loc.attributes.length > 0 && (
+                        <div className="flex flex-wrap gap-1.5 mt-4">
+                          {loc.attributes.slice(0, 2).map(attr => (
+                            <span key={attr} className="text-xs bg-primary/8 text-primary border border-primary/15 px-2 py-0.5 rounded-full">{attr}</span>
+                          ))}
+                          {loc.attributes.length > 2 && (
+                            <span className="text-xs text-muted-foreground px-2 py-0.5">+{loc.attributes.length - 2} more</span>
+                          )}
+                        </div>
+                      )}
+
+                      <div className="flex items-center text-primary font-medium text-sm mt-5">
+                        View location <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
