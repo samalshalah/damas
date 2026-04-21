@@ -36,8 +36,8 @@ export default function LocationDetail() {
   const autoServices = services.filter(s => s.category === "Auto Services");
   const tireServices = services.filter(s => s.category === "Tire and Wheel");
 
-  const today = new Date().toLocaleDateString("en-US", { weekday: "long" });
-  const todayHours = loc.hours.find(h => h.day === today);
+  const encodedAddress = encodeURIComponent(`${loc.address}, ${loc.city}, ${loc.state} ${loc.zip}`);
+  const mapEmbedUrl = `https://maps.google.com/maps?q=${encodedAddress}&output=embed&z=15`;
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
@@ -54,7 +54,7 @@ export default function LocationDetail() {
         ]}
         primaryCta={{ label: "Book Appointment", href: `/contact?location=${loc.id}` }}
         secondaryCta={{ label: loc.phone, href: `/contact`, tel: loc.phone.replace(/\D/g, '') }}
-        note={todayHours ? (todayHours.hours === "Closed" ? "Closed today" : `Open today ${todayHours.hours}`) : "Mon–Fri 8am–6pm · Sat 8am–4pm"}
+        note="Mon–Fri 8am–6pm · Sat 8am–4pm · Walk-ins welcome"
         breadcrumbs={
           <nav className="flex items-center gap-2 text-sm text-zinc-400">
             <Link href="/locations" className="hover:text-zinc-700 transition-colors">Locations</Link>
@@ -64,37 +64,24 @@ export default function LocationDetail() {
         }
       />
 
-      {/* Info Bar */}
-      <section className="bg-primary text-white py-5">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3 text-sm">
-              <Clock className="w-4 h-4 shrink-0" />
-              <span className="font-medium">Today ({today}):</span>
-              <span>{todayHours?.hours ?? "See full hours below"}</span>
-            </div>
-            <a href={`tel:${loc.phone.replace(/\D/g,'')}`} className="text-lg font-bold hover:underline">{loc.phone}</a>
-          </div>
-        </div>
-      </section>
-
       {/* Map + Details */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Map Image */}
-            <div className="rounded-3xl overflow-hidden border shadow-sm bg-zinc-200 dark:bg-zinc-800 aspect-[4/3]">
-              {loc.mapImage ? (
-                <img src={loc.mapImage} alt={`${loc.name} map`} className="w-full h-full object-cover" />
-              ) : (
-                <div className="w-full h-full flex flex-col items-center justify-center gap-4 p-8 text-center">
-                  <MapPin className="w-16 h-16 text-zinc-400" />
-                  <p className="text-zinc-500 font-medium">{loc.address}<br />{loc.city}, {loc.state} {loc.zip}</p>
-                  <Button asChild variant="outline" className="rounded-full">
-                    <a href={loc.mapUrl} target="_blank" rel="noreferrer">Open in Google Maps</a>
-                  </Button>
-                </div>
-              )}
+
+            {/* Google Map Embed */}
+            <div className="rounded-3xl overflow-hidden border shadow-sm aspect-[4/3]">
+              <iframe
+                title={`Map of Bingo Tire ${loc.city}`}
+                src={mapEmbedUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full"
+              />
             </div>
 
             {/* Details */}
@@ -131,9 +118,9 @@ export default function LocationDetail() {
                       <table className="text-sm w-full max-w-xs">
                         <tbody>
                           {loc.hours.map(h => (
-                            <tr key={h.day} className={h.day === today ? "font-semibold text-primary" : ""}>
+                            <tr key={h.day}>
                               <td className="pr-8 py-0.5 text-muted-foreground">{h.day}</td>
-                              <td className={h.hours === "Closed" ? "text-red-500" : "font-medium text-foreground"}>{h.hours}</td>
+                              <td className={h.hours === "Closed" ? "text-red-500 font-medium" : "font-medium text-foreground"}>{h.hours}</td>
                             </tr>
                           ))}
                         </tbody>
@@ -167,60 +154,6 @@ export default function LocationDetail() {
           </div>
         </div>
       </section>
-
-      {/* Reviews */}
-      {loc.reviews.length > 0 && (
-        <section className="py-16 bg-white dark:bg-zinc-900 border-t">
-          <div className="container mx-auto px-4">
-            <div className="flex items-end justify-between mb-10">
-              <div>
-                <h2 className="text-3xl font-bold font-display tracking-tight mb-2">What Customers Say</h2>
-                <div className="flex items-center gap-3">
-                  <StarRating rating={loc.rating} />
-                  <span className="text-2xl font-bold">{loc.rating}</span>
-                  <span className="text-muted-foreground">/ 5 &nbsp;·&nbsp; {loc.reviewCount} reviews</span>
-                </div>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {loc.reviews.map((review, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08 }}
-                  className="bg-zinc-50 dark:bg-zinc-800 rounded-2xl p-6 border relative"
-                >
-                  <Quote className="w-6 h-6 text-primary/30 mb-3" />
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4 italic">"{review.text}"</p>
-                  <div className="mt-auto">
-                    <StarRating rating={review.rating} />
-                    <p className="font-semibold text-sm mt-1">{review.author}</p>
-                    <p className="text-xs text-muted-foreground">{review.source}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Highlights */}
-      {loc.highlights.length > 0 && (
-        <section className="py-10 bg-zinc-50 dark:bg-zinc-950 border-t">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-wrap gap-4 justify-center">
-              {loc.highlights.map(h => (
-                <div key={h} className="flex items-center gap-2 bg-white dark:bg-zinc-900 border rounded-full px-5 py-2.5 text-sm font-medium shadow-sm">
-                  <CheckCircle2 className="w-4 h-4 text-primary" />
-                  {h}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Services at this location */}
       <section className="py-16 bg-white dark:bg-zinc-900 border-t">
@@ -267,6 +200,60 @@ export default function LocationDetail() {
           </div>
         </div>
       </section>
+
+      {/* Reviews */}
+      {loc.reviews.length > 0 && (
+        <section className="py-16 bg-zinc-50 dark:bg-zinc-950 border-t">
+          <div className="container mx-auto px-4">
+            <div className="flex items-end justify-between mb-10">
+              <div>
+                <h2 className="text-3xl font-bold font-display tracking-tight mb-2">What Customers Say</h2>
+                <div className="flex items-center gap-3">
+                  <StarRating rating={loc.rating} />
+                  <span className="text-2xl font-bold">{loc.rating}</span>
+                  <span className="text-muted-foreground">/ 5 &nbsp;·&nbsp; {loc.reviewCount} reviews</span>
+                </div>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {loc.reviews.map((review, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                  className="bg-white dark:bg-zinc-800 rounded-2xl p-6 border relative"
+                >
+                  <Quote className="w-6 h-6 text-primary/30 mb-3" />
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-4 italic">"{review.text}"</p>
+                  <div className="mt-auto">
+                    <StarRating rating={review.rating} />
+                    <p className="font-semibold text-sm mt-1">{review.author}</p>
+                    <p className="text-xs text-muted-foreground">{review.source}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Highlights */}
+      {loc.highlights.length > 0 && (
+        <section className="py-10 bg-white dark:bg-zinc-900 border-t">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-wrap gap-4 justify-center">
+              {loc.highlights.map(h => (
+                <div key={h} className="flex items-center gap-2 bg-zinc-50 dark:bg-zinc-800 border rounded-full px-5 py-2.5 text-sm font-medium shadow-sm">
+                  <CheckCircle2 className="w-4 h-4 text-primary" />
+                  {h}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Other Locations */}
       <section className="py-16 bg-zinc-950 text-white">
