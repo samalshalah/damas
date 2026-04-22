@@ -43,7 +43,6 @@ export default function About() {
         ]}
         primaryCta={{ label: "Book an Appointment", href: "/contact" }}
         secondaryCta={{ label: "Find a Location", href: "/locations" }}
-        note="Mon–Fri 8am–6pm · Sat 8am–4pm · Walk-ins welcome"
       />
 
       {/* Main intro */}

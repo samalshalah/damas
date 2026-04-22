@@ -17,13 +17,12 @@ export default function Services() {
         image="/images/2218_sm.jpg"
         imageAlt="Auto repair services"
         stats={[
-          { val: "14", label: "Services Offered" },
           { val: "5", label: "Locations" },
           { val: "20+", label: "Years Experience" },
+          { val: "Same Day", label: "Most Repairs" },
         ]}
         primaryCta={{ label: "Book an Appointment", href: "/contact" }}
         secondaryCta={{ label: "Find a Location", href: "/locations" }}
-        note="Mon–Fri 8am–6pm · Sat 8am–4pm · Walk-ins welcome"
       />
       <div className="py-16 md:py-24">
       <div className="container mx-auto px-4">

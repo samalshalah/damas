@@ -17,13 +17,12 @@ export default function TireServices() {
         image="/images/961_sm.jpg"
         imageAlt="Tire services"
         stats={[
-          { val: "4", label: "Tire Services" },
-          { val: "10+", label: "Tire Brands" },
+          { val: "40+", label: "Tire Brands" },
           { val: "5", label: "Locations" },
+          { val: "3,000+", label: "Used Tires In Stock" },
         ]}
         primaryCta={{ label: "Book a Service", href: "/contact" }}
         secondaryCta={{ label: "Shop New & Used Tires", href: "/tires" }}
-        note="Mon–Fri 8am–6pm · Sat 8am–4pm · Walk-ins welcome"
       />
 
       {/* Services Grid */}

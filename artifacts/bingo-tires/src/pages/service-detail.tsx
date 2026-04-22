@@ -58,7 +58,6 @@ export default function ServiceDetail() {
         ]}
         primaryCta={{ label: "Book This Service", href: `/contact?service=${service.slug}` }}
         secondaryCta={{ label: "Find a Location", href: "/locations" }}
-        note="Mon–Fri 8am–6pm · Sat 8am–4pm · Walk-ins welcome"
         breadcrumbs={
           <nav className="flex items-center gap-2 text-sm text-zinc-400">
             <Link href="/" className="hover:text-zinc-700 transition-colors">Home</Link>

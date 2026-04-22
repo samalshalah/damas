@@ -39,7 +39,6 @@ export default function Locations() {
         ]}
         primaryCta={{ label: "Book an Appointment", href: "/contact" }}
         secondaryCta={{ label: "View All Hours", href: "/locations" }}
-        note="Mon–Fri 8am–6pm · Sat 8am–4pm (hours vary by location)"
       />
 
       {/* Locations Grid */}

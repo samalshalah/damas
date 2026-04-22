@@ -17,13 +17,12 @@ export default function AutoServices() {
         image="/images/2218_sm.jpg"
         imageAlt="Auto repair"
         stats={[
-          { val: "10", label: "Auto Services" },
           { val: "5", label: "Locations" },
           { val: "20+", label: "Years Experience" },
+          { val: "All Makes", label: "& Models" },
         ]}
         primaryCta={{ label: "Book an Appointment", href: "/contact" }}
         secondaryCta={{ label: "Find a Location", href: "/locations" }}
-        note="Mon–Fri 8am–6pm · Sat 8am–4pm · Walk-ins welcome"
       />
 
       {/* Services Grid */}

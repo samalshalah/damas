@@ -50,11 +50,10 @@ export default function LocationDetail() {
         stats={[
           { val: `${loc.rating}★`, label: `${loc.reviewCount} Reviews` },
           { val: "20+", label: "Years Serving NOVA" },
-          { val: "14", label: "Services Offered" },
+          { val: "Same Day", label: "Most Repairs" },
         ]}
         primaryCta={{ label: "Book Appointment", href: `/contact?location=${loc.id}` }}
         secondaryCta={{ label: loc.phone, href: `/contact`, tel: loc.phone.replace(/\D/g, '') }}
-        note="Mon–Fri 8am–6pm · Sat 8am–4pm · Walk-ins welcome"
         breadcrumbs={
           <nav className="flex items-center gap-2 text-sm text-zinc-400">
             <Link href="/locations" className="hover:text-zinc-700 transition-colors">Locations</Link>
