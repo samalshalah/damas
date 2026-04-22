@@ -1,4 +1,9 @@
+import { Suspense } from "react";
 import Contact from "@/views/contact";
 export default function Page() {
-  return <Contact />;
+  return (
+    <Suspense>
+      <Contact />
+    </Suspense>
+  );
 }

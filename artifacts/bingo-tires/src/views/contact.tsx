@@ -17,6 +17,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { MapPin, Phone, Clock } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -30,10 +31,8 @@ const formSchema = z.object({
 
 export default function Contact() {
   const { toast } = useToast();
-  
-  // Try to pre-fill service if coming from a service detail page
-  const urlParams = new URLSearchParams(window.location.search);
-  const prefilledService = urlParams.get('service') || "";
+  const searchParams = useSearchParams();
+  const prefilledService = searchParams.get("service") || "";
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
