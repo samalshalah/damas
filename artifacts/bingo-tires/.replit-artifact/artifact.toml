@@ -19,12 +19,8 @@ run = "pnpm --filter @workspace/bingo-tires run dev"
 
 [services.production]
 build = [ "pnpm", "--filter", "@workspace/bingo-tires", "run", "build" ]
-publicDir = "artifacts/bingo-tires/dist/public"
+publicDir = "artifacts/bingo-tires/out"
 serve = "static"
-
-[[services.production.rewrites]]
-from = "/*"
-to = "/index.html"
 
 [services.env]
 PORT = "18628"
