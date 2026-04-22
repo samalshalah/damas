@@ -428,7 +428,7 @@ export default function Home() {
 
       {/* ── CTA Banner ── */}
       <section className="py-20 bg-primary text-primary-foreground relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
+        <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px)', backgroundSize: '20px 20px'}} />
         <div className="container mx-auto px-4 relative z-10 text-center">
           <h2 className="text-3xl md:text-5xl font-bold font-display tracking-tight mb-6">Make an Appointment Online</h2>
           <p className="text-lg text-primary-foreground/90 max-w-2xl mx-auto mb-10">

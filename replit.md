@@ -28,10 +28,12 @@ See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and pa
 
 ## Bingo Tire & Auto Service Website (`artifacts/bingo-tires`)
 
-Modern React + Vite website for a Northern Virginia auto repair and tire shop chain.
+Modern website for a Northern Virginia auto repair and tire shop chain. **Migrated to Next.js 15 with static export (`output: "export"`).**
 
 ### Architecture
-- Pure frontend (no backend), wouter routing, Tailwind CSS + shadcn/ui, framer-motion animations
+- Pure frontend (no backend), Next.js 15 App Router, Tailwind CSS v4 + shadcn/ui, framer-motion animations
+- Static export — all 31 pages pre-rendered at build time, output to `out/` directory
+- **Build note**: Never use `bg-[url('...')]` Tailwind arbitrary values with quoted external URLs — Tailwind v4 encodes single quotes as `&#x27;` HTML entities which breaks Next.js css-loader. Use inline `style` props for external background image URLs instead.
 - All business data in `src/lib/data.ts` (Service + Location interfaces)
 - Reusable `PageHero` component (Option B: white bg, image fades from right, red pill, stats row)
 

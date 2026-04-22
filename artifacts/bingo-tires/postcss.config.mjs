@@ -1,7 +1,6 @@
-const config = {
+console.error("POSTCSS CONFIG LOADED");
+export default {
   plugins: {
     "@tailwindcss/postcss": {},
   },
 };
-
-export default config;
