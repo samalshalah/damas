@@ -1,3 +1,4 @@
+import type { ElementType } from "react";
 import { Wrench, Car, Gauge, Activity, Compass, Settings, Zap, CheckCircle, Search, PowerOff, Battery, ShieldCheck, CircleDot, Monitor } from "lucide-react";
 
 export interface ServiceFAQ {
@@ -9,7 +10,7 @@ export interface Service {
   slug: string;
   name: string;
   category: string;
-  icon: React.ElementType;
+  icon: ElementType;
   image: string;
   shortDescription: string;
   seoTitle: string;

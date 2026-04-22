@@ -1,4 +1,6 @@
-import { Link, useLocation } from "wouter";
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Phone, Menu, X, ChevronDown, MapPin } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
@@ -103,7 +105,7 @@ function DropdownMenu({ children, items }: { children: React.ReactNode; items: {
 }
 
 export function Navbar() {
-  const [location] = useLocation();
+  const location = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
 
