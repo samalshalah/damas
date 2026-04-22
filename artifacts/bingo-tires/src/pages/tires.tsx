@@ -7,7 +7,7 @@ import { PageHero } from "@/components/layout/page-hero";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-const tireBrands = [
+const featuredBrands = [
   { name: "Michelin", logo: "/images/michelin_sm.jpg" },
   { name: "Goodyear", logo: "/images/goodyear_sm.png" },
   { name: "Bridgestone", logo: "/images/bridgestone_sm.png" },
@@ -18,6 +18,18 @@ const tireBrands = [
   { name: "Kumho", logo: "/images/kumho_sm.png" },
   { name: "Dunlop", logo: "/images/dunlop_sm.jpg" },
   { name: "Hankook", logo: "/images/hankook_sm.png" },
+];
+
+const allBrands = [
+  "Michelin", "Goodyear", "Bridgestone", "Continental", "Pirelli",
+  "BF Goodrich", "Yokohama", "Kumho", "Dunlop", "Hankook",
+  "Falken", "Toyo", "Cooper", "Nitto", "General Tire",
+  "Nexen", "Firestone", "Kelly", "Sumitomo", "Mastercraft",
+  "Ironman", "Westlake", "Primewell", "GT Radial", "Zeetex",
+  "Kenda", "Hercules", "Multi-Mile", "Federal", "Lionhart",
+  "Lexani", "Vercelli", "Milestar", "Gladiator", "Cosmo",
+  "Fullway", "Uniroyal", "Eldorado", "Starfire", "Wild Spirit",
+  "Groundspeed", "Prinx",
 ];
 
 const faqs = [
@@ -31,7 +43,7 @@ const faqs = [
   },
   {
     question: "Which tire brands does Bingo Tire carry?",
-    answer: "We stock Michelin, Goodyear, Bridgestone, Continental, Pirelli, BF Goodrich, Yokohama, Kumho, Dunlop, and Hankook in a wide range of sizes for passenger cars, trucks, SUVs, and minivans. We can also special-order sizes and brands not carried in our standard inventory. Call your nearest Northern Virginia location to confirm availability for your specific vehicle and tire size."
+    answer: "We stock 40+ brands including Michelin, Goodyear, Bridgestone, Continental, Pirelli, BF Goodrich, Yokohama, Kumho, Dunlop, Hankook, Falken, Toyo, Cooper, Nitto, Nexen, Firestone, General Tire, Sumitomo, Ironman, Westlake, and many more — in a wide range of sizes for passenger cars, trucks, SUVs, and minivans. We can also special-order sizes and brands not currently in stock. Call your nearest Northern Virginia location to confirm availability for your specific vehicle and tire size."
   },
   {
     question: "Does tire installation include balancing?",
@@ -80,11 +92,11 @@ export default function Tires() {
       <PageHero
         category="Tires"
         title="New & Used Tires in Springfield, Woodbridge & Northern Virginia, VA"
-        description="Bingo Tire & Auto Service carries an extensive inventory of new and budget-friendly inspected used tires at five Northern Virginia locations. Michelin, Goodyear, Bridgestone, Continental, and more — installed the same day with free computerized balancing."
+        description="Bingo Tire & Auto Service carries an extensive inventory of new and budget-friendly inspected used tires at five Northern Virginia locations. 40+ brands — installed the same day with free computerized balancing."
         image="/images/961_sm.jpg"
         imageAlt="Tire inventory at Bingo Tire & Auto Service Northern Virginia"
         stats={[
-          { val: "10+", label: "Brands In Stock" },
+          { val: "40+", label: "Brands In Stock" },
           { val: "3,000+", label: "Used Tires (Alexandria)" },
           { val: "Free", label: "Computer Balancing" },
         ]}
@@ -131,14 +143,16 @@ export default function Tires() {
               <p className="text-muted-foreground mb-6 leading-relaxed text-sm">
                 Every new tire purchase includes free computerized balancing, TPMS sensor service, and installation by our certified technicians. We price-match major retailers — bring us a quote and we'll beat it.
               </p>
-              <ul className="space-y-3 mb-8 flex-1">
-                {["Michelin", "Goodyear", "Bridgestone", "Continental", "Pirelli", "BF Goodrich", "Yokohama", "Kumho", "Dunlop", "Hankook"].map((brand) => (
-                  <li key={brand} className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-                    <span className="font-medium">{brand}</span>
-                  </li>
+              <div className="flex flex-wrap gap-2 mb-8 flex-1">
+                {["Michelin", "Goodyear", "Bridgestone", "Continental", "Pirelli", "BF Goodrich", "Yokohama", "Kumho", "Dunlop", "Hankook", "Falken", "Toyo", "Cooper", "Nitto", "Nexen"].map((brand) => (
+                  <span key={brand} className="inline-flex items-center gap-1.5 bg-primary/8 text-primary border border-primary/20 rounded-full px-3 py-1 text-sm font-medium">
+                    <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />{brand}
+                  </span>
                 ))}
-              </ul>
+                <span className="inline-flex items-center bg-zinc-100 dark:bg-zinc-800 text-muted-foreground border border-zinc-200 dark:border-zinc-700 rounded-full px-3 py-1 text-sm font-medium">
+                  + 25 more brands
+                </span>
+              </div>
               <Button asChild className="rounded-full w-full">
                 <Link href="/contact">Get a New Tire Quote</Link>
               </Button>
@@ -179,6 +193,57 @@ export default function Tires() {
               </Button>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* All Brands */}
+      <section className="py-20 bg-white dark:bg-zinc-900 border-t">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold font-display tracking-tight mb-3">
+              40+ Tire Brands In Stock
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              From premium names to budget-friendly options — we stock the brands that fit every vehicle and every budget. Call your location to confirm availability for your size.
+            </p>
+          </div>
+
+          {/* Featured logo brands */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-10">
+            {featuredBrands.map((brand) => (
+              <motion.div
+                key={brand.name}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="bg-zinc-50 dark:bg-zinc-800 rounded-2xl border p-4 flex items-center justify-center h-20 hover:shadow-md transition-shadow"
+              >
+                <img
+                  src={brand.logo}
+                  alt={brand.name}
+                  className="max-h-10 max-w-full object-contain"
+                />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Full brand list as pills */}
+          <div className="bg-zinc-50 dark:bg-zinc-900 rounded-2xl border p-6 md:p-8">
+            <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-5">All Brands We Carry</p>
+            <div className="flex flex-wrap gap-2">
+              {allBrands.map((brand) => (
+                <span
+                  key={brand}
+                  className="bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-full px-4 py-1.5 text-sm font-medium hover:border-primary hover:text-primary transition-colors cursor-default"
+                >
+                  {brand}
+                </span>
+              ))}
+            </div>
+            <p className="text-xs text-muted-foreground mt-5">
+              Inventory and brand availability vary by location. Call your nearest Bingo Tire for current stock and pricing.
+            </p>
           </div>
         </div>
       </section>

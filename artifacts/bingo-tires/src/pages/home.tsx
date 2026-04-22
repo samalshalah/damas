@@ -209,7 +209,7 @@ export default function Home() {
               </p>
               <ul className="space-y-3">
                 {[
-                  "All major brands — new tires in stock",
+                  "40+ brands — new tires in stock",
                   "3,000+ quality used tires available",
                   "Mounting, balancing &amp; disposal included",
                   "Same-day installation for most sizes",
@@ -237,7 +237,7 @@ export default function Home() {
               className="grid grid-cols-2 gap-4"
             >
               {[
-                { icon: ShieldCheck, label: "New Tires", desc: "All major brands in stock" },
+                { icon: ShieldCheck, label: "New Tires", desc: "40+ brands in stock" },
                 { icon: CircleDollarSign, label: "Used Tires", desc: "Budget-friendly options" },
                 { icon: Wrench, label: "Installation", desc: "Mount, balance &amp; dispose" },
                 { icon: Tag, label: "Best Prices", desc: "Competitive pricing always" },
