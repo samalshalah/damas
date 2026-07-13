@@ -35,7 +35,7 @@ export function VariantB() {
             <div className="flex gap-8 mb-8">
               {[
                 { val: "20+", label: "Years Experience" },
-                { val: "4.3★", label: "Springfield Rating" },
+                { val: "4.3★", label: "Chantilly Rating" },
                 { val: "1hr", label: "Avg. Turnaround" },
               ].map(s => (
                 <div key={s.label}>
@@ -61,7 +61,7 @@ export function VariantB() {
 
             <div className="flex items-center gap-3 mt-8 pt-6 border-t border-zinc-100">
               <Clock className="w-4 h-4 text-zinc-400" />
-              <span className="text-xs text-zinc-500">Mon–Fri 8am–6pm · Sat 8am–4pm · Walk-ins welcome</span>
+              <span className="text-xs text-zinc-500">25358 Pleasant Valley Rd #120, Chantilly, VA</span>
             </div>
           </div>
         </div>

@@ -6,51 +6,42 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 
 ## Stack
 
-- **Monorepo tool**: pnpm workspaces
-- **Node.js version**: 24
-- **Package manager**: pnpm
-- **TypeScript version**: 5.9
-- **API framework**: Express 5
-- **Database**: PostgreSQL + Drizzle ORM
-- **Validation**: Zod (`zod/v4`), `drizzle-zod`
-- **API codegen**: Orval (from OpenAPI spec)
-- **Build**: esbuild (CJS bundle)
+- Monorepo tool: pnpm workspaces
+- Node.js version: 24
+- Package manager: pnpm
+- TypeScript version: 5.9
+- Website framework: Next.js 15 App Router
+- Styling: Tailwind CSS v4 and shadcn/ui
 
 ## Key Commands
 
-- `pnpm run typecheck` — full typecheck across all packages
-- `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- `pnpm --filter @workspace/api-server run dev` — run API server locally
+- `pnpm run typecheck` - full typecheck across all packages
+- `pnpm run build` - typecheck and build all packages
+- `pnpm --filter @workspace/damas-auto-repair run typecheck` - typecheck the Damas website
+- `pnpm --filter @workspace/damas-auto-repair run build` - build and export the Damas website
 
-See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details.
+## Damas Auto Repair Website (`artifacts/damas-auto-repair`)
 
-## Bingo Tire & Auto Service Website (`artifacts/bingo-tires`)
+Static Next.js website for Damas Auto Repair in Chantilly, Virginia.
 
-Modern website for a Northern Virginia auto repair and tire shop chain. **Migrated to Next.js 15 with static export (`output: "export"`).**
+Business focus:
 
-### Architecture
-- Pure frontend (no backend), Next.js 15 App Router, Tailwind CSS v4 + shadcn/ui, framer-motion animations
-- Static export — all 31 pages pre-rendered at build time, output to `out/` directory
-- **Build note**: Never use `bg-[url('...')]` Tailwind arbitrary values with quoted external URLs — Tailwind v4 encodes single quotes as `&#x27;` HTML entities which breaks Next.js css-loader. Use inline `style` props for external background image URLs instead.
-- All business data in `src/lib/data.ts` (Service + Location interfaces)
-- Reusable `PageHero` component (Option B: white bg, image fades from right, red pill, stats row)
+- Business name: Damas Auto Repair
+- Address: 25358 Pleasant Valley Rd #120, Chantilly, VA 20152
+- Primary market: Chantilly and nearby Northern Virginia drivers
+- Core services: diagnostics, brake repair, oil changes, wheel alignment, steering and suspension, batteries, belts and hoses, tire rotation, tire balancing, and Virginia inspection support
 
-### Service SEO Fields (all 14 services)
-- `seoTitle` — city-specific H1 displayed in PageHero (e.g. "Brake Repair & Service in Springfield, Woodbridge & Northern Virginia, VA")
-- `bodyParagraphs[]` — 2 rich paragraphs with NOVA-specific content rendered after `fullDescription`
-- `cityContent` — paragraph about the 5 locations (Springfield, Woodbridge, Alexandria, Centreville, Winchester)
-- `whyUs` — paragraph about why Bingo Tire, displayed in a dedicated H2 section with 3 trust pillars
-- `faqs` — 5 FAQs per service with H3 question tags (rendered via FAQ accordion)
+Architecture:
 
-### Pages
-- `/` Home, `/about`, `/services`, `/services/:slug` Service Detail
-- `/auto-services`, `/tire-services` Category pages
-- `/tires` New & Used Tires, `/specials`, `/contact`, `/locations`, `/locations/:id`
+- Pure frontend, no backend
+- Next.js 15 App Router
+- Static export to `out/`
+- Business data centralized in `src/lib/data.ts`
+- Shared hero component in `src/components/layout/page-hero.tsx`
 
-### Container Rule
-Always use `container mx-auto px-4` — no `max-w-*` overrides on wrapper divs.
+Implementation notes:
 
-### Virginia State Inspection
-Only available at Centreville & Springfield. Uses `availableAt: ["Centreville", "Springfield"]` which causes amber banner, sidebar strikethrough, and grey city chips on the service detail page.
+- Keep copy focused on Damas Auto Repair, the Chantilly address, and auto repair services.
+- Do not reintroduce former brand names, former branch addresses, or multi-location chain language.
+- The repo currently keeps generated output under `out/`, so rebuild after source changes before publishing.
+- On Windows, `pnpm-workspace.yaml` must allow the native `win32-x64-msvc` packages used by Next/Tailwind dependencies.

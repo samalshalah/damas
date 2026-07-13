@@ -34,7 +34,7 @@ export function VariantD() {
 
             <p className="text-zinc-400 text-sm leading-relaxed mb-8 max-w-sm">
               Full brake inspection and repair by ASE-certified technicians.
-              Same-day service available at Springfield and Centreville, VA. Since 2004.
+              Service available at Damas Auto Repair in Chantilly, VA.
             </p>
 
             <div className="flex gap-5 mb-8">
@@ -63,9 +63,9 @@ export function VariantD() {
               <button className="w-full bg-white/5 border border-white/10 text-white font-semibold py-3.5 px-5 rounded-xl text-sm flex items-center justify-between hover:bg-white/10 transition-colors">
                 <span className="flex items-center gap-2">
                   <Phone className="w-4 h-4" />
-                  (703) 440-0880
+                  Get Directions
                 </span>
-                <span className="text-xs text-zinc-500">Springfield</span>
+                <span className="text-xs text-zinc-500">Chantilly</span>
               </button>
             </div>
           </div>

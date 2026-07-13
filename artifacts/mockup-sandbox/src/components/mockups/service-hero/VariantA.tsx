@@ -28,7 +28,7 @@ export function VariantA() {
 
           <p className="text-zinc-400 text-sm leading-relaxed mb-7 max-w-sm">
             Complete brake system inspection, pad replacement, rotor resurfacing,
-            and brake fluid flush. Certified technicians serving Northern Virginia since 2004.
+            and brake fluid flush. Certified technicians serving Chantilly and nearby Northern Virginia drivers.
           </p>
 
           <ul className="space-y-2.5 mb-8">
@@ -47,14 +47,14 @@ export function VariantA() {
             </button>
             <button className="border border-zinc-600 hover:border-zinc-400 text-zinc-300 font-semibold px-6 py-3 rounded-full text-sm flex items-center gap-2 transition-colors">
               <Phone className="w-4 h-4" />
-              (703) 440-0880
+              Get Directions
             </button>
           </div>
 
           <div className="mt-8 pt-6 border-t border-zinc-800">
             <div className="flex items-center gap-1 mb-1">
               {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />)}
-              <span className="text-zinc-500 text-xs ml-1">4.3 / 5 · Springfield</span>
+              <span className="text-zinc-500 text-xs ml-1">5.0 / 5 - Chantilly</span>
             </div>
             <p className="text-zinc-500 text-xs italic">"Fast, honest, and affordable. Fixed my brakes in under 2 hours."</p>
           </div>

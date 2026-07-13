@@ -11,7 +11,7 @@ export function VariantC() {
           </div>
 
           <div className="text-[#C41E3A] text-xs font-bold uppercase tracking-[0.15em] mb-3">
-            Auto Services · Northern Virginia
+            Auto Services - Chantilly
           </div>
 
           <h1 className="text-4xl font-extrabold text-[#111] leading-tight mb-4 tracking-tight">
@@ -58,7 +58,7 @@ export function VariantC() {
           {/* Floating stats card */}
           <div className="absolute top-1/2 -translate-y-1/2 -left-4 bg-white rounded-2xl shadow-2xl p-5 w-40">
             <div className="text-2xl font-black text-[#111] mb-0.5">4.3<span className="text-base">★</span></div>
-            <div className="text-xs text-zinc-500 mb-2.5 font-medium">Springfield Rating</div>
+            <div className="text-xs text-zinc-500 mb-2.5 font-medium">Chantilly Rating</div>
             <div className="flex gap-0.5 mb-2">
               {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />)}
             </div>

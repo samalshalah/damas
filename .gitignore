@@ -3,6 +3,7 @@
 # compiled output
 dist
 tmp
+.next
 out-tsc
 *.tsbuildinfo
 .expo
