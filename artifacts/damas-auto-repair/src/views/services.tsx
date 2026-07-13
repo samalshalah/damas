@@ -15,8 +15,8 @@ export default function Services() {
         category="Services"
         title={<>Auto Repair<br />Services</>}
         description="Repair, diagnostics, maintenance, brake, alignment, suspension, battery, and tire services at Damas Auto Repair in Chantilly."
-        image="/images/2218_sm.jpg"
-        imageAlt="Auto repair services"
+        image="/images/damas/diagnostics-team.webp"
+        imageAlt="Technicians diagnosing a vehicle in an auto repair shop"
         stats={[
           { val: "Chantilly", label: "VA" },
           { val: "Local", label: "Shop" },

@@ -36,8 +36,8 @@ export default function About() {
         category="About Us"
         title={<>{business.name}</>}
         description={business.description}
-        image="/images/img_630x421_carwork.jpg"
-        imageAlt="Auto repair technician working on a vehicle"
+        image="/images/damas/customer-service.webp"
+        imageAlt="Mechanic greeting a customer in an auto repair shop"
         stats={[
           { val: "Chantilly", label: "VA" },
           { val: "Auto", label: "Repair" },
@@ -74,8 +74,8 @@ export default function About() {
               className="rounded-3xl overflow-hidden shadow-xl aspect-[4/3]"
             >
               <img
-                src="/images/service-description-list-3264.jpg"
-                alt="Auto repair service bay"
+                src="/images/damas/service-bay.webp"
+                alt="Technician working on a vehicle in an auto repair bay"
                 className="w-full h-full object-cover"
               />
             </motion.div>

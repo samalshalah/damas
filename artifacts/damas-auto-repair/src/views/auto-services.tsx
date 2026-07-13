@@ -15,8 +15,8 @@ export default function AutoServices() {
         category="Auto Services"
         title={<>Auto Repair<br />&amp; Maintenance</>}
         description="Diagnostics, maintenance, brakes, alignment, batteries, steering, suspension, and repair services at our Chantilly shop."
-        image="/images/2218_sm.jpg"
-        imageAlt="Auto repair"
+        image="/images/damas/service-bay.webp"
+        imageAlt="Auto repair technician working in a service bay"
         stats={[
           { val: "Chantilly", label: "VA" },
           { val: "Local", label: "Shop" },

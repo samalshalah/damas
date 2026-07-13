@@ -14,8 +14,8 @@ export default function Home() {
       <section className="relative bg-zinc-950 text-white overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/images/img_630x421_carwork.jpg"
-            alt="Technician working on a vehicle"
+            src="/images/damas/home-hero.webp"
+            alt="Auto repair bay with vehicles being serviced"
             className="w-full h-full object-cover opacity-80"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/95 via-zinc-950/70 to-zinc-950/25" />

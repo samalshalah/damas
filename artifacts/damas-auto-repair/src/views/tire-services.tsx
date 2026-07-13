@@ -15,8 +15,8 @@ export default function TireServices() {
         category="Tires & Wheels"
         title={<>Tire Services<br />in Chantilly</>}
         description="Tire rotation, balancing, and tire care support at Damas Auto Repair in Chantilly, VA."
-        image="/images/961_sm.jpg"
-        imageAlt="Tire services"
+        image="/images/damas/shop-lift.webp"
+        imageAlt="Vehicle raised on a lift for tire and wheel service"
         stats={[
           { val: "Chantilly", label: "VA" },
           { val: "Tire", label: "Service" },
@@ -77,7 +77,7 @@ export default function TireServices() {
                 data-testid="card-tires"
               >
                 <div className="h-44 overflow-hidden">
-                  <img src="/images/services/tire-shop-g2.jpg" alt="Tires" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-60" />
+                  <img src="/images/damas/shop-lift.webp" alt="Tires" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-60" />
                 </div>
                 <div className="p-6 flex gap-4">
                   <div className="w-11 h-11 rounded-xl bg-white/20 flex items-center justify-center shrink-0">

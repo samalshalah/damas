@@ -14,8 +14,8 @@ export default function Tires() {
         category="Tires"
         title="Tires in Chantilly, VA"
         description="Ask Damas Auto Repair about tire availability, tire installation support, rotation, balancing, and tire-related maintenance."
-        image="/images/961_sm.jpg"
-        imageAlt="Tire service"
+        image="/images/damas/shop-lift.webp"
+        imageAlt="Vehicle raised on a lift for tire service"
         stats={[
           { val: "Tire", label: "Service" },
           { val: "Wheel", label: "Balancing" },

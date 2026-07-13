@@ -16,8 +16,8 @@ export default function Locations() {
         category="Location"
         title={<>Damas Auto Repair<br />in Chantilly, VA</>}
         description={`${loc.address}, ${loc.city}, ${loc.state} ${loc.zip}`}
-        image="/images/img_630x421_carwork.jpg"
-        imageAlt="Damas Auto Repair location"
+        image="/images/damas/home-hero.webp"
+        imageAlt="Damas Auto Repair service bay"
         stats={[
           { val: "1", label: "Chantilly Shop" },
           { val: "Auto", label: "Repair" },

@@ -77,7 +77,7 @@ export const services: Service[] = [
     name: "Engine Diagnostics",
     category: "Auto Services",
     icon: Search,
-    image: "/images/services/engine-diagnostics.jpg",
+    image: "/images/damas/diagnostics-team.webp",
     shortDescription: "Check engine light testing and root-cause diagnostics.",
     seoTitle: "Engine Diagnostics in Chantilly, VA",
     fullDescription:
@@ -113,7 +113,7 @@ export const services: Service[] = [
     name: "Brake Repair",
     category: "Auto Services",
     icon: ShieldCheck,
-    image: "/images/services/brake-repair.jpg",
+    image: "/images/damas/brake-service.webp",
     shortDescription: "Brake pads, rotors, calipers, fluid, and inspections.",
     seoTitle: "Brake Repair in Chantilly, VA",
     fullDescription:
@@ -149,7 +149,7 @@ export const services: Service[] = [
     name: "Oil Change",
     category: "Auto Services",
     icon: Activity,
-    image: "/images/services/lube-oil-filters.jpg",
+    image: "/images/damas/engine-detail.webp",
     shortDescription: "Full-service oil changes with filter replacement.",
     seoTitle: "Oil Change in Chantilly, VA",
     fullDescription:
@@ -185,7 +185,7 @@ export const services: Service[] = [
     name: "Wheel Alignment",
     category: "Auto Services",
     icon: Wrench,
-    image: "/images/services/wheel-alignment.jpg",
+    image: "/images/damas/service-bay.webp",
     shortDescription: "Alignment checks and adjustments for safer handling.",
     seoTitle: "Wheel Alignment in Chantilly, VA",
     fullDescription:
@@ -221,7 +221,7 @@ export const services: Service[] = [
     name: "Steering & Suspension",
     category: "Auto Services",
     icon: Car,
-    image: "/images/services/steering-suspension.jpg",
+    image: "/images/damas/inspection-lift.webp",
     shortDescription: "Shocks, struts, control arms, steering, and ride issues.",
     seoTitle: "Steering and Suspension Repair in Chantilly, VA",
     fullDescription:
@@ -257,7 +257,7 @@ export const services: Service[] = [
     name: "Battery Service",
     category: "Auto Services",
     icon: Battery,
-    image: "/images/services/batteries.jpg",
+    image: "/images/damas/engine-detail.webp",
     shortDescription: "Battery testing, replacement, and charging checks.",
     seoTitle: "Car Battery Service in Chantilly, VA",
     fullDescription:
@@ -293,7 +293,7 @@ export const services: Service[] = [
     name: "Belts and Hoses",
     category: "Auto Services",
     icon: Settings,
-    image: "/images/services/belts-hoses.jpg",
+    image: "/images/damas/undercar-service.webp",
     shortDescription: "Inspection and replacement of worn belts and hoses.",
     seoTitle: "Belt and Hose Replacement in Chantilly, VA",
     fullDescription:
@@ -329,7 +329,7 @@ export const services: Service[] = [
     name: "Tire Rotation",
     category: "Tire and Wheel",
     icon: CircleDot,
-    image: "/images/services/tire-rotation.jpg",
+    image: "/images/damas/shop-lift.webp",
     shortDescription: "Tire rotation to promote even tire wear.",
     seoTitle: "Tire Rotation in Chantilly, VA",
     fullDescription:
@@ -365,7 +365,7 @@ export const services: Service[] = [
     name: "Tire Balancing",
     category: "Tire and Wheel",
     icon: Gauge,
-    image: "/images/services/tire-balancing.jpg",
+    image: "/images/damas/shop-lift.webp",
     shortDescription: "Wheel balancing to reduce vibration and tire wear.",
     seoTitle: "Tire Balancing in Chantilly, VA",
     fullDescription:
@@ -401,7 +401,7 @@ export const services: Service[] = [
     name: "Virginia State Inspection",
     category: "Auto Services",
     icon: Monitor,
-    image: "/images/services/state-inspection.jpg",
+    image: "/images/damas/inspection-lift.webp",
     shortDescription: "Virginia safety inspection support and repair guidance.",
     seoTitle: "Virginia State Inspection Support in Chantilly, VA",
     fullDescription:
@@ -475,7 +475,7 @@ export const locations: Location[] = [
     phone: "Contact shop",
     rating: 5,
     reviewCount: "Local shop",
-    mapImage: "/images/img_630x421_carwork.jpg",
+    mapImage: "/images/damas/home-hero.webp",
     mapUrl: business.mapUrl,
     hours: [
       { day: "Monday", hours: "Call for hours" },

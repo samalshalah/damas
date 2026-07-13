@@ -13,8 +13,8 @@ export default function Specials() {
         category="Service Requests"
         title={<>Damas<br />Auto Repair</>}
         description="Common service requests at Damas Auto Repair. Contact the Chantilly shop to confirm current pricing and availability."
-        image="/images/2218_sm.jpg"
-        imageAlt="Auto service"
+        image="/images/damas/undercar-service.webp"
+        imageAlt="Mechanic servicing the underside of a vehicle"
         stats={[
           { val: "Chantilly", label: "VA" },
           { val: "Auto", label: "Repair" },

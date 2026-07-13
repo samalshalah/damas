@@ -28,8 +28,8 @@ export default function LocationDetail({ id }: { id: string }) {
         category={business.name}
         title={<>{loc.city},<br />{loc.state}</>}
         description={`${loc.address}, ${loc.city}, ${loc.state} ${loc.zip}`}
-        image="/images/img_630x421_carwork.jpg"
-        imageAlt="Damas Auto Repair Chantilly"
+        image="/images/damas/home-hero.webp"
+        imageAlt="Damas Auto Repair Chantilly service bay"
         stats={[
           { val: "Chantilly", label: "Location" },
           { val: "Auto", label: "Repair" },
