@@ -5,7 +5,6 @@ import {
   Car,
   CircleDot,
   Gauge,
-  Monitor,
   Search,
   Settings,
   ShieldCheck,
@@ -395,42 +394,6 @@ export const services: Service[] = [
       "Ride concern review",
     ],
     faqs: makeFaq("tire balancing"),
-  },
-  {
-    slug: "state-inspection",
-    name: "Virginia State Inspection",
-    category: "Auto Services",
-    icon: Monitor,
-    image: "/images/damas/inspection-lift.webp",
-    shortDescription: "Virginia safety inspection support and repair guidance.",
-    seoTitle: "Virginia State Inspection Support in Chantilly, VA",
-    fullDescription:
-      "Damas Auto Repair helps Chantilly drivers prepare for Virginia safety inspection requirements and repair items that may prevent a vehicle from passing.",
-    bodyParagraphs: [
-      "If your vehicle needs inspection-related repairs, our team can inspect common safety items such as lights, brakes, tires, steering, suspension, and visible leaks.",
-      "Contact the shop to confirm current inspection availability and scheduling.",
-    ],
-    seoDescription:
-      "Virginia state inspection support and safety repair guidance in Chantilly, VA at Damas Auto Repair.",
-    cityContent:
-      "Damas Auto Repair is located at " + locationLine + " for Chantilly and nearby Northern Virginia drivers.",
-    whyUs:
-      "We explain safety-related concerns clearly and help you understand what should be repaired before returning to the road.",
-    warnings: [
-      "Inspection sticker is expiring",
-      "Lights, brakes, or tires may not pass",
-      "Steering or suspension noise",
-      "Visible fluid leaks",
-      "Warning lights or safety concerns",
-    ],
-    included: [
-      "Safety item review",
-      "Repair estimate for failed items",
-      "Brake, tire, and light check",
-      "Suspension and steering visual review",
-      "Scheduling guidance",
-    ],
-    faqs: makeFaq("Virginia state inspection support"),
   },
 ];
 
