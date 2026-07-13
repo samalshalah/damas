@@ -76,7 +76,7 @@ export const services: Service[] = [
     name: "Engine Diagnostics",
     category: "Auto Services",
     icon: Search,
-    image: "/images/damas/diagnostics-team.webp",
+    image: "/images/service-fit/engine-diagnostics.webp",
     shortDescription: "Check engine light testing and root-cause diagnostics.",
     seoTitle: "Engine Diagnostics in Chantilly, VA",
     fullDescription:
@@ -112,7 +112,7 @@ export const services: Service[] = [
     name: "Brake Repair",
     category: "Auto Services",
     icon: ShieldCheck,
-    image: "/images/damas/brake-service.webp",
+    image: "/images/service-fit/brake-repair.webp",
     shortDescription: "Brake pads, rotors, calipers, fluid, and inspections.",
     seoTitle: "Brake Repair in Chantilly, VA",
     fullDescription:
@@ -148,7 +148,7 @@ export const services: Service[] = [
     name: "Oil Change",
     category: "Auto Services",
     icon: Activity,
-    image: "/images/damas/engine-detail.webp",
+    image: "/images/service-fit/lube-oil-filters.webp",
     shortDescription: "Full-service oil changes with filter replacement.",
     seoTitle: "Oil Change in Chantilly, VA",
     fullDescription:
@@ -184,7 +184,7 @@ export const services: Service[] = [
     name: "Wheel Alignment",
     category: "Auto Services",
     icon: Wrench,
-    image: "/images/damas/service-bay.webp",
+    image: "/images/service-fit/wheel-alignment.webp",
     shortDescription: "Alignment checks and adjustments for safer handling.",
     seoTitle: "Wheel Alignment in Chantilly, VA",
     fullDescription:
@@ -220,7 +220,7 @@ export const services: Service[] = [
     name: "Steering & Suspension",
     category: "Auto Services",
     icon: Car,
-    image: "/images/damas/inspection-lift.webp",
+    image: "/images/service-fit/steering-suspension.webp",
     shortDescription: "Shocks, struts, control arms, steering, and ride issues.",
     seoTitle: "Steering and Suspension Repair in Chantilly, VA",
     fullDescription:
@@ -256,7 +256,7 @@ export const services: Service[] = [
     name: "Battery Service",
     category: "Auto Services",
     icon: Battery,
-    image: "/images/damas/engine-detail.webp",
+    image: "/images/service-fit/batteries.webp",
     shortDescription: "Battery testing, replacement, and charging checks.",
     seoTitle: "Car Battery Service in Chantilly, VA",
     fullDescription:
@@ -292,7 +292,7 @@ export const services: Service[] = [
     name: "Belts and Hoses",
     category: "Auto Services",
     icon: Settings,
-    image: "/images/damas/undercar-service.webp",
+    image: "/images/service-fit/belts-hoses.webp",
     shortDescription: "Inspection and replacement of worn belts and hoses.",
     seoTitle: "Belt and Hose Replacement in Chantilly, VA",
     fullDescription:
@@ -328,7 +328,7 @@ export const services: Service[] = [
     name: "Tire Rotation",
     category: "Tire and Wheel",
     icon: CircleDot,
-    image: "/images/damas/shop-lift.webp",
+    image: "/images/service-fit/tire-rotation.webp",
     shortDescription: "Tire rotation to promote even tire wear.",
     seoTitle: "Tire Rotation in Chantilly, VA",
     fullDescription:
@@ -364,7 +364,7 @@ export const services: Service[] = [
     name: "Tire Balancing",
     category: "Tire and Wheel",
     icon: Gauge,
-    image: "/images/damas/shop-lift.webp",
+    image: "/images/service-fit/tire-balancing.webp",
     shortDescription: "Wheel balancing to reduce vibration and tire wear.",
     seoTitle: "Tire Balancing in Chantilly, VA",
     fullDescription:
