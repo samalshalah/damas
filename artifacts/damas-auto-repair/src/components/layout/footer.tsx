@@ -12,11 +12,12 @@ export function Footer() {
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
           <div className="space-y-6">
-            <div className="leading-tight">
-              <div className="text-2xl font-black font-display text-white">{business.name}</div>
-              <div className="text-xs font-semibold uppercase tracking-wide text-primary">
-                {business.city}, {business.state}
-              </div>
+            <div className="inline-flex rounded bg-white p-2">
+              <img
+                src="/images/brand/damas-auto-repair-logo.webp"
+                alt={business.name}
+                className="h-14 w-auto max-w-[230px] object-contain"
+              />
             </div>
             <p className="text-zinc-400 leading-relaxed text-sm">
               Local auto repair, diagnostics, maintenance, brakes, alignment, and tire service at {business.address}, {business.city}, {business.state} {business.zip}.

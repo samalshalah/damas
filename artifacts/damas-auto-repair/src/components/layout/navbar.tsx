@@ -124,11 +124,12 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between gap-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center shrink-0" data-testid="link-home-logo">
-          <span className="leading-tight">
-            <span className="block text-xl font-black font-display text-zinc-950 tracking-tight">{business.name}</span>
-            <span className="block text-xs font-semibold uppercase tracking-wide text-primary">{business.city}, {business.state}</span>
-          </span>
+        <Link href="/" className="flex items-center shrink-0" data-testid="link-home-logo" aria-label={`${business.name} home`}>
+          <img
+            src="/images/brand/damas-auto-repair-logo.webp"
+            alt={business.name}
+            className="h-12 w-auto max-w-[190px] sm:max-w-[230px] object-contain"
+          />
         </Link>
 
         {/* Desktop Nav */}
