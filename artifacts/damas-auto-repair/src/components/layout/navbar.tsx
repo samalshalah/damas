@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Phone, Menu, X, ChevronDown, MapPin } from "lucide-react";
+import { CalendarCheck, MapPinned, Phone, Menu, X, ChevronDown, MapPin } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { business, services, locations } from "@/lib/data";
@@ -10,6 +10,11 @@ const autoServices = services.filter(s => s.category === "Auto Services");
 const tireServices = services.filter(s => s.category === "Tire and Wheel");
 
 const phoneLocations = locations;
+
+function getCallHref(phone: string) {
+  const digits = phone.replace(/\D/g, "");
+  return digits.length >= 10 ? `tel:${digits}` : "/contact";
+}
 
 function PhoneDropdown() {
   const [open, setOpen] = useState(false);
@@ -140,6 +145,7 @@ export function Navbar() {
   ];
 
   const isActive = (path: string) => location === path || location.startsWith(path + "/");
+  const mobileCallHref = getCallHref(locations[0]?.phone ?? "");
   const navLinkClass = (active: boolean) =>
     `text-sm font-medium transition-colors ${
       active
@@ -344,6 +350,43 @@ export function Navbar() {
           </div>
         </div>
       )}
+
+      <div
+        className={`fixed inset-x-0 bottom-0 z-[60] px-3 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] lg:hidden transition-all duration-300 ${
+          isScrolled ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="mx-auto max-w-md rounded-2xl border border-zinc-800 bg-zinc-950/95 p-2 shadow-2xl shadow-black/30 backdrop-blur">
+          <div className="grid grid-cols-3 gap-2">
+            <Link
+              href={mobileCallHref}
+              className="flex min-h-14 flex-col items-center justify-center gap-1 rounded-xl bg-white/8 px-2 text-xs font-semibold text-white transition-colors hover:bg-white/12"
+              data-testid="mobile-sticky-call"
+            >
+              <Phone className="h-5 w-5 text-primary" />
+              <span>Call</span>
+            </Link>
+            <a
+              href={business.mapUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="flex min-h-14 flex-col items-center justify-center gap-1 rounded-xl bg-white/8 px-2 text-xs font-semibold text-white transition-colors hover:bg-white/12"
+              data-testid="mobile-sticky-directions"
+            >
+              <MapPinned className="h-5 w-5 text-primary" />
+              <span>Directions</span>
+            </a>
+            <Link
+              href="/contact"
+              className="flex min-h-14 flex-col items-center justify-center gap-1 rounded-xl bg-primary px-2 text-xs font-bold text-primary-foreground shadow-lg shadow-red-950/30 transition-colors hover:bg-primary/90"
+              data-testid="mobile-sticky-appointment"
+            >
+              <CalendarCheck className="h-5 w-5" />
+              <span>Appointment</span>
+            </Link>
+          </div>
+        </div>
+      </div>
     </header>
   );
 }
