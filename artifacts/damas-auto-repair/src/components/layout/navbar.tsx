@@ -173,7 +173,7 @@ export function Navbar() {
           <img
             src={isScrolled ? "/images/brand/damas-logo-dark.webp" : "/images/brand/damas-logo-light.webp"}
             alt={business.name}
-            className="h-12 w-auto max-w-[220px] sm:max-w-[300px] lg:max-w-[360px] object-contain"
+            className="h-14 w-auto max-w-[250px] sm:max-w-[340px] lg:max-w-[400px] object-contain"
           />
         </Link>
 
