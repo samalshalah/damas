@@ -57,7 +57,15 @@ function PhoneDropdown() {
   );
 }
 
-function DropdownMenu({ children, items }: { children: React.ReactNode; items: { href: string; label: string; sublabel?: string }[] }) {
+function DropdownMenu({
+  children,
+  items,
+  dark = false,
+}: {
+  children: React.ReactNode;
+  items: { href: string; label: string; sublabel?: string }[];
+  dark?: boolean;
+}) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -74,7 +82,9 @@ function DropdownMenu({ children, items }: { children: React.ReactNode; items: {
   return (
     <div className="relative" ref={ref} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <button
-        className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+        className={`flex items-center gap-1 text-sm font-medium transition-colors ${
+          dark ? "text-zinc-200 hover:text-white" : "text-muted-foreground hover:text-primary"
+        }`}
       >
         {children}
         <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
@@ -102,6 +112,17 @@ export function Navbar() {
   const location = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    function handleScroll() {
+      setIsScrolled(window.scrollY > 12);
+    }
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const autoServiceItems = [
     { href: "/auto-services", label: "All Auto Services" },
@@ -119,16 +140,32 @@ export function Navbar() {
   ];
 
   const isActive = (path: string) => location === path || location.startsWith(path + "/");
+  const navLinkClass = (active: boolean) =>
+    `text-sm font-medium transition-colors ${
+      active
+        ? isScrolled
+          ? "text-white"
+          : "text-primary"
+        : isScrolled
+          ? "text-zinc-200 hover:text-white"
+          : "text-muted-foreground hover:text-primary"
+    }`;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+    <header
+      className={`sticky top-0 z-50 w-full border-b backdrop-blur transition-colors duration-300 ${
+        isScrolled
+          ? "border-zinc-800 bg-zinc-950/95 supports-[backdrop-filter]:bg-zinc-950/90 shadow-lg"
+          : "border-zinc-200 bg-white/95 supports-[backdrop-filter]:bg-white/80"
+      }`}
+    >
       <div className="container mx-auto px-4 h-20 flex items-center justify-between gap-4">
         {/* Logo */}
         <Link href="/" className="flex items-center shrink-0" data-testid="link-home-logo" aria-label={`${business.name} home`}>
           <img
-            src="/images/brand/damas-auto-repair-logo.webp"
+            src={isScrolled ? "/images/brand/damas-logo-dark.webp" : "/images/brand/damas-logo-light.webp"}
             alt={business.name}
-            className="h-12 w-auto max-w-[190px] sm:max-w-[230px] object-contain"
+            className="h-12 w-auto max-w-[190px] sm:max-w-[240px] object-contain"
           />
         </Link>
 
@@ -136,53 +173,53 @@ export function Navbar() {
         <nav className="hidden lg:flex items-center gap-6">
           <Link
             href="/"
-            className={`text-sm font-medium transition-colors hover:text-primary ${location === "/" ? "text-primary" : "text-muted-foreground"}`}
+            className={navLinkClass(location === "/")}
           >
             Home
           </Link>
 
           <Link
             href="/about"
-            className={`text-sm font-medium transition-colors hover:text-primary ${isActive("/about") ? "text-primary" : "text-muted-foreground"}`}
+            className={navLinkClass(isActive("/about"))}
           >
             About Us
           </Link>
 
-          <DropdownMenu items={autoServiceItems}>
-            <span className={isActive("/auto-services") || location.includes("/services/") ? "text-primary" : ""}>
+          <DropdownMenu items={autoServiceItems} dark={isScrolled}>
+            <span className={isActive("/auto-services") || location.includes("/services/") ? (isScrolled ? "text-white" : "text-primary") : ""}>
               Auto Services
             </span>
           </DropdownMenu>
 
-          <DropdownMenu items={tireServiceItems}>
-            <span className={isActive("/tire-services") || isActive("/tires") ? "text-primary" : ""}>
+          <DropdownMenu items={tireServiceItems} dark={isScrolled}>
+            <span className={isActive("/tire-services") || isActive("/tires") ? (isScrolled ? "text-white" : "text-primary") : ""}>
               Tires & Wheels
             </span>
           </DropdownMenu>
 
           <Link
             href="/tires"
-            className={`text-sm font-medium transition-colors hover:text-primary ${isActive("/tires") ? "text-primary" : "text-muted-foreground"}`}
+            className={navLinkClass(isActive("/tires"))}
           >
             Tires
           </Link>
 
-          <DropdownMenu items={locationItems}>
-            <span className={isActive("/locations") ? "text-primary" : ""}>
+          <DropdownMenu items={locationItems} dark={isScrolled}>
+            <span className={isActive("/locations") ? (isScrolled ? "text-white" : "text-primary") : ""}>
               Location
             </span>
           </DropdownMenu>
 
           <Link
             href="/specials"
-            className={`text-sm font-medium transition-colors hover:text-primary ${isActive("/specials") ? "text-primary" : "text-muted-foreground"}`}
+            className={navLinkClass(isActive("/specials"))}
           >
             Specials
           </Link>
 
           <Link
             href="/contact"
-            className={`text-sm font-medium transition-colors hover:text-primary ${isActive("/contact") ? "text-primary" : "text-muted-foreground"}`}
+            className={navLinkClass(isActive("/contact"))}
           >
             Contact Us
           </Link>
@@ -193,7 +230,7 @@ export function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="lg:hidden p-2 -mr-2 text-foreground"
+          className={`lg:hidden p-2 -mr-2 transition-colors ${isScrolled ? "text-white" : "text-foreground"}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           data-testid="button-mobile-menu"
         >
@@ -203,31 +240,31 @@ export function Navbar() {
 
       {/* Mobile Nav */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden border-t bg-white dark:bg-zinc-950 px-4 py-4 max-h-[80vh] overflow-y-auto">
+        <div className={`lg:hidden border-t px-4 py-4 max-h-[80vh] overflow-y-auto ${isScrolled ? "border-zinc-800 bg-zinc-950 text-white" : "bg-white dark:bg-zinc-950"}`}>
           <nav className="flex flex-col gap-1">
             {/* Home */}
-            <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-3 rounded-md text-base font-medium hover:bg-muted transition-colors" data-testid="link-mobile-nav-home">
+            <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className={`block px-4 py-3 rounded-md text-base font-medium transition-colors ${isScrolled ? "hover:bg-white/10" : "hover:bg-muted"}`} data-testid="link-mobile-nav-home">
               Home
             </Link>
 
             {/* About Us */}
-            <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-3 rounded-md text-base font-medium hover:bg-muted transition-colors" data-testid="link-mobile-nav-about">
+            <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className={`block px-4 py-3 rounded-md text-base font-medium transition-colors ${isScrolled ? "hover:bg-white/10" : "hover:bg-muted"}`} data-testid="link-mobile-nav-about">
               About Us
             </Link>
 
             {/* Auto Services */}
             <div>
               <button
-                className="flex items-center justify-between w-full px-4 py-3 rounded-md text-base font-medium hover:bg-muted transition-colors"
+                className={`flex items-center justify-between w-full px-4 py-3 rounded-md text-base font-medium transition-colors ${isScrolled ? "hover:bg-white/10" : "hover:bg-muted"}`}
                 onClick={() => setMobileExpanded(mobileExpanded === "auto" ? null : "auto")}
               >
                 Auto Services <ChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === "auto" ? "rotate-180" : ""}`} />
               </button>
               {mobileExpanded === "auto" && (
                 <div className="ml-4 flex flex-col gap-1 mt-1">
-                  <Link href="/auto-services" onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-2 rounded-md text-sm font-semibold text-primary hover:bg-primary/5">All Auto Services</Link>
+                  <Link href="/auto-services" onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-2 rounded-md text-sm font-semibold text-primary hover:bg-primary/10">All Auto Services</Link>
                   {autoServices.map(s => (
-                    <Link key={s.slug} href={`/services/${s.slug}`} onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-2 rounded-md text-sm hover:bg-muted">{s.name}</Link>
+                    <Link key={s.slug} href={`/services/${s.slug}`} onClick={() => setIsMobileMenuOpen(false)} className={`block px-4 py-2 rounded-md text-sm ${isScrolled ? "hover:bg-white/10" : "hover:bg-muted"}`}>{s.name}</Link>
                   ))}
                 </div>
               )}
@@ -236,39 +273,39 @@ export function Navbar() {
             {/* Tire Services */}
             <div>
               <button
-                className="flex items-center justify-between w-full px-4 py-3 rounded-md text-base font-medium hover:bg-muted transition-colors"
+                className={`flex items-center justify-between w-full px-4 py-3 rounded-md text-base font-medium transition-colors ${isScrolled ? "hover:bg-white/10" : "hover:bg-muted"}`}
                 onClick={() => setMobileExpanded(mobileExpanded === "tire" ? null : "tire")}
               >
                 Tires & Wheels <ChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === "tire" ? "rotate-180" : ""}`} />
               </button>
               {mobileExpanded === "tire" && (
                 <div className="ml-4 flex flex-col gap-1 mt-1">
-                  <Link href="/tire-services" onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-2 rounded-md text-sm font-semibold text-primary hover:bg-primary/5">All Tire Services</Link>
+                  <Link href="/tire-services" onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-2 rounded-md text-sm font-semibold text-primary hover:bg-primary/10">All Tire Services</Link>
                   {tireServices.map(s => (
-                    <Link key={s.slug} href={`/services/${s.slug}`} onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-2 rounded-md text-sm hover:bg-muted">{s.name}</Link>
+                    <Link key={s.slug} href={`/services/${s.slug}`} onClick={() => setIsMobileMenuOpen(false)} className={`block px-4 py-2 rounded-md text-sm ${isScrolled ? "hover:bg-white/10" : "hover:bg-muted"}`}>{s.name}</Link>
                   ))}
                 </div>
               )}
             </div>
 
             {/* New & Used Tires */}
-            <Link href="/tires" onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-3 rounded-md text-base font-medium hover:bg-muted transition-colors">
+            <Link href="/tires" onClick={() => setIsMobileMenuOpen(false)} className={`block px-4 py-3 rounded-md text-base font-medium transition-colors ${isScrolled ? "hover:bg-white/10" : "hover:bg-muted"}`}>
               Tires
             </Link>
 
             {/* Locations */}
             <div>
               <button
-                className="flex items-center justify-between w-full px-4 py-3 rounded-md text-base font-medium hover:bg-muted transition-colors"
+                className={`flex items-center justify-between w-full px-4 py-3 rounded-md text-base font-medium transition-colors ${isScrolled ? "hover:bg-white/10" : "hover:bg-muted"}`}
                 onClick={() => setMobileExpanded(mobileExpanded === "locations" ? null : "locations")}
               >
                 Location <ChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === "locations" ? "rotate-180" : ""}`} />
               </button>
               {mobileExpanded === "locations" && (
                 <div className="ml-4 flex flex-col gap-1 mt-1">
-                  <Link href="/locations" onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-2 rounded-md text-sm font-semibold text-primary hover:bg-primary/5">Location</Link>
+                  <Link href="/locations" onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-2 rounded-md text-sm font-semibold text-primary hover:bg-primary/10">Location</Link>
                   {locations.map(l => (
-                    <Link key={l.id} href={`/locations/${l.id}`} onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-2 rounded-md hover:bg-muted">
+                    <Link key={l.id} href={`/locations/${l.id}`} onClick={() => setIsMobileMenuOpen(false)} className={`block px-4 py-2 rounded-md ${isScrolled ? "hover:bg-white/10" : "hover:bg-muted"}`}>
                       <span className="flex items-center gap-2 text-sm">
                         <MapPin className="w-3 h-3 text-primary shrink-0" />
                         {l.city} — {l.phone}
@@ -279,10 +316,10 @@ export function Navbar() {
               )}
             </div>
 
-            <Link href="/specials" onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-3 rounded-md text-base font-medium hover:bg-muted transition-colors">
+            <Link href="/specials" onClick={() => setIsMobileMenuOpen(false)} className={`block px-4 py-3 rounded-md text-base font-medium transition-colors ${isScrolled ? "hover:bg-white/10" : "hover:bg-muted"}`}>
               Specials
             </Link>
-            <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-3 rounded-md text-base font-medium hover:bg-muted transition-colors">
+            <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className={`block px-4 py-3 rounded-md text-base font-medium transition-colors ${isScrolled ? "hover:bg-white/10" : "hover:bg-muted"}`}>
               Contact Us
             </Link>
           </nav>
@@ -293,9 +330,9 @@ export function Navbar() {
                 key={loc.id}
                 href={loc.mapUrl}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center justify-between px-4 py-2.5 rounded-md hover:bg-muted transition-colors"
+                className={`flex items-center justify-between px-4 py-2.5 rounded-md transition-colors ${isScrolled ? "hover:bg-white/10" : "hover:bg-muted"}`}
               >
-                <span className="flex items-center gap-2 text-sm font-medium text-zinc-800">
+                <span className={`flex items-center gap-2 text-sm font-medium ${isScrolled ? "text-zinc-100" : "text-zinc-800"}`}>
                   <MapPin className="w-3.5 h-3.5 text-primary shrink-0" />
                   {loc.city}
                 </span>
