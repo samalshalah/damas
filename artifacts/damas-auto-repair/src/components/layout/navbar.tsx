@@ -169,11 +169,11 @@ export function Navbar() {
         }`}
       >
         {/* Logo */}
-        <Link href="/" className="flex items-center shrink-0" data-testid="link-home-logo" aria-label={`${business.name} home`}>
+        <Link href="/" className="flex items-center shrink-0 ml-2 lg:ml-5" data-testid="link-home-logo" aria-label={`${business.name} home`}>
           <img
             src={isScrolled ? "/images/brand/damas-logo-dark.webp" : "/images/brand/damas-logo-light.webp"}
             alt={business.name}
-            className="h-10 w-auto max-w-[190px] sm:max-w-[260px] lg:max-w-[320px] object-contain"
+            className="h-12 w-auto max-w-[220px] sm:max-w-[300px] lg:max-w-[360px] object-contain"
           />
         </Link>
 
