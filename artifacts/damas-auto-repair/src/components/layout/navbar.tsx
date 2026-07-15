@@ -159,10 +159,10 @@ export function Navbar() {
 
   return (
     <header
-      className="sticky top-0 z-50 w-full px-3 py-3"
+      className="fixed top-0 left-0 right-0 z-50 w-full px-3 py-3"
     >
       <div
-        className={`container mx-auto px-5 h-28 flex items-center justify-between gap-4 rounded-2xl border backdrop-blur transition-colors duration-300 ${
+        className={`container mx-auto px-4 sm:px-5 h-20 flex items-center justify-between gap-4 rounded-2xl border backdrop-blur transition-colors duration-300 ${
           isScrolled
             ? "border-zinc-800 bg-zinc-950/95 supports-[backdrop-filter]:bg-zinc-950/90 shadow-xl"
             : "border-zinc-200 bg-white/95 supports-[backdrop-filter]:bg-white/85 shadow-sm"
@@ -173,7 +173,7 @@ export function Navbar() {
           <img
             src={isScrolled ? "/images/brand/damas-logo-dark.webp" : "/images/brand/damas-logo-light.webp"}
             alt={business.name}
-            className="h-20 w-auto max-w-[270px] sm:max-w-[360px] lg:max-w-[420px] object-contain"
+            className="h-14 w-auto max-w-[220px] sm:max-w-[300px] lg:max-w-[360px] object-contain"
           />
         </Link>
 
