@@ -36,7 +36,7 @@ export function PageHero({
 }: PageHeroProps) {
   return (
     <section className="bg-white border-b overflow-hidden">
-      <div className="relative min-h-[560px] md:h-[540px] flex items-stretch">
+      <div className="relative min-h-[600px] md:h-[590px] flex items-stretch">
         {/* Right image with gradient fade */}
         <div className="absolute right-0 top-0 bottom-0 w-full md:w-[58%]">
           <img
@@ -53,13 +53,13 @@ export function PageHero({
 
         {/* Left text */}
         <div className="relative z-10 w-full container mx-auto px-4">
-          <div className="w-full md:w-[50%] min-h-[560px] md:h-[540px] pt-28 pb-14 md:pt-28 md:pb-16 flex flex-col justify-center">
+          <div className="w-full md:w-[50%] min-h-[600px] md:h-[590px] pt-28 pb-14 md:pt-28 md:pb-16 flex flex-col justify-center">
             {breadcrumbs && (
               <div className="mb-5 text-sm text-zinc-300 md:text-zinc-400">{breadcrumbs}</div>
             )}
 
             {category && (
-              <div className="inline-flex items-center bg-primary text-white rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-wider mb-7 shadow-md shadow-red-900/15">
+              <div className="inline-flex w-fit items-center bg-primary text-white rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wide mb-6 shadow-md shadow-red-900/15">
                 {category}
               </div>
             )}
