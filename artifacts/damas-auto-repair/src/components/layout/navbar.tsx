@@ -153,13 +153,15 @@ export function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full border-b backdrop-blur transition-colors duration-300 ${
-        isScrolled
-          ? "border-zinc-800 bg-zinc-950/95 supports-[backdrop-filter]:bg-zinc-950/90 shadow-lg"
-          : "border-zinc-200 bg-white/95 supports-[backdrop-filter]:bg-white/80"
-      }`}
+      className="sticky top-0 z-50 w-full px-3 py-3"
     >
-      <div className="container mx-auto px-4 h-28 flex items-center justify-between gap-4">
+      <div
+        className={`container mx-auto px-5 h-28 flex items-center justify-between gap-4 rounded-2xl border backdrop-blur transition-colors duration-300 ${
+          isScrolled
+            ? "border-zinc-800 bg-zinc-950/95 supports-[backdrop-filter]:bg-zinc-950/90 shadow-xl"
+            : "border-zinc-200 bg-white/95 supports-[backdrop-filter]:bg-white/85 shadow-sm"
+        }`}
+      >
         {/* Logo */}
         <Link href="/" className="flex items-center shrink-0" data-testid="link-home-logo" aria-label={`${business.name} home`}>
           <img
@@ -240,7 +242,7 @@ export function Navbar() {
 
       {/* Mobile Nav */}
       {isMobileMenuOpen && (
-        <div className={`lg:hidden border-t px-4 py-4 max-h-[80vh] overflow-y-auto ${isScrolled ? "border-zinc-800 bg-zinc-950 text-white" : "bg-white dark:bg-zinc-950"}`}>
+        <div className={`container mx-auto mt-2 lg:hidden rounded-2xl border px-4 py-4 max-h-[80vh] overflow-y-auto shadow-xl ${isScrolled ? "border-zinc-800 bg-zinc-950 text-white" : "border-zinc-200 bg-white dark:bg-zinc-950"}`}>
           <nav className="flex flex-col gap-1">
             {/* Home */}
             <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className={`block px-4 py-3 rounded-md text-base font-medium transition-colors ${isScrolled ? "hover:bg-white/10" : "hover:bg-muted"}`} data-testid="link-mobile-nav-home">
