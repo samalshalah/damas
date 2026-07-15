@@ -159,13 +159,13 @@ export function Navbar() {
           : "border-zinc-200 bg-white/95 supports-[backdrop-filter]:bg-white/80"
       }`}
     >
-      <div className="container mx-auto px-4 h-24 flex items-center justify-between gap-4">
+      <div className="container mx-auto px-4 h-28 flex items-center justify-between gap-4">
         {/* Logo */}
         <Link href="/" className="flex items-center shrink-0" data-testid="link-home-logo" aria-label={`${business.name} home`}>
           <img
             src={isScrolled ? "/images/brand/damas-logo-dark.webp" : "/images/brand/damas-logo-light.webp"}
             alt={business.name}
-            className="h-16 w-auto max-w-[230px] sm:max-w-[300px] lg:max-w-[340px] object-contain"
+            className="h-20 w-auto max-w-[270px] sm:max-w-[360px] lg:max-w-[420px] object-contain"
           />
         </Link>
 
