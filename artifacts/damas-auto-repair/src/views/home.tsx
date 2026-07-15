@@ -5,7 +5,7 @@ import { ArrowRight, CheckCircle2, Clock, MapPin, ShieldCheck, Star, Wrench } fr
 import { business, services, specials } from "@/lib/data";
 import { motion } from "framer-motion";
 
-const autoServices = services.filter((s) => s.category === "Auto Services").slice(0, 6);
+const autoServices = services.filter((s) => s.category === "Auto Services");
 const featuredSpecials = specials.slice(0, 3);
 
 export default function Home() {
@@ -35,7 +35,7 @@ export default function Home() {
               {business.name}
             </h1>
             <p className="text-lg md:text-xl text-zinc-300 mb-10 leading-relaxed max-w-2xl">
-              Local auto repair in Chantilly for diagnostics, maintenance, brakes, alignment, suspension, batteries, and tire care.
+              Local auto repair in Chantilly for diagnostics, maintenance, brakes, alignment, exhaust systems, tune ups, timing chain and belt service, and tire care.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button asChild size="lg" className="h-14 px-8 text-base rounded-full shadow-lg" data-testid="button-hero-book">
@@ -55,7 +55,7 @@ export default function Home() {
             {[
               "Local Chantilly shop",
               "Honest diagnostics",
-              "All makes and models",
+              "Loaner cars over $400",
               "Maintenance and repair",
             ].map((feature, i) => (
               <motion.div
@@ -149,7 +149,8 @@ export default function Home() {
                 {[
                   "Clear estimates before approved repairs",
                   "Diagnostics focused on the root cause",
-                  "Brake, alignment, suspension, battery, and tire service",
+                  "Brake, exhaust, tune up, timing, battery, and tire service",
+                  "Loaner cars may be available for repair bills over $400",
                   "Convenient location near Pleasant Valley Road",
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-3 text-muted-foreground">

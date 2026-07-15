@@ -14,7 +14,7 @@ export default function Services() {
       <PageHero
         category="Services"
         title={<>Auto Repair<br />Services</>}
-        description="Repair, diagnostics, maintenance, brake, alignment, suspension, battery, and tire services at Damas Auto Repair in Chantilly."
+        description="Repair, diagnostics, maintenance, brake, alignment, exhaust, tune up, timing chain and belt, suspension, battery, and tire services at Damas Auto Repair in Chantilly."
         image="/images/damas/diagnostics-team.webp"
         imageAlt="Technicians diagnosing a vehicle in an auto repair shop"
         stats={[

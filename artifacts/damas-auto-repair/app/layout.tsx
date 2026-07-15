@@ -7,7 +7,7 @@ import { Providers } from "./providers";
 export const metadata: Metadata = {
   title: "Damas Auto Repair | Chantilly, VA",
   description:
-    "Local auto repair, diagnostics, maintenance, brakes, alignment, and tire service at 25358 Pleasant Valley Rd #120, Chantilly, VA 20152.",
+    "Local auto repair, diagnostics, maintenance, brakes, exhaust repair, tune ups, timing chain and belt service, and tire care at 25358 Pleasant Valley Rd #120, Chantilly, VA 20152.",
 };
 
 export default function RootLayout({

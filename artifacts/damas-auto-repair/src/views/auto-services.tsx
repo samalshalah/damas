@@ -14,7 +14,7 @@ export default function AutoServices() {
       <PageHero
         category="Auto Services"
         title={<>Auto Repair<br />&amp; Maintenance</>}
-        description="Diagnostics, maintenance, brakes, alignment, batteries, steering, suspension, and repair services at our Chantilly shop."
+        description="Diagnostics, maintenance, brakes, alignment, exhaust systems, tune ups, timing chain and belt service, batteries, steering, suspension, and repair services at our Chantilly shop."
         image="/images/damas/service-bay.webp"
         imageAlt="Auto repair technician working in a service bay"
         stats={[

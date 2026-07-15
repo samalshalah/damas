@@ -21,7 +21,7 @@ export const business = {
   area: "Chantilly and Northern Virginia",
   mapUrl: "https://maps.google.com/?q=25358+Pleasant+Valley+Rd+%23120,+Chantilly,+VA+20152",
   description:
-    "Damas Auto Repair is a local Chantilly auto repair shop focused on honest diagnostics, routine maintenance, brake service, alignments, tire care, and dependable repairs for daily drivers and family vehicles.",
+    "Damas Auto Repair is a local Chantilly auto repair shop focused on honest diagnostics, routine maintenance, brake service, alignments, exhaust repair, tune ups, timing chain and belt service, tire care, and dependable repairs for daily drivers and family vehicles. Loaner cars may be available for repair bills over $400; contact the shop to confirm availability.",
 };
 
 const locationLine = `${business.address}, ${business.city}, ${business.state} ${business.zip}`;
@@ -324,6 +324,114 @@ export const services: Service[] = [
     faqs: makeFaq("belt and hose replacement"),
   },
   {
+    slug: "exhaust-system-repair",
+    name: "Exhaust System Repair",
+    category: "Auto Services",
+    icon: Settings,
+    image: "/images/service-fit/exhaust-system.webp",
+    shortDescription: "Mufflers, O2 sensors, catalytic converters, pipes, and exhaust leaks.",
+    seoTitle: "Exhaust System Repair in Chantilly, VA",
+    fullDescription:
+      "Damas Auto Repair diagnoses and repairs exhaust system concerns including mufflers, oxygen sensors, catalytic converters, exhaust pipes, hangers, leaks, and related check engine light issues.",
+    bodyParagraphs: [
+      "A healthy exhaust system keeps your vehicle quieter, helps manage emissions, and supports proper engine performance. Exhaust leaks, failed O2 sensors, damaged mufflers, and catalytic converter problems can affect drivability, fuel economy, and inspection readiness.",
+      "Bring your vehicle to our Chantilly shop at " + locationLine + " for a practical exhaust system inspection and a clear repair estimate before approved work begins.",
+    ],
+    seoDescription:
+      "Exhaust system repair in Chantilly, VA for mufflers, O2 sensors, catalytic converters, pipes, leaks, and check engine light concerns.",
+    cityContent:
+      "Damas Auto Repair provides exhaust repair for drivers near Chantilly, South Riding, Centreville, Herndon, Fairfax, and nearby Northern Virginia communities.",
+    whyUs:
+      "We inspect the full exhaust path and related sensor data so the recommendation matches the actual failure, not just the symptom.",
+    warnings: [
+      "Loud exhaust or rattling under the vehicle",
+      "Check engine light with oxygen sensor or catalyst codes",
+      "Exhaust smell inside or around the vehicle",
+      "Poor fuel economy or reduced performance",
+      "Visible rust, broken hangers, or damaged exhaust pipes",
+    ],
+    included: [
+      "Exhaust leak inspection",
+      "Muffler and pipe condition check",
+      "O2 sensor and related code review",
+      "Catalytic converter assessment",
+      "Repair recommendation and estimate",
+    ],
+    faqs: makeFaq("exhaust system repair"),
+  },
+  {
+    slug: "tune-up",
+    name: "Tune Up",
+    category: "Auto Services",
+    icon: Activity,
+    image: "/images/service-fit/tune-up.webp",
+    shortDescription: "Spark plugs, ignition checks, filters, and performance maintenance.",
+    seoTitle: "Tune Up Service in Chantilly, VA",
+    fullDescription:
+      "Damas Auto Repair provides tune up service for vehicles with rough idle, misfires, hard starts, poor fuel economy, or overdue maintenance.",
+    bodyParagraphs: [
+      "Tune up needs vary by vehicle, mileage, and maintenance history. We review symptoms and service intervals, then inspect common wear items such as spark plugs, ignition components, filters, and related engine performance parts.",
+      "If your vehicle feels sluggish, starts poorly, or has not had scheduled maintenance in a while, our Chantilly team can help plan the right tune up service.",
+    ],
+    seoDescription:
+      "Schedule tune up service in Chantilly, VA at Damas Auto Repair for spark plugs, ignition checks, filters, and performance maintenance.",
+    cityContent:
+      "Tune up service is available at Damas Auto Repair, " + locationLine + ".",
+    whyUs:
+      "We avoid one-size-fits-all tune ups and base the service on your vehicle, mileage, symptoms, and manufacturer guidance.",
+    warnings: [
+      "Rough idle or engine misfire",
+      "Hard starting or hesitation",
+      "Poor fuel economy",
+      "Sluggish acceleration",
+      "Overdue spark plugs or maintenance interval",
+    ],
+    included: [
+      "Maintenance interval review",
+      "Spark plug and ignition system check",
+      "Air and cabin filter review when applicable",
+      "Visible engine bay inspection",
+      "Recommended tune up estimate",
+    ],
+    faqs: makeFaq("tune up service"),
+  },
+  {
+    slug: "timing-chain-belt",
+    name: "Timing Chain and Belt",
+    category: "Auto Services",
+    icon: Wrench,
+    image: "/images/service-fit/belts-hoses.webp",
+    shortDescription: "Timing belt, timing chain, tensioner, guide, and related service.",
+    seoTitle: "Timing Chain and Belt Service in Chantilly, VA",
+    fullDescription:
+      "Damas Auto Repair inspects and services timing belts, timing chains, tensioners, guides, and related components that keep engine timing correct.",
+    bodyParagraphs: [
+      "Timing belts and timing chains are critical engine components. A worn belt, stretched chain, weak tensioner, or damaged guide can cause noise, poor running, warning lights, or severe engine damage if ignored.",
+      "Our Chantilly shop reviews the vehicle's mileage, symptoms, and manufacturer service guidance before recommending timing chain or timing belt work.",
+    ],
+    seoDescription:
+      "Timing chain and timing belt service in Chantilly, VA at Damas Auto Repair for belts, chains, tensioners, guides, and timing-related concerns.",
+    cityContent:
+      "Damas Auto Repair serves Chantilly and nearby Northern Virginia drivers from " + locationLine + ".",
+    whyUs:
+      "We explain timing service clearly because these repairs are important, vehicle-specific, and should be planned with the right parts and scope.",
+    warnings: [
+      "Rattling or ticking noise from the engine",
+      "Hard start, rough running, or misfire",
+      "Timing-related fault codes",
+      "Visible belt wear or overdue timing belt interval",
+      "Oil leak near timing cover or related components",
+    ],
+    included: [
+      "Mileage and service interval review",
+      "Timing belt or chain symptom inspection",
+      "Tensioner and related component review",
+      "Manufacturer guidance check",
+      "Repair recommendation and estimate",
+    ],
+    faqs: makeFaq("timing chain and belt service"),
+  },
+  {
     slug: "tire-rotation",
     name: "Tire Rotation",
     category: "Tire and Wheel",
@@ -449,7 +557,7 @@ export const locations: Location[] = [
       { day: "Saturday", hours: "Call for hours" },
       { day: "Sunday", hours: "Call for hours" },
     ],
-    attributes: ["Local Chantilly shop", "Auto repair", "Diagnostics", "Maintenance", "Tire service"],
+    attributes: ["Local Chantilly shop", "Auto repair", "Diagnostics", "Maintenance", "Exhaust service", "Tire service"],
     reviews: [
       {
         author: "Damas Auto Repair",
@@ -458,7 +566,7 @@ export const locations: Location[] = [
         source: "Business profile",
       },
     ],
-    highlights: ["Located in Chantilly", "Auto repair and maintenance", "All makes and models"],
+    highlights: ["Located in Chantilly", "Auto repair and maintenance", "Loaner cars over $400"],
   },
 ];
 
@@ -471,6 +579,13 @@ export interface Special {
 }
 
 export const specials: Special[] = [
+  {
+    id: "loaner-cars",
+    title: "Loaner Cars",
+    price: "$400+",
+    description:
+      "Loaner cars may be available for qualifying repair bills over $400. Contact Damas Auto Repair to confirm availability when scheduling.",
+  },
   {
     id: "diagnostic-check",
     title: "Diagnostic Check",

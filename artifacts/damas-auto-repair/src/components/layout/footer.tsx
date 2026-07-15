@@ -4,7 +4,7 @@ import { business, services } from "@/lib/data";
 import { Clock, MapPin } from "lucide-react";
 
 export function Footer() {
-  const autoServices = services.filter((s) => s.category === "Auto Services").slice(0, 8);
+  const autoServices = services.filter((s) => s.category === "Auto Services");
   const tireServices = services.filter((s) => s.category === "Tire and Wheel");
 
   return (
@@ -20,7 +20,7 @@ export function Footer() {
               />
             </div>
             <p className="text-zinc-400 leading-relaxed text-sm">
-              Local auto repair, diagnostics, maintenance, brakes, alignment, and tire service at {business.address}, {business.city}, {business.state} {business.zip}.
+              Local auto repair, diagnostics, maintenance, brakes, exhaust, tune ups, timing service, and tire care at {business.address}, {business.city}, {business.state} {business.zip}.
             </p>
             <div className="space-y-3">
               <h4 className="text-white font-semibold flex items-center gap-2 text-sm">
