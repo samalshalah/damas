@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, Clock, MapPin, ShieldCheck, Star, Wrench } from "lucide-react";
+import { ArrowRight, Car, CheckCircle2, Clock, MapPin, ShieldCheck, Star, Wrench } from "lucide-react";
 import { business, services, specials } from "@/lib/data";
 import { motion } from "framer-motion";
 
@@ -44,6 +44,17 @@ export default function Home() {
               <Button asChild size="lg" variant="outline" className="h-14 px-8 text-base rounded-full bg-transparent border-zinc-600 text-white hover:bg-zinc-800">
                 <a href={business.mapUrl} target="_blank" rel="noreferrer">Get Directions</a>
               </Button>
+            </div>
+            <div className="mt-7 inline-flex max-w-xl flex-col gap-3 rounded-2xl border border-white/15 bg-white/10 p-4 shadow-xl shadow-black/20 backdrop-blur-sm sm:flex-row sm:items-center">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground">
+                <Car className="h-6 w-6" />
+              </div>
+              <div>
+                <p className="text-base font-bold text-white">Loaner cars available for repair bills over $400</p>
+                <p className="mt-1 text-sm leading-relaxed text-zinc-300">
+                  Ask about loaner availability when you request your appointment.
+                </p>
+              </div>
             </div>
           </motion.div>
         </div>
