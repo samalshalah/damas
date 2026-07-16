@@ -18,6 +18,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import { Clock, MapPin } from "lucide-react";
 import { useSearchParams } from "next/navigation";
+import { PageHero } from "@/components/layout/page-hero";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -55,13 +56,22 @@ export default function Contact() {
   }
 
   return (
-    <div className="py-16 md:py-24 bg-zinc-50 dark:bg-zinc-950 min-h-screen">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold font-display tracking-tight mb-4">Contact Damas Auto Repair</h1>
-          <p className="text-xl text-muted-foreground">Request service or get directions to our Chantilly shop.</p>
-        </div>
-
+    <div className="bg-zinc-50 dark:bg-zinc-950 min-h-screen">
+      <PageHero
+        category="Contact"
+        title="Contact Damas Auto Repair"
+        description="Request service, ask about availability, or get directions to our Chantilly auto repair shop."
+        image="/images/damas/contact-hero.webp"
+        imageAlt="Mechanic working in an engine bay"
+        stats={[
+          { val: "Chantilly", label: "VA" },
+          { val: "Request", label: "Service" },
+          { val: "Local", label: "Auto Repair" },
+        ]}
+        primaryCta={{ label: "Start Request", href: "#service-request" }}
+        secondaryCta={{ label: "Get Directions", href: business.mapUrl }}
+      />
+      <div id="service-request" className="container mx-auto px-4 py-16 md:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
           <div className="lg:col-span-2 space-y-8">
             <div className="bg-white dark:bg-zinc-900 rounded-3xl p-8 shadow-sm border">

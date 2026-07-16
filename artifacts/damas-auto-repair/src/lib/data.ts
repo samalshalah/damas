@@ -400,7 +400,7 @@ export const services: Service[] = [
     name: "Timing Chain and Belt",
     category: "Auto Services",
     icon: Wrench,
-    image: "/images/service-fit/belts-hoses.webp",
+    image: "/images/service-fit/timing-chain-belt.webp",
     shortDescription: "Timing belt, timing chain, tensioner, guide, and related service.",
     seoTitle: "Timing Chain and Belt Service in Chantilly, VA",
     fullDescription:
