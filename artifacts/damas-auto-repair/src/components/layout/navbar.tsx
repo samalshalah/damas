@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CalendarCheck, MapPinned, Phone, Menu, X, ChevronDown, MapPin } from "lucide-react";
+import { CalendarCheck, MapPinned, Phone, Menu, X, ChevronDown, MapPin, ExternalLink } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { business, services, locations } from "@/lib/data";
@@ -32,7 +32,7 @@ function PhoneDropdown() {
     <div className="relative" ref={ref}>
       <Button
         onClick={() => setOpen(o => !o)}
-        className="hidden lg:flex font-semibold text-sm h-10 px-5 shadow-sm rounded-full shrink-0"
+        className="hidden xl:flex font-semibold text-sm h-10 px-5 shadow-sm rounded-full shrink-0"
         data-testid="button-nav-call"
       >
         <Phone className="w-4 h-4 mr-2" />
@@ -178,7 +178,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-6">
+        <nav className="hidden xl:flex items-center gap-5">
           <Link
             href="/"
             className={navLinkClass(location === "/")}
@@ -231,6 +231,16 @@ export function Navbar() {
           >
             Contact Us
           </Link>
+
+          <a
+            href={business.dealershipUrl}
+            target="_blank"
+            rel="noreferrer"
+            className={`inline-flex items-center gap-1.5 ${navLinkClass(false)}`}
+          >
+            Dealership
+            <ExternalLink className="h-3.5 w-3.5" />
+          </a>
         </nav>
 
         {/* Call Button */}
@@ -238,7 +248,7 @@ export function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className={`lg:hidden p-2 -mr-2 transition-colors ${isScrolled ? "text-white" : "text-foreground"}`}
+          className={`xl:hidden p-2 -mr-2 transition-colors ${isScrolled ? "text-white" : "text-foreground"}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           data-testid="button-mobile-menu"
         >
@@ -248,7 +258,7 @@ export function Navbar() {
 
       {/* Mobile Nav */}
       {isMobileMenuOpen && (
-        <div className={`container mx-auto mt-2 lg:hidden rounded-2xl border px-4 py-4 max-h-[80vh] overflow-y-auto shadow-xl ${isScrolled ? "border-zinc-800 bg-zinc-950 text-white" : "border-zinc-200 bg-white dark:bg-zinc-950"}`}>
+        <div className={`container mx-auto mt-2 xl:hidden rounded-2xl border px-4 py-4 max-h-[80vh] overflow-y-auto shadow-xl ${isScrolled ? "border-zinc-800 bg-zinc-950 text-white" : "border-zinc-200 bg-white dark:bg-zinc-950"}`}>
           <nav className="flex flex-col gap-1">
             {/* Home */}
             <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className={`block px-4 py-3 rounded-md text-base font-medium transition-colors ${isScrolled ? "hover:bg-white/10" : "hover:bg-muted"}`} data-testid="link-mobile-nav-home">
@@ -330,6 +340,16 @@ export function Navbar() {
             <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className={`block px-4 py-3 rounded-md text-base font-medium transition-colors ${isScrolled ? "hover:bg-white/10" : "hover:bg-muted"}`}>
               Contact Us
             </Link>
+            <a
+              href={business.dealershipUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`flex items-center justify-between px-4 py-3 rounded-md text-base font-medium transition-colors ${isScrolled ? "hover:bg-white/10" : "hover:bg-muted"}`}
+            >
+              <span>Dealership</span>
+              <ExternalLink className="h-4 w-4 text-primary" />
+            </a>
           </nav>
           <div className="pt-4 border-t mt-4">
             <p className="px-4 pb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">Visit Our Chantilly Shop</p>
@@ -353,7 +373,7 @@ export function Navbar() {
 
       <div
         className={`fixed inset-x-0 bottom-0 z-[60] px-3 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] lg:hidden transition-all duration-300 ${
-          isScrolled ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"
+          isScrolled ? "translate-y-0 opacity-100 xl:translate-y-full xl:opacity-0 xl:pointer-events-none" : "translate-y-full opacity-0 pointer-events-none"
         }`}
       >
         <div className="mx-auto max-w-md rounded-2xl border border-zinc-800 bg-zinc-950/95 p-2 shadow-2xl shadow-black/30 backdrop-blur">

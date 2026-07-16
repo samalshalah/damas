@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { business, services } from "@/lib/data";
-import { Clock, MapPin } from "lucide-react";
+import { Clock, ExternalLink, MapPin } from "lucide-react";
 
 export function Footer() {
   const autoServices = services.filter((s) => s.category === "Auto Services");
@@ -21,6 +21,9 @@ export function Footer() {
             </div>
             <p className="text-zinc-400 leading-relaxed text-sm">
               Local auto repair, diagnostics, maintenance, brakes, exhaust, tune ups, timing service, and tire care at {business.address}, {business.city}, {business.state} {business.zip}.
+            </p>
+            <p className="text-zinc-500 leading-relaxed text-sm">
+              Looking for vehicle sales? Visit {business.dealershipName}, located at the same address.
             </p>
             <div className="space-y-3">
               <h4 className="text-white font-semibold flex items-center gap-2 text-sm">
@@ -65,6 +68,18 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <a
+                  href={business.dealershipUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm text-zinc-400 hover:text-primary transition-colors"
+                  data-testid="link-footer-dealership"
+                >
+                  Dealership
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              </li>
             </ul>
           </div>
 

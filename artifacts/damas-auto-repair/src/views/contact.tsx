@@ -16,7 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { Clock, MapPin } from "lucide-react";
+import { Clock, ExternalLink, MapPin } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { PageHero } from "@/components/layout/page-hero";
 
@@ -93,6 +93,21 @@ export default function Contact() {
                     <p className="font-medium">Hours</p>
                     <p className="text-muted-foreground">Please contact the shop for current hours and appointment availability.</p>
                   </div>
+                </div>
+                <div className="rounded-2xl border border-primary/15 bg-primary/5 p-4 text-sm">
+                  <p className="font-semibold">Looking for vehicle sales?</p>
+                  <p className="mt-1 text-muted-foreground">
+                    {business.dealershipName} is located at the same address.
+                  </p>
+                  <a
+                    href={business.dealershipUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-3 inline-flex items-center gap-1.5 font-semibold text-primary"
+                  >
+                    Visit dealership website
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
                 </div>
               </div>
             </div>

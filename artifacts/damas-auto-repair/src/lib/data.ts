@@ -20,6 +20,8 @@ export const business = {
   zip: "20152",
   area: "Chantilly and Northern Virginia",
   mapUrl: "https://maps.google.com/?q=25358+Pleasant+Valley+Rd+%23120,+Chantilly,+VA+20152",
+  dealershipName: "Damas Auto LLC",
+  dealershipUrl: "https://www.damasautova.com/",
   description:
     "Damas Auto Repair is a local Chantilly auto repair shop focused on honest diagnostics, routine maintenance, brake service, alignments, exhaust repair, tune ups, timing chain and belt service, tire care, and dependable repairs for daily drivers and family vehicles. Loaner cars may be available for repair bills over $400; contact the shop to confirm availability.",
 };
