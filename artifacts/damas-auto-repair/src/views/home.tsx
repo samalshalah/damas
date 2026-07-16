@@ -39,7 +39,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button asChild size="lg" className="h-14 px-8 text-base rounded-full shadow-lg" data-testid="button-hero-book">
-                <Link href="/contact">Request Service</Link>
+                <Link href="/contact">Request Repair Appointment</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="h-14 px-8 text-base rounded-full bg-transparent border-zinc-600 text-white hover:bg-zinc-800">
                 <a href={business.mapUrl} target="_blank" rel="noreferrer">Get Directions</a>
@@ -65,9 +65,9 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               "Local Chantilly shop",
-              "Honest diagnostics",
+              "Root-cause diagnostics",
               "Loaner cars over $400",
-              "Maintenance and repair",
+              "Clear estimates first",
             ].map((feature, i) => (
               <motion.div
                 key={feature}
@@ -207,7 +207,7 @@ export default function Home() {
             </div>
             <Button asChild variant="outline" size="lg" className="rounded-full shrink-0">
               <Link href="/contact">
-                Request Service <ArrowRight className="w-4 h-4 ml-2" />
+                Request Appointment <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
           </div>
@@ -229,7 +229,7 @@ export default function Home() {
                 <div className="p-6">
                   <p className="text-muted-foreground text-sm leading-relaxed mb-4">{deal.description}</p>
                   <Button asChild size="sm" variant="outline" className="rounded-full w-full">
-                    <Link href="/contact">Request This Service</Link>
+                    <Link href="/contact">Request Appointment</Link>
                   </Button>
                 </div>
               </motion.div>
@@ -245,7 +245,7 @@ export default function Home() {
             {business.address}, {business.city}, {business.state} {business.zip}
           </p>
           <Button asChild size="lg" variant="secondary" className="h-14 px-10 text-lg rounded-full font-bold shadow-xl">
-            <a href={business.mapUrl} target="_blank" rel="noreferrer">Get Directions</a>
+            <Link href="/contact">Request Appointment</Link>
           </Button>
         </div>
       </section>

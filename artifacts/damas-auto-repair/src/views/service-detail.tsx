@@ -49,7 +49,7 @@ export default function ServiceDetail({ slug }: { slug: string }) {
           { val: "Local", label: "Shop" },
           { val: "All", label: "Makes & Models" },
         ]}
-        primaryCta={{ label: "Request This Service", href: `/contact?service=${service.slug}` }}
+        primaryCta={{ label: "Request Appointment", href: `/contact?service=${service.slug}` }}
         secondaryCta={{ label: "Get Directions", href: business.mapUrl }}
         breadcrumbs={
           <nav className="flex items-center gap-2 text-sm text-zinc-400">
@@ -66,6 +66,27 @@ export default function ServiceDetail({ slug }: { slug: string }) {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2 space-y-12">
+              <div className="bg-white dark:bg-zinc-900 rounded-2xl p-6 md:p-8 border shadow-sm">
+                <p className="text-primary font-semibold text-sm uppercase tracking-wider mb-3">Common symptoms</p>
+                <h2 className="text-2xl font-bold font-display tracking-tight mb-4">
+                  Not sure if you need {service.name.toLowerCase()}?
+                </h2>
+                <p className="text-muted-foreground leading-relaxed mb-5">
+                  Start with what you are noticing. If any of these sound familiar, request an appointment and the shop can inspect the vehicle before recommending work.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {service.warnings.slice(0, 4).map((warning) => (
+                    <div key={warning} className="flex items-start gap-3 rounded-xl bg-zinc-50 dark:bg-zinc-950 p-4 border">
+                      <AlertTriangle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                      <span className="text-sm font-medium">{warning}</span>
+                    </div>
+                  ))}
+                </div>
+                <Button asChild className="mt-6 rounded-full h-12 px-6 font-semibold">
+                  <Link href={`/contact?service=${service.slug}`}>Request Appointment</Link>
+                </Button>
+              </div>
+
               <div>
                 <h2 className="text-2xl font-bold font-display tracking-tight mb-4">
                   About {service.name} at {business.name}
@@ -176,7 +197,7 @@ export default function ServiceDetail({ slug }: { slug: string }) {
                   Tell us what your vehicle needs and our Chantilly shop can help with next steps.
                 </p>
                 <Button asChild size="lg" variant="secondary" className="w-full rounded-full h-12 font-semibold mb-3" data-testid="button-sidebar-book">
-                  <Link href={`/contact?service=${service.slug}`}>Request Online</Link>
+                  <Link href={`/contact?service=${service.slug}`}>Request Appointment</Link>
                 </Button>
                 <a href={business.mapUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 text-sm text-white/80 hover:text-white transition-colors font-medium">
                   <MapPin className="w-4 h-4" />
@@ -219,7 +240,7 @@ export default function ServiceDetail({ slug }: { slug: string }) {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="rounded-full h-14 px-10 text-base font-semibold">
-              <Link href={`/contact?service=${service.slug}`}>Request Service</Link>
+              <Link href={`/contact?service=${service.slug}`}>Request Appointment</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="rounded-full h-14 px-10 text-base bg-transparent border-zinc-600 text-white hover:bg-zinc-800">
               <a href={business.mapUrl} target="_blank" rel="noreferrer">Get Directions</a>

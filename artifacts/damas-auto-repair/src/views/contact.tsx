@@ -49,8 +49,8 @@ export default function Contact() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     toast({
-      title: "Service Request Received",
-      description: "Your request is ready to send to Damas Auto Repair. Please contact the shop to confirm availability.",
+      title: "Service Request Prepared",
+      description: "Please contact the shop directly to confirm appointment availability before visiting.",
     });
     form.reset();
   }
@@ -60,7 +60,7 @@ export default function Contact() {
       <PageHero
         category="Contact"
         title="Contact Damas Auto Repair"
-        description="Request service, ask about availability, or get directions to our Chantilly auto repair shop."
+        description="Prepare a service request, ask about availability, or get directions to our Chantilly auto repair shop."
         image="/images/damas/contact-hero.webp"
         imageAlt="Mechanic working in an engine bay"
         stats={[
@@ -68,7 +68,7 @@ export default function Contact() {
           { val: "Request", label: "Service" },
           { val: "Local", label: "Auto Repair" },
         ]}
-        primaryCta={{ label: "Start Request", href: "#service-request" }}
+        primaryCta={{ label: "Start Appointment Request", href: "#service-request" }}
         secondaryCta={{ label: "Get Directions", href: business.mapUrl }}
       />
       <div id="service-request" className="container mx-auto px-4 py-16 md:py-24">
@@ -114,7 +114,10 @@ export default function Contact() {
           </div>
 
           <div className="lg:col-span-3 bg-white dark:bg-zinc-900 rounded-3xl p-8 md:p-10 shadow-sm border">
-            <h2 className="text-2xl font-bold font-display mb-8">Request Service</h2>
+            <h2 className="text-2xl font-bold font-display mb-3">Request Appointment</h2>
+            <p className="text-sm text-muted-foreground mb-8">
+              Share your vehicle and service details here, then confirm availability with the shop before visiting.
+            </p>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -218,10 +221,10 @@ export default function Contact() {
                 />
 
                 <Button type="submit" size="lg" className="w-full rounded-full h-14 text-base font-bold shadow-md" data-testid="button-submit-appointment">
-                  Submit Request
+                  Prepare Appointment Request
                 </Button>
                 <p className="text-xs text-center text-muted-foreground mt-4">
-                  This form records a request only. Contact the shop directly to confirm appointment availability.
+                  This form prepares a request only. It does not confirm an appointment automatically.
                 </p>
               </form>
             </Form>

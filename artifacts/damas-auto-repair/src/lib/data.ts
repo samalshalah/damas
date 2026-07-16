@@ -23,7 +23,7 @@ export const business = {
   dealershipName: "Damas Auto LLC",
   dealershipUrl: "https://www.damasautova.com/",
   description:
-    "Damas Auto Repair is a local Chantilly auto repair shop focused on honest diagnostics, routine maintenance, brake service, alignments, exhaust repair, tune ups, timing chain and belt service, tire care, and dependable repairs for daily drivers and family vehicles. Loaner cars may be available for repair bills over $400; contact the shop to confirm availability.",
+    "Damas Auto Repair is a local Chantilly auto repair shop focused on root-cause diagnostics, clear estimates before approved work, routine maintenance, brake service, alignments, exhaust repair, tune ups, timing chain and belt service, tire care, and dependable repairs for daily drivers and family vehicles. Loaner cars may be available for repair bills over $400; contact the shop to confirm availability.",
 };
 
 const locationLine = `${business.address}, ${business.city}, ${business.state} ${business.zip}`;

@@ -76,7 +76,7 @@ export function Footer() {
                   className="inline-flex items-center gap-1.5 text-sm text-zinc-400 hover:text-primary transition-colors"
                   data-testid="link-footer-dealership"
                 >
-                  Dealership
+                  Damas Auto LLC Sales
                   <ExternalLink className="h-3.5 w-3.5" />
                 </a>
               </li>

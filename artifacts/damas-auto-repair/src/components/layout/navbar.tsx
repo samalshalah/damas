@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CalendarCheck, MapPinned, Phone, Menu, X, ChevronDown, MapPin, ExternalLink } from "lucide-react";
+import { CalendarCheck, MapPinned, MessageCircle, Menu, X, ChevronDown, MapPin, ExternalLink } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { business, services, locations } from "@/lib/data";
@@ -10,11 +10,6 @@ const autoServices = services.filter(s => s.category === "Auto Services");
 const tireServices = services.filter(s => s.category === "Tire and Wheel");
 
 const phoneLocations = locations;
-
-function getCallHref(phone: string) {
-  const digits = phone.replace(/\D/g, "");
-  return digits.length >= 10 ? `tel:${digits}` : "/contact";
-}
 
 function PhoneDropdown() {
   const [open, setOpen] = useState(false);
@@ -35,7 +30,7 @@ function PhoneDropdown() {
         className="hidden xl:flex font-semibold text-sm h-10 px-5 shadow-sm rounded-full shrink-0"
         data-testid="button-nav-call"
       >
-        <Phone className="w-4 h-4 mr-2" />
+        <MapPinned className="w-4 h-4 mr-2" />
         Directions
         <ChevronDown className={`w-3.5 h-3.5 ml-1.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
       </Button>
@@ -145,7 +140,6 @@ export function Navbar() {
   ];
 
   const isActive = (path: string) => location === path || location.startsWith(path + "/");
-  const mobileCallHref = getCallHref(locations[0]?.phone ?? "");
   const navLinkClass = (active: boolean) =>
     `text-sm font-medium transition-colors ${
       active
@@ -238,13 +232,17 @@ export function Navbar() {
             rel="noreferrer"
             className={`inline-flex items-center gap-1.5 ${navLinkClass(false)}`}
           >
-            Dealership
+            Damas Auto LLC Sales
             <ExternalLink className="h-3.5 w-3.5" />
           </a>
         </nav>
 
-        {/* Call Button */}
-        <PhoneDropdown />
+        <div className="hidden xl:flex items-center gap-3">
+          <PhoneDropdown />
+          <Button asChild className="font-semibold text-sm h-10 px-5 shadow-sm rounded-full shrink-0" data-testid="button-nav-appointment">
+            <Link href="/contact">Request Appointment</Link>
+          </Button>
+        </div>
 
         {/* Mobile Menu Toggle */}
         <button
@@ -347,7 +345,7 @@ export function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
               className={`flex items-center justify-between px-4 py-3 rounded-md text-base font-medium transition-colors ${isScrolled ? "hover:bg-white/10" : "hover:bg-muted"}`}
             >
-              <span>Dealership</span>
+              <span>Damas Auto LLC Sales</span>
               <ExternalLink className="h-4 w-4 text-primary" />
             </a>
           </nav>
@@ -379,12 +377,12 @@ export function Navbar() {
         <div className="mx-auto max-w-md rounded-2xl border border-zinc-800 bg-zinc-950/95 p-2 shadow-2xl shadow-black/30 backdrop-blur">
           <div className="grid grid-cols-3 gap-2">
             <Link
-              href={mobileCallHref}
+              href="/contact"
               className="flex min-h-14 flex-col items-center justify-center gap-1 rounded-xl bg-white/8 px-2 text-xs font-semibold text-white transition-colors hover:bg-white/12"
               data-testid="mobile-sticky-call"
             >
-              <Phone className="h-5 w-5 text-primary" />
-              <span>Call</span>
+              <MessageCircle className="h-5 w-5 text-primary" />
+              <span>Contact</span>
             </Link>
             <a
               href={business.mapUrl}
